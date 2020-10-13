@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -29,6 +28,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { CriarSenhaComponent } from './criar-senha/criar-senha.component';
 import { AuthService } from './guards/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
+import { CadastroFornecedorPjComponent } from './cadastro-fornecedor-pj/cadastro-fornecedor-pj.component';
+import { CadastroFornecedorPfComponent } from './cadastro-fornecedor-pf/cadastro-fornecedor-pf.component';
+import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +41,13 @@ import { AuthGuard } from './guards/auth.guard';
     LoginComponent,
     CadastroClienteComponent,
     CadastroProdutoComponent,
-    PedidosComponent,
+    CadastroPedidosComponent,
     CriarSenhaComponent,
-  ],
+    CadastroUsuarioComponent,
+      CadastroVendedorComponent,
+      CadastroFornecedorPjComponent,
+      CadastroFornecedorPfComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

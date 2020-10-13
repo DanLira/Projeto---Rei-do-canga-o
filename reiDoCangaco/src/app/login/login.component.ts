@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../guards/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsuarioService } from '../usuarios/usuario.service';
+import { UsuarioService } from '../cadastro-usuario/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
     });
     this.returnUrl = '/home';
     this.authService.logout();
-    this.usuarioService.getAllUsuario()
-    .subscribe((usuarios: Usuarios[]) => {
-      this.usuariosList = (!!usuarios) ? usuarios : [];
-  });
+  //   this.usuarioService.getAllUsuario()
+  //   .subscribe((usuarios: Usuarios[]) => {
+  //     this.usuariosList = (!!usuarios) ? usuarios : [];
+  // });
   }
 
   get f() { return this.loginForm.controls; }
