@@ -30,12 +30,13 @@ import { AuthService } from './guards/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
-import { CadastroFornecedorPjComponent } from './cadastro-fornecedor-pj/cadastro-fornecedor-pj.component';
-import { CadastroFornecedorPfComponent } from './cadastro-fornecedor-pf/cadastro-fornecedor-pf.component';
 import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.component';
+import { LogComponent } from './log/log.component';
+import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.component';
+import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -44,9 +45,10 @@ import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.co
     CadastroPedidosComponent,
     CriarSenhaComponent,
     CadastroUsuarioComponent,
-      CadastroVendedorComponent,
-      CadastroFornecedorPjComponent,
-      CadastroFornecedorPfComponent
+    CadastroVendedorComponent,
+    LogComponent,
+    RelatorioVendasComponent,
+      CadastroFornecedorComponent
    ],
   imports: [
     BrowserModule,

@@ -15,7 +15,11 @@
 
   .font-header {
     font-size: 25px;;
-    color: #673AB7;
+    color: #fff;
+  }
+
+  .header-toolbar {
+    background-color: #673AB7;
   }
   
   .old-menu-padding-right-30 {
@@ -37,12 +41,7 @@
     border-radius: 4px;
     margin-bottom: 5px;
     max-width: 70px;
-    //background: #FF5722 !important;
     color: white;
-  }
-  
-  .item-selected {
-    //background: #FF5722
   }
   
   .icon-margim-top {

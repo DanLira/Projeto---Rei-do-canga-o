@@ -14,7 +14,7 @@
               <mat-icon class="sub-menu-icon">account_circle</mat-icon>
               <div class="sub-menu-title">Perfil</div>
             </div>
-            <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/produto" routerLinkActive="active">{{nome}}</div>
+            <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/produto" routerLinkActive="active"></div>
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">contacts</mat-icon>
               <div class="sub-menu-title">Produtos</div>
@@ -23,7 +23,7 @@
               <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/produto" routerLinkActive="active">
                 Novo Produto</div>
             </div>
-            <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cliente" routerLinkActive="active">{{nome}}</div>
+            <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cliente" routerLinkActive="active"></div>
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">contacts</mat-icon>
               <div class="sub-menu-title">Clientes</div>
@@ -31,6 +31,14 @@
             <div class="sub-menu-items">
               <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cadastroPaciente" routerLinkActive="active">
                 Novo Clientes</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cadastroPaciente" routerLinkActive="active">
+                Vendas</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cadastroPaciente" routerLinkActive="active">
+                Novo Fornecedor</div>
             </div>
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">event_note</mat-icon>
@@ -54,12 +62,12 @@
         </div>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content style="background: #eeeeee">
+    <mat-sidenav-content>
       <mat-toolbar class="header-toolbar" [hidden]="hiddenMenu">
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <div class="font-header">DeliverySystem</div>
+        <div class="font-header">O Rei do Cangaço</div>
         <span class="toolbar-spacer"></span>
         <mat-icon class="icons-margim">notifications_active</mat-icon>
         <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()">input</mat-icon>

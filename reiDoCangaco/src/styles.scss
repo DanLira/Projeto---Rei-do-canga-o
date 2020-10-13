@@ -5,7 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /* You can add global styles to this file, and also import other style files */
-//@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~ngx-toastr/toastr';
 
@@ -46,7 +46,7 @@ $break-exlarge: 1140px;
 
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-    background-color: #FF9100 !important;
+    background-color: #673AB7 !important;
 }
 .mat-sidenav {
   width: 280px;

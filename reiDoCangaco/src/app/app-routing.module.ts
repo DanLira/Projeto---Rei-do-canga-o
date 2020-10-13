@@ -1,4 +1,3 @@
-import { CadastroFornecedorPfComponent } from './cadastro-fornecedor-pf/cadastro-fornecedor-pf.component';
 import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { CriarSenhaComponent } from './criar-senha/criar-senha.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { AuthGuard } from './guards/auth.guard';
-import { CadastroFornecedorPjComponent } from './cadastro-fornecedor-pj/cadastro-fornecedor-pj.component';
+import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 
 const routes: Routes = [
   {
@@ -32,7 +31,7 @@ const routes: Routes = [
 },
 {
   path: 'produto',
-  component: CadastroProdutoComponent, 
+  component: CadastroProdutoComponent,
   //canActivate: [AuthGuard]
 },
 {
@@ -40,13 +39,9 @@ const routes: Routes = [
   component: CadastroVendedorComponent, canActivate: [AuthGuard]
 },
 {
-  path: 'fornecedor-pj',
-  component: CadastroFornecedorPjComponent, canActivate: [AuthGuard]
+  path: 'fornecedor',
+  component: CadastroFornecedorComponent, canActivate: [AuthGuard]
 },
-{
-  path: 'fornecedor-pf',
-  component: CadastroFornecedorPfComponent, canActivate: [AuthGuard]
-}
 
 
 ];
