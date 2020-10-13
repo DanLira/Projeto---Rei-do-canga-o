@@ -1,0 +1,212 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* You can add global styles to this file, and also import other style files */
+//@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~ngx-toastr/toastr';
+
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ds-app-primary: mat-palette($mat-deep-purple, 700);
+$ds-app-accent: mat-palette($mat-cyan, 600);
+
+// The warn palette is optional (defaults to red).
+$ds-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ds-app-theme: mat-light-theme($ds-app-primary, $ds-app-accent, $ds-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ds-app-theme);
+ 
+
+//Standard size
+$break-small: 540px;
+$break-medium: 720px;
+$break-large: 960px;
+$break-exlarge: 1140px;
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: #FF9100 !important;
+}
+.mat-sidenav {
+  width: 280px;
+  padding:15px;
+}
+
+.header-toolbar{
+  //background-color: #FF6D00;
+  color:#fff;
+}
+
+.mat-sidenav{
+  //background-color: #FF6D00;
+  color:#fff;
+}
+
+.mat-drawer { 
+  //background-color: #FF6D00;
+  color:#fff;
+}
+
+.btn-nav{
+  background-color: #FF6D00 !important;
+  color:#fff;
+}
+.btn-nav :hover{
+  background-color: #FF9100 !important;
+  color:#fff;
+}
+
+.main-content {
+  padding:20px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.font-header {
+  font-size: 14px
+}
+
+.icons-margim {
+  margin-left: 15px
+}
+
+.center-spinner {
+  margin-left: 45%; 
+  margin-top: 20%
+}
+
+.has-centered-text {
+  text-align: center;
+  background-color: #FF9100;
+  font-weight: 600;
+  color: white;
+  font-size: 24px;
+}
+
+.mat-card-space{
+  margin-bottom: 40px;
+}
+
+.mat-card-padrao{
+  height: auto; 
+  margin-top: -5px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  .mat-icon{
+    color: #673AB7;
+  }
+}
+.mat-card-title {
+  color: #FF6D00;
+}
+.expansion-list-todo {
+  border: solid 1px #ccc;
+  min-height: 243px;
+  max-height: 243px;
+  background: #fafafa;
+  border-radius: 4px;
+  overflow: auto;
+  display: block;
+  border-right: #FF9100 solid 3px;
+  
+  ::before{
+    position: absolute;
+    top: 225px;
+    right: 6px;
+    display: inline-block;
+    border-top: 30px solid transparent;
+    border-left: 10px solid #FF6D00;
+    border-right: 0px solid #FF9100;
+    border-bottom: 30px solid transparent;
+    content: " ";
+    z-index: 9;
+  }
+}
+.expansion-list-done {
+  border: dashed 1px;
+  min-height: 327px;
+  max-height: 327px;
+  background: #fafafa;
+  border-radius: 4px;
+  overflow: auto;
+  display: block;
+  margin-top: 13px;
+  border-left: #FF6D00 solid 3px;
+  
+  ::before{
+    position: absolute;
+    top: 225px;
+    left: 6px;
+    display: inline-block;
+    border-top: 30px solid transparent;
+    border-left: 0px solid #FF6D00;
+    border-right: 10px solid #FF9100;
+    border-bottom: 30px solid transparent;
+    content: " ";
+    z-index: 9;
+  }
+}
+.expansion-panel{
+  background-color: #F2F2F2;
+}
+.expansion-panel-data{
+  font-size: 10pt;
+}
+ 
+.expansion-panel-title{
+  font-weight: bolder;
+}
+table {
+  width: 100%;
+}
+
+.mat-button {
+	text-align: center;
+	background: #673AB7 !important;
+	color: white;
+  }
+
+  .button-submit {
+    position: relative;
+  }
+
+  .iconPlus {
+    color: white !important;
+}
+
+.iconClose {
+  cursor: pointer;
+  color: #FF5722;
+}
+
+.iconSearch {
+  color: white !important;
+}
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
