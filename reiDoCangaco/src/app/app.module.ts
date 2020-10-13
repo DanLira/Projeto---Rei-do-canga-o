@@ -31,7 +31,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
 import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.component';
-import { LogComponent } from './log/log.component';
 import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.component';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 
@@ -46,9 +45,8 @@ import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-forn
     CriarSenhaComponent,
     CadastroUsuarioComponent,
     CadastroVendedorComponent,
-    LogComponent,
     RelatorioVendasComponent,
-      CadastroFornecedorComponent
+    CadastroFornecedorComponent
    ],
   imports: [
     BrowserModule,

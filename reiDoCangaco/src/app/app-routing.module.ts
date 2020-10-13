@@ -40,7 +40,8 @@ const routes: Routes = [
 },
 {
   path: 'fornecedor',
-  component: CadastroFornecedorComponent, canActivate: [AuthGuard]
+  component: CadastroFornecedorComponent, 
+  //canActivate: [AuthGuard]
 },
 
 
