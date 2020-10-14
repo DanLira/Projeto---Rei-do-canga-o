@@ -6,36 +6,82 @@
           <div class="col-12">
             <mat-card-title>Cadastro de Fornecedores
             </mat-card-title>
+            <h1 class="id">ID do Fornecedor: 0000</h1>
+
             <form [formGroup]="formsRegister" class="row">
-              <mat-form-field class="col-6">
-                  <mat-label>Nome do Produto</mat-label>
-                <input matInput placeholder="Nome do Produto" required formControlName="nome" value={{formsRegister.value.nome}} >
-              </mat-form-field>
-              <mat-form-field class="col-6">
-                <mat-label>Descrição</mat-label>
-                <input matInput placeholder="Descrição" required formControlName="descricao" value={{formsRegister.value.descricao}} >
-              </mat-form-field>
-              <mat-form-field class="col-2">
-                  <mat-label>Preço de Venda</mat-label>
-                  <input matInput type="number" placeholder="Preço de Venda" required
-                  formControlName="precoVenda" value={{formsRegister.value.precoVenda}} >
-              </mat-form-field>
-              <mat-form-field class="col-2">
-                  <mat-label>Preço de Custo</mat-label>
-                  <input matInput type="number" placeholder="Preço de Custo" required
-                  formControlName="precoCusto" value={{formsRegister.value.precoCusto}} >
-              </mat-form-field>
-                <mat-form-field class="col-4">
-                  <mat-label>Categoria</mat-label>
-                  <mat-select formControlName="categoria" value={{formsRegister.value.categoria}}>
-                    <mat-option>Selecione</mat-option>
-                    <mat-option [value]="Teste">Teste</mat-option>
-                  </mat-select>
+              <div class="col-12">
+                <mat-card class="mat-card-padrao">
+                  <div class="dados">Dados do Fornecedor</div>
+
+                  <mat-form-field class="col-6">
+                    <mat-label>Tipo de Fornecedor</mat-label>
+                    <mat-select formControlName="categoria" value={{formsRegister.value.categoria}}>
+                      <mat-option>Selecione</mat-option>
+                      <mat-option [value]="fornecedorPJ">Fornecedor PJ</mat-option>
+                      <mat-option [value]="fornecedorPF">Fornecedor PF</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="col-6">
+                    <mat-label>Razão Social</mat-label>
+                  <input matInput placeholder="Razão Social" 
+                  required formControlName="razaoSocial"  >
                 </mat-form-field>
-                <mat-form-field class="col-2">
-                  <mat-label>Quantidade</mat-label>
-                  <input matInput type="number" placeholder="Quantidade" required formControlName="quantidade" value={{formsRegister.value.quantidade}} >
+
+                <mat-form-field class="col-6">
+                  <mat-label>Nome Fantasia</mat-label>
+                  <input matInput placeholder="Nome Fantasia" required 
+                  formControlName="nomeFantasia"  >
                 </mat-form-field>
+
+                <mat-form-field class="col-6">
+                    <mat-label>NickName</mat-label>
+                    <input matInput placeholder="NickName"
+                    formControlName="nickName" >
+                </mat-form-field>
+
+                <mat-form-field class="col-6">
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput type="number" placeholder="CNPJ" required
+                    formControlName="cnpj"  >
+                </mat-form-field>
+                </mat-card>
+            </div>
+
+            <div class="col-12">  
+            <mat-card class="mat-card-padrao">
+              <div class="dados">Contatos</div>
+              <mat-form-field class="col-4">
+                <mat-label>Telefone</mat-label>
+                <input matInput type="number" placeholder="Telefone" required
+                formControlName="telefone"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Celular</mat-label>
+                <input matInput type="number" placeholder="Celular" required
+                formControlName="celular"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>E-Mail</mat-label>
+                <input matInput placeholder="E-Mail" required
+                formControlName="email"  >
+              </mat-form-field>
+
+            </mat-card>
+            </div>
+            <div class="col-12">  
+            <mat-card class="mat-card-padrao">
+              <div class="dados">Contatos</div> 
+
+              <mat-form-field class="col-4">
+                <mat-label>Endereço</mat-label>
+                <input matInput placeholder="Endereço" required
+                formControlName="endereco"  >
+              </mat-form-field>
+            </mat-card>
+          </div> 
               
 
             </form>
@@ -46,28 +92,35 @@
                 <button mat-button class="col-12" (click)="limpar()">Limpar</button>
               </div>
           <div class="col-sm-12 col-md-1  mt-4">
-            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarProduto()">Salvar</button>
+            <button mat-button class="col-12" [disabled]="!formsRegister.valid" >Salvar</button>
           </div>
         </div> 
       </mat-card>
     </div>
       <div class="col-12 mt-2">
-        <mat-card class="mat-card-padrao">
-            <mat-card-title>Lista de Produtos</mat-card-title> 
+        <mat-card class="mat-card-list">
+            <mat-card-title>Lista de Fornecedores</mat-card-title> 
             <mat-accordion>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Filtro de Produto
+                    Filtro de Fornecedores
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <form [formGroup]="filterFormProduto" class="row">
-                    <mat-form-field class="col-xs-12 col-md-4">
-                        <mat-label>Nome</mat-label>
-                    <input matInput placeholder="Nome" formControlName="nomeFilterCtrl">
+                <form [formGroup]="filterFormFornecedor" class="row">
+
+                  <mat-form-field class="col-xs-12 col-md-4">
+                    <mat-label>Razão Social</mat-label>
+                    <input matInput placeholder="Razão Social" formControlName="razaoSocialFilterCtrl">
                   </mat-form-field>
+
+                  <mat-form-field class="col-xs-12 col-md-4">
+                    <mat-label>Nome Fantasia</mat-label>
+                    <input matInput placeholder="Nome Fantasia" formControlName="nomeFantasiaFilterCtrl">
+                  </mat-form-field>
+
                   <div class="col-xs-12 col-md-1">
-                    <button mat-button   class="mt-2">Buscar</button>
+                    <button mat-button class="mt-2">Buscar</button>
                   </div>
                 </form>
               </mat-expansion-panel>

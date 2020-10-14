@@ -109,6 +109,23 @@ $break-exlarge: 1140px;
   margin-bottom: 40px;
 }
 
+.mat-card-list{
+  background-color: #673AB7;
+  height: auto; 
+  margin-top: -5px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  .mat-icon{
+    color: #673AB7;
+  }
+  .mat-card-title {
+    color: #fff;
+  }
+}
+.mat-panel-title {
+  color: #673AB7;
+}
+
 .mat-card-padrao{
   height: auto; 
   margin-top: -5px;
@@ -117,10 +134,26 @@ $break-exlarge: 1140px;
   .mat-icon{
     color: #673AB7;
   }
+  .mat-card-title {
+    color: #673AB7;
+  }
 }
-.mat-card-title {
-  color: #FF6D00;
+
+.dados {
+  background-color: #673AB7;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }
+
+.id {
+    position: absolute;
+    margin-top: -37px;
+    margin-left: 956px;
+    color: #673AB7;
+    font-size: 20px;
+}
+
 .expansion-list-todo {
   border: solid 1px #ccc;
   min-height: 243px;

@@ -1,11 +1,18 @@
 export interface FornecedorPj {
 
     id?: string;
-    razão_social?: string;
-    nome_fantasia?: string;
-    nickname?: string;
+    razaoSocial?: string;
+    nomeFantasia?: string;
+    nickName?: string;
     cnpj?: string;
     telefone: string;
+    celular: string;
     email: string;
-    endereço: string;
+    endereco: string;
+    // complemento?: string;
+    // bairro: string;
+    // cep: string;
+    // cidade: string;
+    // uf: string;
+    // pais: string;
 }
