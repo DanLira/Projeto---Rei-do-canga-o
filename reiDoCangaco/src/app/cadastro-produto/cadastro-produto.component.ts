@@ -16,7 +16,7 @@ export class CadastroProdutoComponent implements OnInit {
   produtoList: Produto[] = [];
   formsRegister: FormGroup;
   filterFormProduto: FormGroup;
-  displayedColumns: string[] = ['nome', 'descricao', 'quantidade', 'dataCreate', 'dateUpdate', 'action'];
+  displayedColumns: string[] = ['descProduto', 'preco', 'tipoVolume', 'dataCreate', 'dateUpdate', 'action'];
   dataSource = new MatTableDataSource<Produto>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -28,12 +28,14 @@ export class CadastroProdutoComponent implements OnInit {
   ngOnInit() {
     this.formsRegister = this.formBuilder.group({
       _id: [null],
-      nome: [''],
-      descricao: [''],
-      precoVenda: [''],
-      precoCusto: [''],
-      categoria: [''],
-      quantidade: [''],
+      descProduto: [''],
+      descAbrevProduto: [''],
+      preco: [''],
+      unidadeMedCompra: [''],
+      unidadeMedVenda: [''],
+      tipoVolume: [''],
+      fornecedorPj: [''],
+      fornecedorPf: [''],
       createAt: [''],
       updatedAt: ['']
     });
@@ -54,12 +56,14 @@ export class CadastroProdutoComponent implements OnInit {
 salvarProduto() {
   const produto: Produto = {
     _id: this.formsRegister.value._id,
-    nome: this.formsRegister.get('nome').value,
-    descricao: this.formsRegister.get('descricao').value,
-    precoVenda: this.formsRegister.get('precoVenda').value,
-    precoCusto: this.formsRegister.get('precoCusto').value,
-    categoria: this.formsRegister.get('categoria').value,
-    quantidade: this.formsRegister.get('quantidade').value,
+    descProduto: this.formsRegister.get('descProduto').value,
+    descAbrevProduto: this.formsRegister.get('descAbrevProduto').value,
+    preco: this.formsRegister.get('preco').value,
+    unidadeMedCompra: this.formsRegister.get('unidadeMedCompra').value,
+    unidadeMedVenda: this.formsRegister.get('unidadeMedVenda').value,
+    tipoVolume: this.formsRegister.get('tipoVolume').value,
+    fornecedorPj: this.formsRegister.get('fornecedorPj').value,
+    fornecedorPf: this.formsRegister.get('fornecedorPf').value,
     updatedAt: new Date()
   };
 
@@ -105,12 +109,14 @@ limpar() {
 getRowTableProduto(value: any): void {
 
   this.formsRegister.get('_id').setValue(value._id);
-  this.formsRegister.get('nome').setValue(value.nome);
-  this.formsRegister.get('descricao').setValue(value.descricao);
-  this.formsRegister.get('precoVenda').setValue(value.precoVenda);
-  this.formsRegister.get('precoCusto').setValue(value.precoCusto);
-  this.formsRegister.get('categoria').setValue(value.categoria);
-  this.formsRegister.get('quantidade').setValue(value.quantidade);
+  this.formsRegister.get('descProduto').setValue(value.descProduto);
+  this.formsRegister.get('descAbrevProduto').setValue(value.descAbrevProduto);
+  this.formsRegister.get('preco').setValue(value.preco);
+  this.formsRegister.get('unidadeMedCompra').setValue(value.unidadeMedCompra);
+  this.formsRegister.get('unidadeMedVenda').setValue(value.unidadeMedVenda);
+  this.formsRegister.get('tipoVolume').setValue(value.tipoVolume);
+  this.formsRegister.get('fornecedorPj').setValue(value.fornecedorPj);
+  this.formsRegister.get('fornecedorPf').setValue(value.fornecedorPf);
 
 
 }

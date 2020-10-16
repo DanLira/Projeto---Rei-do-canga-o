@@ -140,6 +140,13 @@ $break-exlarge: 1140px;
 }
 
 .dados {
+  background-color: #673AB7;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.title-card {
   font-size: 24px;
   background-color: #673AB7;
   color: #fff;
@@ -152,6 +159,14 @@ $break-exlarge: 1140px;
     margin-top: -37px;
     margin-left: 956px;
     color: #673AB7;
+    font-size: 20px;
+}
+
+.idPadrao {
+  position: absolute;
+    margin-top: -42px;
+    margin-left: 950px;
+    color: #fff;
     font-size: 20px;
 }
 

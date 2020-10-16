@@ -1,11 +1,13 @@
 export interface Produto {
     _id?: string;
-    nome: string;
-    descricao: string;
-    precoVenda: number;
-    precoCusto: number;
-    categoria: string;
-    quantidade: number;
+    descProduto: string;
+    descAbrevProduto: string;
+    preco: number;
+    unidadeMedCompra: number;
+    unidadeMedVenda: number;
+    tipoVolume: number;
+    fornecedorPj?: string;
+    fornecedorPf?: string;
     createdAt?: Date;
     updatedAt?: Date;
 
