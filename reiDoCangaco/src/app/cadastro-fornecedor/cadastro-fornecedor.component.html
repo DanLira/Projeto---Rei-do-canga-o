@@ -11,36 +11,59 @@
             <form [formGroup]="formsRegister" class="row">
               <div class="col-12">
                 <mat-card class="mat-card-padrao">
-                  <div class="dados">Dados do Fornecedor</div>
+                  <div class="dados mb-2">Dados do Fornecedor</div>
 
                   <mat-form-field class="col-6">
                     <mat-label>Tipo de Fornecedor</mat-label>
-                    <mat-select formControlName="categoria" value={{formsRegister.value.categoria}}>
+                    <mat-select matNativeControl formControlName="tipoFornecedor"
+                      value="formsRegister.value.tipoFornecedor">
                       <mat-option>Selecione</mat-option>
-                      <mat-option [value]="fornecedorPJ">Fornecedor PJ</mat-option>
-                      <mat-option [value]="fornecedorPF">Fornecedor PF</mat-option>
+                      <mat-option value="fornecedorPJ">Fornecedor PJ</mat-option>
+                      <mat-option value="fornecedorPF">Fornecedor PF</mat-option>
                     </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field class="col-6">
-                    <mat-label>Razão Social</mat-label>
-                  <input matInput placeholder="Razão Social" 
-                  required formControlName="razaoSocial"  >
+                  <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <mat-label>Nome</mat-label>
+                    <input matInput placeholder="Nome" required 
+                    formControlName="nome"  >
+                  </mat-form-field>
+
+                  <mat-form-field class="col-6" 
+                  *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ' || formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                      <mat-label>NickName</mat-label>
+                      <input matInput placeholder="NickName"
+                      formControlName="nickName" >
+                  </mat-form-field>
+
+                  <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select matNativeControl formControlName="sexo">
+                        <mat-option>Selecione</mat-option>
+                        <mat-option value="M">Masculino</mat-option>
+                        <mat-option value="F">Feminino</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="col-6">
+                <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                  <mat-label>CPF</mat-label>
+                    <input matInput type="number" placeholder="CPF" required
+                    formControlName="cpf"  >         
+                </mat-form-field>
+
+                  <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+                    <mat-label>Razão Social</mat-label>
+                  <input matInput placeholder="Razão Social" 
+                  required formControlName="razaoSocial">
+                </mat-form-field>
+
+                <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                   <mat-label>Nome Fantasia</mat-label>
                   <input matInput placeholder="Nome Fantasia" required 
                   formControlName="nomeFantasia"  >
                 </mat-form-field>
 
-                <mat-form-field class="col-6">
-                    <mat-label>NickName</mat-label>
-                    <input matInput placeholder="NickName"
-                    formControlName="nickName" >
-                </mat-form-field>
-
-                <mat-form-field class="col-6">
+                <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>CNPJ</mat-label>
                     <input matInput type="number" placeholder="CNPJ" required
                     formControlName="cnpj"  >
@@ -50,7 +73,7 @@
 
             <div class="col-12">  
             <mat-card class="mat-card-padrao">
-              <div class="dados">Contatos</div>
+              <div class="dados mb-2">Contatos</div>
               <mat-form-field class="col-4">
                 <mat-label>Telefone</mat-label>
                 <input matInput type="number" placeholder="Telefone" required
@@ -73,17 +96,150 @@
             </div>
             <div class="col-12">  
             <mat-card class="mat-card-padrao">
-              <div class="dados">Contatos</div> 
+              <div class="dados mb-2">Endereço</div> 
 
               <mat-form-field class="col-4">
                 <mat-label>Endereço</mat-label>
                 <input matInput placeholder="Endereço" required
                 formControlName="endereco"  >
               </mat-form-field>
+
+              <mat-form-field class="col-2">
+                <mat-label>Complemento</mat-label>
+                <input matInput placeholder="Complemento"
+                formControlName="complemento"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Bairro</mat-label>
+                <input matInput placeholder="Bairro" required
+                formControlName="bairro"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-2">
+                <mat-label>Cep</mat-label>
+                <input matInput type="number" placeholder="Cep"
+                formControlName="cep"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Cidade</mat-label>
+                <input matInput placeholder="Cidade" required
+                formControlName="cidade"  >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>UF</mat-label>
+                <mat-select formControlName="uf" >
+                  <mat-option>Selecione</mat-option>
+
+                  <mat-option value="AC">Acre</mat-option>
+                  <mat-option value="AL">Alagoas</mat-option>
+                  <mat-option value="AP">Amapá</mat-option>
+                  <mat-option value="AM">Amazonas</mat-option>
+                  <mat-option value="BA">Bahia</mat-option>
+                  <mat-option value="CE">Ceará</mat-option>
+                  <mat-option value="DF">Distrito Federal</mat-option>
+                  <mat-option value="ES">Espírito Santo</mat-option>
+                  <mat-option value="GO">Goiás</mat-option>
+                  <mat-option value="MA">Maranhão</mat-option>
+                  <mat-option value="MT">Mato Grosso</mat-option>
+                  <mat-option value="MS">Mato Grosso do Sul</mat-option>
+                  <mat-option value="MG">Minas Gerais</mat-option>
+                  <mat-option value="PA">Pará</mat-option>
+                  <mat-option value="PB">Paraíba</mat-option>
+                  <mat-option value="PR">Paraná</mat-option>
+                  <mat-option value="PE">Pernambuco</mat-option>
+                  <mat-option value="PI">Piauí</mat-option>
+                  <mat-option value="RJ">Rio de Janeiro</mat-option>
+                  <mat-option value="RN">Rio Grande do Norte</mat-option>
+                  <mat-option value="RS">Rio Grande do Sul</mat-option>
+                  <mat-option value="RO">Rondônia</mat-option>
+                  <mat-option value="RR">Roraima</mat-option>
+                  <mat-option value="SC">Santa Catarina</mat-option>
+                  <mat-option value="SP">São Paulo</mat-option>
+                  <mat-option value="SE">Sergipe</mat-option>
+                  <mat-option value="TO">Tocantins</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>País</mat-label>
+                <mat-select formControlName="pais" >
+                  <mat-option>Selecione</mat-option>
+                  <mat-option value="afeganistao"> Afeganistão </mat-option>
+                  <mat-option value="fornecedorPJ"> África do Sul </mat-option>
+                  <mat-option value="fornecedorPJ"> Akrotiri </mat-option>
+                  <mat-option value="fornecedorPJ"> Albânia  </mat-option>
+                  <mat-option value="fornecedorPJ"> Alemanha </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Andorra </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Angola </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Anguila </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Antárctida </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Antígua e Barbuda </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Arábia Saudita </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Arctic Ocean </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Argélia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Argentina </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Arménia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Aruba </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Austrália </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Áustria </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Azerbaijão </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Bangladeche </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Bolívia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Bósnia e Herzegovina </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Botsuana </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Brasil </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Brunei </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Bulgária </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Burquina Faso </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Burúndi </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Butão </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Cabo Verde </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Camarões </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Camboja </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Canadá </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Catar </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Cazaquistão </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Chade </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Chile </mat-option>
+                  <mat-option [value]="fornecedorPJ"> China </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Chipre </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Clipperton Island </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Colômbia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Comores </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Coreia do Norte </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Coreia do Sul </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Costa do Marfim </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Costa Rica </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Tonga </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Trindade e Tobago </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Tunísia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Turquemenistão </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Turquia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Tuvalu </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Ucrânia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Uganda </mat-option>
+                  <mat-option [value]="fornecedorPJ"> União Europeia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Uruguai </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Usbequistão </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Vanuatu </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Vaticano </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Venezuela </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Vietname </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Wake Island </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Wallis e Futuna </mat-option>
+                  <mat-option [value]="fornecedorPJ"> West Bank </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Zâmbia </mat-option>
+                  <mat-option [value]="fornecedorPJ"> Zimbabué </mat-option>
+                </mat-select>
+              </mat-form-field>
+
             </mat-card>
           </div> 
               
-
             </form>
           </div>
         </div>
@@ -97,26 +253,21 @@
         </div> 
       </mat-card>
     </div>
-      <div class="col-12 mt-2">
+      <div class="col-12 mt-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
         <mat-card class="mat-card-list">
-            <mat-card-title>Lista de Fornecedores</mat-card-title> 
+            <mat-card-title>Lista de Fornecedores PJ</mat-card-title> 
             <mat-accordion>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Filtro de Fornecedores
+                    Filtro de Fornecedores PJ
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <form [formGroup]="filterFormFornecedor" class="row">
+                <form [formGroup]="filterFormFornecedorPj" class="row">
 
                   <mat-form-field class="col-xs-12 col-md-4">
                     <mat-label>Razão Social</mat-label>
                     <input matInput placeholder="Razão Social" formControlName="razaoSocialFilterCtrl">
-                  </mat-form-field>
-
-                  <mat-form-field class="col-xs-12 col-md-4">
-                    <mat-label>Nome Fantasia</mat-label>
-                    <input matInput placeholder="Nome Fantasia" formControlName="nomeFantasiaFilterCtrl">
                   </mat-form-field>
 
                   <div class="col-xs-12 col-md-1">
@@ -126,18 +277,18 @@
               </mat-expansion-panel>
             </mat-accordion>
               <div class="mat-elevation-z8 mt-2">
-                <table mat-table [dataSource]="dataSource">
-                  <ng-container matColumnDef="nome">
-                    <th mat-header-cell *matHeaderCellDef id="nome"> Nome </th>
-                    <td mat-cell *matCellDef="let element" > {{ element.nome }} </td>
+                <table mat-table [dataSource]="dataSourcePj">
+                  <ng-container matColumnDef="razaoSocial">
+                    <th mat-header-cell *matHeaderCellDef id="razaoSocial"> Razão Social</th>
+                    <td mat-cell *matCellDef="let element" > {{ element.razaoSocial }} </td>
                   </ng-container>
-                  <ng-container matColumnDef="descricao">
-                    <th mat-header-cell *matHeaderCellDef id="descricao"> Descrição </th>
-                    <td mat-cell *matCellDef="let element" > {{ element.descricao }} </td>
+                  <ng-container matColumnDef="endereco">
+                    <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
+                    <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
                   </ng-container>
-                  <ng-container matColumnDef="quantidade">
-                    <th mat-header-cell *matHeaderCellDef id="quantidade"> Quantidade </th>
-                    <td mat-cell *matCellDef="let element" > {{element.quantidade}} </td>
+                  <ng-container matColumnDef="telefone">
+                    <th mat-header-cell *matHeaderCellDef id="quantidade"> Telefone </th>
+                    <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
                   </ng-container>
                   <ng-container matColumnDef="dataCreate">
                       <th mat-header-cell *matHeaderCellDef id="dataCreate"> Data de Criação </th>
@@ -154,24 +305,97 @@
                         <mat-icon>more_vert</mat-icon>
                       </button>
                       <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="getRowTableProduto(element)">
+                        <button mat-menu-item (click)="getRowTableFornecedorPj(element)">
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
                         </button>
-                        <button mat-menu-item (click)="excluirProduto(element._id)">
+                        <button mat-menu-item (click)="excluirFornecedorPj(element._id)">
                           <mat-icon>delete</mat-icon>
                           <span>Deletar</span>
                         </button>
                       </mat-menu>
                     </td>
                   </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsPj"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsPj;"></tr>
                 </table>
                 <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
               </div>
           </mat-card>
     </div>
+
+    <div class="col-12 mt-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+      <mat-card class="mat-card-list">
+          <mat-card-title>Lista de Fornecedores PF</mat-card-title> 
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Filtro de Fornecedores PF
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form [formGroup]="filterFormFornecedorPf" class="row">
+
+                
+
+                <mat-form-field class="col-xs-12 col-md-4">
+                  <mat-label>Nome</mat-label>
+                  <input matInput placeholder="Nome" formControlName="nomeFilterCtrl">
+                </mat-form-field>
+
+                <div class="col-xs-12 col-md-1">
+                  <button mat-button class="mt-2">Buscar</button>
+                </div>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+            <div class="mat-elevation-z8 mt-2">
+              <table mat-table [dataSource]="dataSourcePf">
+                <ng-container matColumnDef="nome">
+                  <th mat-header-cell *matHeaderCellDef id="nome"> Nome </th>
+                  <td mat-cell *matCellDef="let element" > {{ element.nome }} </td>
+                </ng-container>
+                <ng-container matColumnDef="endereco">
+                  <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
+                  <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
+                </ng-container>
+                <ng-container matColumnDef="telefone">
+                  <th mat-header-cell *matHeaderCellDef id="telefone"> Telefone </th>
+                  <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
+                </ng-container>
+                <ng-container matColumnDef="dataCreate">
+                    <th mat-header-cell *matHeaderCellDef id="dataCreate"> Data de Criação </th>
+                    <td mat-cell *matCellDef="let element" > {{element.createdAt | date:'dd/MM/yyyy HH:mm'}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="dateUpdate">
+                    <th mat-header-cell *matHeaderCellDef id="dateUpdate"> Data de Alteração </th>
+                    <td mat-cell *matCellDef="let element" > {{element.updatedAt | date:'dd/MM/yyyy HH:mm'}} </td>
+                  </ng-container>
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="getRowTableFornecedorPf(element)">
+                          <mat-icon>edit</mat-icon>
+                          <span>Editar</span>
+                      </button>
+                      <button mat-menu-item (click)="excluirFornecedorPf(element._id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Deletar</span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsPf"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsPf;"></tr>
+              </table>
+              <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+            </div>
+        </mat-card>
+  </div>
   </div>
 </section>
 

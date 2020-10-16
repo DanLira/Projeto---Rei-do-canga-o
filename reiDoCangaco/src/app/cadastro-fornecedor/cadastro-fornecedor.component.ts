@@ -1,8 +1,9 @@
+import { FornecedorPf } from './../models/fornecedorPf.model';
 import { ToastrService } from 'ngx-toastr';
-import { FornecedorPj } from './../models/fornecedor.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { FornecedorPj } from '../models/fornecedorPj.model';
 
 @Component({
   selector: 'app-cadastro-fornecedor',
@@ -11,10 +12,19 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 })
 export class CadastroFornecedorComponent implements OnInit {
 
+  fornecedorPj: FornecedorPj [];
+  fornecedorPJList: FornecedorPj [] = [];
+
+  fornecedorPf: FornecedorPf [];
+  fornecedorPfList: FornecedorPf [] = [];
+
   formsRegister: FormGroup;
-  filterFormFornecedor: FormGroup;
-  displayedColumns: string[] = ['nome', 'descricao', 'quantidade', 'dataCreate', 'dateUpdate', 'action'];
-  dataSource = new MatTableDataSource<FornecedorPj>();
+  filterFormFornecedorPj: FormGroup;
+  filterFormFornecedorPf: FormGroup;
+  displayedColumnsPj: string[] = ['razaoSocial', 'endereco', 'telefone', 'dataCreate', 'dateUpdate', 'action'];
+  dataSourcePj = new MatTableDataSource<FornecedorPj>();
+  displayedColumnsPf: string[] = ['nome', 'endereco', 'telefone', 'dataCreate', 'dateUpdate', 'action'];
+  dataSourcePf = new MatTableDataSource<FornecedorPf>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
@@ -22,8 +32,9 @@ export class CadastroFornecedorComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.createFilterForm();
-    this.dataSource.paginator = this.MatPaginator;
+    this.createFilterFormPj();
+    this.createFilterFormPf();
+    this.dataSourcePj.paginator = this.MatPaginator;
   }
 
 
@@ -37,17 +48,34 @@ export class CadastroFornecedorComponent implements OnInit {
       telefone: new FormControl(''),
       celular: new FormControl(''),
       email: new FormControl('', Validators.required),
-      endereco: new FormControl('', Validators.required)
+      endereco: new FormControl('', Validators.required),
+      complemento: new FormControl(''),
+      bairro: new FormControl(''),
+      cep: new FormControl(''),
+      cidade: new FormControl(''),
+      uf: new FormControl(''),
+      pais: new FormControl(''),
+      tipoFornecedor: new FormControl(''),
+      nome: new FormControl(''),
+      sexo: new FormControl(''),
+      cpf: new FormControl('')
     });
   }
 
-  private createFilterForm(): void {
-    this.filterFormFornecedor = this.fb.group({
-      razaoSocialFilterCtrl: new FormControl(''),
-      nomeFantasiaFilterCtrl: new FormControl('')
+  private createFilterFormPj(): void {
+    this.filterFormFornecedorPj = this.fb.group({
+      razaoSocialFilterCtrl: new FormControl('')
+    });
+  }
+  private createFilterFormPf(): void {
+    this.filterFormFornecedorPf = this.fb.group({
+      nomeFilterCtrl: new FormControl('')
     });
   }
 
+  private resetForm(): void {
+    this.formsRegister.reset();
+  }
 
 
 }

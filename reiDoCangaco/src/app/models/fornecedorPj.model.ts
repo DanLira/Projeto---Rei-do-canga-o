@@ -9,10 +9,10 @@ export interface FornecedorPj {
     celular: string;
     email: string;
     endereco: string;
-    // complemento?: string;
-    // bairro: string;
-    // cep: string;
-    // cidade: string;
-    // uf: string;
-    // pais: string;
+    complemento?: string;
+    bairro: string;
+    cep: string;
+    cidade: string;
+    uf: string;
+    pais: string;
 }

@@ -92,7 +92,7 @@
   
   .sub-menu-title {
     margin-top: -4px;
-    color: #673AB7; 
+    color: #fff; 
   }
   
   .sub-menu-items {
@@ -102,11 +102,12 @@
   .sub-menu-items-description {
     font-size: 14px; 
     padding-left: 25px;
+    white-space: nowrap;
     
   }
   
   .item-color {
-    color: #673AB7;  
+    color: #fff;  
     cursor: pointer;
   }
   .title-menu {
