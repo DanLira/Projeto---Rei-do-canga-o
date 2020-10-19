@@ -35,6 +35,7 @@ export class CadastroFornecedorComponent implements OnInit {
     this.createFilterFormPj();
     this.createFilterFormPf();
     this.dataSourcePj.paginator = this.MatPaginator;
+
   }
 
 
@@ -45,22 +46,24 @@ export class CadastroFornecedorComponent implements OnInit {
       nomeFantasia: new FormControl(''),
       nickName: new FormControl(''),
       cnpj: new FormControl('', Validators.required),
-      telefone: new FormControl(''),
-      celular: new FormControl(''),
-      email: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required),
+      celular: new FormControl('', Validators.required),
+      email: new FormControl(''),
       endereco: new FormControl('', Validators.required),
       complemento: new FormControl(''),
       bairro: new FormControl(''),
-      cep: new FormControl(''),
+      cep: new FormControl('', Validators.required),
       cidade: new FormControl(''),
       uf: new FormControl(''),
       pais: new FormControl(''),
       tipoFornecedor: new FormControl(''),
-      nome: new FormControl(''),
+      nome: new FormControl('', Validators.required),
       sexo: new FormControl(''),
-      cpf: new FormControl('')
+      cpf: new FormControl('', Validators.required)
     });
   }
+
+
 
   private createFilterFormPj(): void {
     this.filterFormFornecedorPj = this.fb.group({
@@ -73,8 +76,36 @@ export class CadastroFornecedorComponent implements OnInit {
     });
   }
 
-  private resetForm(): void {
+  private addFormValidators(listaCampos = []): void {
+    listaCampos.forEach(campo => {
+        this.formsRegister.get(campo).setValidators([Validators.required]);
+    });
+  }
+
+  private fornecedorSelecionado(event: any): void {
+
+    if (event.value === 'fornecedorPJ') {
+          this.addFormValidators(['razaoSocial', 'cnpj']);
+
+          this.formsRegister.get('nome').clearValidators();
+          this.formsRegister.get('cpf').clearValidators();
+          this.formsRegister.get('nome').updateValueAndValidity();
+          this.formsRegister.get('cpf').updateValueAndValidity();
+
+      } else if (event.value === 'fornecedorPF') {
+          this.addFormValidators(['nome', 'cpf']);
+
+          this.formsRegister.get('razaoSocial').clearValidators();
+          this.formsRegister.get('cnpj').clearValidators();
+          this.formsRegister.get('razaoSocial').updateValueAndValidity();
+          this.formsRegister.get('cnpj').updateValueAndValidity();
+      }
+  }
+
+
+  private limpar(): void {
     this.formsRegister.reset();
+    this.toastr.info('Campos limpos!', 'Limpar');
   }
 
 

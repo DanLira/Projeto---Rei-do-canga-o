@@ -16,7 +16,7 @@
                   <mat-form-field class="col-6">
                     <mat-label>Tipo de Fornecedor</mat-label>
                     <mat-select matNativeControl formControlName="tipoFornecedor"
-                      value="formsRegister.value.tipoFornecedor">
+                      value="formsRegister.value.tipoFornecedor" (selectionChange)="fornecedorSelecionado($event)">
                       <mat-option>Selecione</mat-option>
                       <mat-option value="fornecedorPJ">Fornecedor PJ</mat-option>
                       <mat-option value="fornecedorPF">Fornecedor PF</mat-option>
@@ -25,7 +25,7 @@
 
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                     <mat-label>Nome</mat-label>
-                    <input matInput placeholder="Nome" required 
+                    <input matInput placeholder="Nome" 
                     formControlName="nome"  >
                   </mat-form-field>
 
@@ -47,25 +47,25 @@
 
                 <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                   <mat-label>CPF</mat-label>
-                    <input matInput type="number" placeholder="CPF" required
-                    formControlName="cpf"  >         
+                    <input matInput type="number" placeholder="CPF" 
+                    formControlName="cpf">         
                 </mat-form-field>
 
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>Razão Social</mat-label>
                   <input matInput placeholder="Razão Social" 
-                  required formControlName="razaoSocial">
+                 formControlName="razaoSocial">
                 </mat-form-field>
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                   <mat-label>Nome Fantasia</mat-label>
-                  <input matInput placeholder="Nome Fantasia" required 
+                  <input matInput placeholder="Nome Fantasia" 
                   formControlName="nomeFantasia"  >
                 </mat-form-field>
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>CNPJ</mat-label>
-                    <input matInput type="number" placeholder="CNPJ" required
+                    <input matInput type="number" placeholder="CNPJ"
                     formControlName="cnpj"  >
                 </mat-form-field>
                 </mat-card>
@@ -76,19 +76,19 @@
               <div class="dados mb-2">Contatos</div>
               <mat-form-field class="col-4">
                 <mat-label>Telefone</mat-label>
-                <input matInput type="number" placeholder="Telefone" required
+                <input matInput type="number" placeholder="Telefone" 
                 formControlName="telefone"  >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>Celular</mat-label>
-                <input matInput type="number" placeholder="Celular" required
+                <input matInput type="number" placeholder="Celular" 
                 formControlName="celular"  >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>E-Mail</mat-label>
-                <input matInput placeholder="E-Mail" required
+                <input matInput placeholder="E-Mail"
                 formControlName="email"  >
               </mat-form-field>
 
@@ -100,7 +100,7 @@
 
               <mat-form-field class="col-4">
                 <mat-label>Endereço</mat-label>
-                <input matInput placeholder="Endereço" required
+                <input matInput placeholder="Endereço"
                 formControlName="endereco"  >
               </mat-form-field>
 
@@ -112,7 +112,7 @@
 
               <mat-form-field class="col-4">
                 <mat-label>Bairro</mat-label>
-                <input matInput placeholder="Bairro" required
+                <input matInput placeholder="Bairro"
                 formControlName="bairro"  >
               </mat-form-field>
 
@@ -124,7 +124,7 @@
 
               <mat-form-field class="col-4">
                 <mat-label>Cidade</mat-label>
-                <input matInput placeholder="Cidade" required
+                <input matInput placeholder="Cidade"
                 formControlName="cidade"  >
               </mat-form-field>
 
