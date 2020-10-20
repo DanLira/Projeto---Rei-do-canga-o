@@ -17,10 +17,9 @@ body{
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	
-	background-color: #673AB7;
+	background-image: linear-gradient(red, yellow);
+	//background-color: #D84315;
 	background-size: cover;
-	//-webkit-filter: blur(5px);
 	z-index: 0;
 	opacity: 2.8;
 	overflow: hidden;
@@ -41,13 +40,15 @@ body{
 	min-width: 300px;
   }
 
-  mat-card-title {
-	text-align: center;
-	  color: #673AB7;
-  }
   mat-card-content {
 	margin-top: -10px;
 	display: flex;
 	justify-content: center;
 	width: 350px;
+  }
+
+  img {
+	height: 137px;
+	width: 350px;
+	margin-bottom: 5px;
   }

@@ -22,7 +22,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ds-app-primary: mat-palette($mat-deep-purple, 700);
+$ds-app-primary: mat-palette($mat-deep-orange, 700);
 $ds-app-accent: mat-palette($mat-cyan, 600);
 
 // The warn palette is optional (defaults to red).
@@ -46,7 +46,7 @@ $break-exlarge: 1140px;
 
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-    background-color: #673AB7 !important;
+    background-color: #D84315 !important;
 }
 .mat-sidenav {
   width: 280px;
@@ -59,7 +59,7 @@ $break-exlarge: 1140px;
 }
 
 .mat-sidenav{
-  background-color: #673AB7;
+  background-color: #D84315;
   color:#fff;
 }
 
@@ -69,7 +69,8 @@ $break-exlarge: 1140px;
 }
 
 .btn-nav{
-  background-color: #4527A0 !important;
+  padding: 5px;
+  background-color: #E65100 !important;
   color:#fff;
 }
 .btn-nav :hover{
@@ -110,20 +111,20 @@ $break-exlarge: 1140px;
 }
 
 .mat-card-list{
-  background-color: #673AB7;
+  background-color: #D84315;
   height: auto; 
   margin-top: -5px;
   margin-bottom: 20px;
   margin-left: 5px;
   .mat-icon{
-    color: #673AB7;
+    color: #D84315;
   }
   .mat-card-title {
     color: #fff;
   }
 }
 .mat-panel-title {
-  color: #673AB7;
+  color: #D84315;
 }
 
 .mat-card-padrao{
@@ -132,15 +133,15 @@ $break-exlarge: 1140px;
   margin-bottom: 20px;
   margin-left: 5px;
   .mat-icon{
-    color: #673AB7;
+    color: #D84315;
   }
   .mat-card-title {
-    color: #673AB7;
+    color: #D84315;
   }
 }
 
 .dados {
-  background-color: #673AB7;
+  background-color: #D84315;
   color: #fff;
   padding: 10px;
   border-radius: 5px;
@@ -148,7 +149,7 @@ $break-exlarge: 1140px;
 
 .title-card {
   font-size: 24px;
-  background-color: #673AB7;
+  background-color: #D84315;
   color: #fff;
   padding: 10px;
   border-radius: 5px;
@@ -158,7 +159,7 @@ $break-exlarge: 1140px;
     position: absolute;
     margin-top: -37px;
     margin-left: 956px;
-    color: #673AB7;
+    color: #D84315;
     font-size: 20px;
 }
 
@@ -233,7 +234,7 @@ table {
 
 .mat-button {
 	text-align: center;
-	background: #673AB7 !important;
+	background-color: #D84315;
 	color: white;
   }
 

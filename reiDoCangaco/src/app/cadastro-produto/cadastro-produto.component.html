@@ -9,35 +9,35 @@
                 <h1 class="idPadrao">ID do Produto: 0000</h1>
               </div>
               <form [formGroup]="formsRegister" class="row">
-                <mat-form-field class="col-6">
-                    <mat-label>Descrição do Produto</mat-label>
-                  <input matInput placeholder="Descrição do Produto" required
-                   formControlName="descProduto" value={{formsRegister.value.descProduto}} >
-                </mat-form-field>
-                
-                <mat-form-field class="col-4">
-                  <mat-label>Descrição Abreviada</mat-label>
-                  <input matInput placeholder="Abreviada" 
-                  formControlName="descAbrevProduto" value={{formsRegister.value.descAbrevProduto}} >
-                </mat-form-field>
+                  <mat-form-field class="col-6">
+                      <mat-label>Descrição do Produto</mat-label>
+                    <input matInput placeholder="Descrição do Produto" required
+                    formControlName="descProduto" value={{formsRegister.value.descProduto}} >
+                  </mat-form-field>
+                  
+                  <mat-form-field class="col-4">
+                    <mat-label>Descrição Abreviada</mat-label>
+                    <input matInput placeholder="Abreviada" 
+                    formControlName="descAbrevProduto" value={{formsRegister.value.descAbrevProduto}} >
+                  </mat-form-field>
 
-                <mat-form-field class="col-2">
-                    <mat-label>Preço</mat-label>
-                    <input matInput type="number" placeholder="Preço" required
-                    formControlName="preco" value={{formsRegister.value.preco}} >
-                </mat-form-field>
+                  <mat-form-field class="col-2">
+                      <mat-label>Preço</mat-label>
+                      <input matInput type="number" placeholder="Preço" required
+                      formControlName="preco" value={{formsRegister.value.preco}} >
+                  </mat-form-field>
 
-                <mat-form-field class="col-4">
-                    <mat-label>Uni. de Medida Compra</mat-label>
-                    <input matInput type="number" placeholder="Uni. de Medida Compra" required
-                    formControlName="unidadeMedCompra" value={{formsRegister.value.unidadeMedCompra}} >
-                </mat-form-field>
+                  <mat-form-field class="col-4">
+                      <mat-label>Uni. de Medida Compra</mat-label>
+                      <input matInput type="number" placeholder="Uni. de Medida Compra" required
+                      formControlName="unidadeMedCompra" value={{formsRegister.value.unidadeMedCompra}} >
+                  </mat-form-field>
 
-                <mat-form-field class="col-4">
-                  <mat-label>Uni. de Medida Venda</mat-label>
-                  <input matInput type="number" placeholder="Uni. de Medida Venda" required
-                  formControlName="unidadeMedVenda" value={{formsRegister.value.unidadeMedVenda}} >
-               </mat-form-field>
+                  <mat-form-field class="col-4">
+                    <mat-label>Uni. de Medida Venda</mat-label>
+                    <input matInput type="number" placeholder="Uni. de Medida Venda" required
+                    formControlName="unidadeMedVenda" value={{formsRegister.value.unidadeMedVenda}} >
+                  </mat-form-field>
 
                   <mat-form-field class="col-4">
                     <mat-label>Tipo Volume</mat-label>
@@ -48,16 +48,8 @@
                   </mat-form-field>
 
                   <mat-form-field class="col-4">
-                    <mat-label>Fornecedor PJ</mat-label>
+                    <mat-label>Fornecedor</mat-label>
                     <mat-select formControlName="fornecedorPj" value={{formsRegister.value.fornecedorPj}}>
-                      <mat-option>Selecione</mat-option>
-                      <mat-option value="Teste">Teste</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                  <mat-form-field class="col-4">
-                    <mat-label>Fornecedor PF</mat-label>
-                    <mat-select formControlName="fornecedorPf" value={{formsRegister.value.fornecedorPf}}>
                       <mat-option>Selecione</mat-option>
                       <mat-option value="Teste">Teste</mat-option>
                     </mat-select>

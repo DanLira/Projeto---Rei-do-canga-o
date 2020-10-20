@@ -26,6 +26,23 @@ export class CadastroProdutoComponent implements OnInit {
               private readonly toastr: ToastrService) { }
 
   ngOnInit() {
+    this.createForm();
+    this.filterFormProduto = this.formBuilder.group({
+      nomeFilterCtrl: [''],
+      descricaoFilterCtrl: ['']
+    });
+
+    this.produtoService.getAllProduto().subscribe((produto: Produto[]) => {
+      this.produtoList = (!!produto) ? produto : [];
+      this.dataSource.data = [...this.produtoList];
+    });
+    this.dataSource.paginator = this.MatPaginator;
+  }
+
+
+
+
+  private createForm(): void {
     this.formsRegister = this.formBuilder.group({
       _id: [null],
       descProduto: [''],
@@ -39,17 +56,6 @@ export class CadastroProdutoComponent implements OnInit {
       createAt: [''],
       updatedAt: ['']
     });
-
-    this.filterFormProduto = this.formBuilder.group({
-      nomeFilterCtrl: [''],
-      descricaoFilterCtrl: ['']
-    });
-
-    this.produtoService.getAllProduto().subscribe((produto: Produto[]) => {
-      this.produtoList = (!!produto) ? produto : [];
-      this.dataSource.data = [...this.produtoList];
-    });
-    this.dataSource.paginator = this.MatPaginator;
   }
 
 
