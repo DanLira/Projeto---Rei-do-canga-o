@@ -57,8 +57,8 @@
               <div class="sub-menu-title">Usuários</div>
             </div>
             <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/usuarios"
-                routerLinkActive="active">Listar Usuários</div>
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/usuario"
+                routerLinkActive="active">Novo Usuário</div>
             </div>
           </div>
         
@@ -79,6 +79,10 @@
       <div class="wrapper-sub-header" [hidden]="hiddenMenu">
       </div>
       <router-outlet>
+        <div class="img-logo">
+          <img src="./assets/imagens/logo.jpg" alt="logo"/>
+
+        </div>
       </router-outlet>
   
     </mat-sidenav-content>

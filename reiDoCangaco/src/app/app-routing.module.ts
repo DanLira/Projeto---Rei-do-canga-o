@@ -7,6 +7,7 @@ import { CriarSenhaComponent } from './criar-senha/criar-senha.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 
 {
     path: 'home',
-    component: HomeComponent, canActivate: [AuthGuard]
+    component: HomeComponent,
+    // canActivate: [AuthGuard]
 },
 
 {
@@ -26,8 +28,8 @@ const routes: Routes = [
 },
 
 {
-  path: 'criarSenha',
-  component: CriarSenhaComponent
+  path: 'usuario',
+  component: CadastroUsuarioComponent
 },
 {
   path: 'produto',
