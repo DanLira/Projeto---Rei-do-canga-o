@@ -1,9 +1,9 @@
+import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -35,7 +35,7 @@ import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.co
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,

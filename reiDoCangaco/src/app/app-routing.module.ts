@@ -1,13 +1,12 @@
 import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CriarSenhaComponent } from './criar-senha/criar-senha.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
