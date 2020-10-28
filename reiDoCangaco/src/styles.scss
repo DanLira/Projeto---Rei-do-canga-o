@@ -70,12 +70,9 @@ $break-exlarge: 1140px;
 
 .btn-nav{
   padding: 5px;
-  background-color: #E65100 !important;
-  color:#fff;
-}
-.btn-nav :hover{
-  //background-color: #FF9100 !important;
-  color:#fff;
+  background-color: #fff !important;
+  color:#E65100 !important;
+  font-weight: bold;
 }
 
 .main-content {

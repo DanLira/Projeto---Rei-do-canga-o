@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,12 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     // canActivate: [AuthGuard]
+},
+
+{
+  path: 'dashboard',
+  component: DashboardComponent,
+  // canActivate: [AuthGuard]
 },
 
 {
