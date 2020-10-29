@@ -4,7 +4,12 @@
         <div class="static-sidenav col-5">
           <div class="btn-nav">
             <mat-icon class="sub-menu-icon home">home</mat-icon>
-            <div class="size-icon-sidenav">Home</div>
+            <div class="size-icon-sidenav" (click)="sidenav.toggle()" routerLink="/home" routerLinkActive="active">Home</div>
+          </div>
+
+          <div class="btn-nav">
+            <mat-icon class="sub-menu-icon home">web</mat-icon>
+            <div class="size-icon-sidenav" (click)="sidenav.toggle()" routerLink="/dashboard" routerLinkActive="active">DashBoard</div>
           </div>
   
         </div>
@@ -64,6 +69,8 @@
         
   
         </div>
+
+        
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -73,6 +80,7 @@
         </button>
         <div class="font-header"> Rei do Cangaço</div>
         <span class="toolbar-spacer"></span>
+        <div class="foto-usuario"><img src="./assets/imagens/usuario.png" alt="logo"/></div>
         <mat-icon class="icons-margim">notifications_active</mat-icon>
         <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()">input</mat-icon>
       </mat-toolbar>
@@ -80,7 +88,7 @@
       </div>
       <router-outlet>
         <div class="img-logo">
-          <img src="./assets/imagens/logo.jpg" alt="logo"/>
+          <img  *ngIf="isHome" src="./assets/imagens/logo.jpg" alt="logo"/>
         </div>
       </router-outlet>
   

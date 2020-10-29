@@ -134,4 +134,18 @@
       margin-left: 132px;
     }
   }
+
+  .foto-usuario {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    height: 39px;
+    width: 40px;
+
+    img {
+      position: relative;
+      height: 33px;
+      width: 35px;
+      margin-top: -2px;
+    }
+  }
   
