@@ -168,13 +168,13 @@ class PedidoProduto(db.Model):
     id_produto = db.Column(db.Integer, db.ForeignKey(Produto.id_produto), primary_key=True, nullable=False)
     produto = db.relationship('produtos', foreign_keys = id_produto)
 
-    quantidade = db.Column(db.Integer, nullable=False)
+    quantidadeProduto = db.Column(db.Integer, nullable=False)
     valorTotal = db.Column(db.String(15), nullable=False)
 
-    def __init__(self, id_pedido, id_produto, quantidade, valorTotal):
+    def __init__(self, id_pedido, id_produto, quantidadeProduto, valorTotal):
         self.id_pedido = id_pedido
         self.id_produto = id_produto
-        self.quantidade = quantidade
+        self.quantidadeProduto = quantidadeProduto
         self.valorTotal = valorTotal
 
 
