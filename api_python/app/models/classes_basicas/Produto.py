@@ -5,10 +5,10 @@ class Produto(object):
     preco = None
     tipoVolume = None
  
-    def getId_produto(self):
+    def getIdProduto(self):
         return self.id_produto
 
-    def setId_produto(self, id_produto):
+    def setIdProduto(self, id_produto):
         self.id_produto = id_produto
 
     def getdescProduto(self):

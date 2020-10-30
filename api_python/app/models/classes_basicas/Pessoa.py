@@ -39,7 +39,7 @@ class Pessoa(object):
     def setSexo(self, sexo):
         self.sexo = sexo
 
-      def getDataNascimento(self):
+    def getDataNascimento(self):
         return self.dataNascimento
 
     def setDataNascimento(self, dataNascimento):

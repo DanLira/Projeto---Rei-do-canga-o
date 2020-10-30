@@ -1,12 +1,12 @@
 class Pedido(object):
 
     id_pedido = None
-    datPedido = None
+    dataPedido = None
     statusPedido = None
     id_usuario = None
 
-    def __init__(self, datPedido, statusPedido, codVendedor):
-        self.datPedido = datPedido
+    def __init__(self, dataPedido, statusPedido, codVendedor):
+        self.dataPedido = datPedido
         self.statusPedido = statusPedido
         self.codVendedor = codVendedor
 
@@ -17,11 +17,11 @@ class Pedido(object):
         self.id_pedido = id_pedido
 
     
-    def getDatPedido(self):
-        return self.datPedido
+    def getDataPedido(self):
+        return self.dataPedido
 
-    def setDatPedido(self, datPedido):
-        self.datPedido = datPedido
+    def setDataPedido(self, dataPedido):
+        self.dataPedido = dataPedido
 
     
     def getStatusPedido(self):
