@@ -20,15 +20,18 @@ class Empregado(db.Model):
     pais = db.Column(db.String(30), nullable=False)
    
 
-    def __init__(self, nome, cpf, sexo, dataNascimento, celular, email, endereco, bairro, cidade, estado, pais):
+    def __init__(self, nome, cpf, sexo, dataNascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais):
         self.nome = nome
         self.cpf = cpf
         self.sexo = sexo
         self.dataNascimento = dataNascimento
+        self.telefone = telefone
         self.celular = celular
         self.email = email
         self.endereco = endereco
         self.bairro = bairro
+        self.cep = cep
+        self.complemento = complemento
         self.cidade = cidade
         self.estado = estado
         self.pais = pais

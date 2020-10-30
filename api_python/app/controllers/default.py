@@ -11,6 +11,10 @@ def index():
 def dashboardpage():
     return "Dashboard Page"
 
+@app.route("/cadastroempregado")
+def cadastroempregado():
+    return "Cadastro de Empregado Page"    
+
 @app.route("/cadastrocliente")
 def cadastrocliente():
     return "Cadastro de Cliente Page"
