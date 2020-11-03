@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
     });
     this.returnUrl = '/home';
     this.authService.logout();
-  //   this.usuarioService.getAllUsuario()
-  //   .subscribe((usuarios: Usuarios[]) => {
-  //     this.usuariosList = (!!usuarios) ? usuarios : [];
-  // });
+    this.usuarioService.getAllUsuario()
+    .subscribe((usuarios: Usuarios[]) => {
+      this.usuariosList = (!!usuarios) ? usuarios : [];
+  });
   }
 
   get f() { return this.loginForm.controls; }
@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
        console.log('Login successful');
        sessionStorage.setItem('isLoggedIn', 'true');
        sessionStorage.setItem('token', this.f.login.value);
-       sessionStorage.setItem('key', user._id);
+       sessionStorage.setItem('key', user.id);
+       sessionStorage.setItem('tipo', user.tipo);
        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
        this.router.navigate([this.returnUrl]);
     } else {

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class FornecedorPjService {
 
+  readonly apiUrl = 'http://localhost:5000/';
+
 constructor() { }
 
 }

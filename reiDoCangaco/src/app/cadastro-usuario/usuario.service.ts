@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
-  readonly apiUrl = 'http://localhost:3000/';
+  readonly apiUrl = 'http://localhost:5000/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,19 +17,20 @@ export class UsuarioService {
 
 
    getAllUsuario(): Observable<Usuarios[]> {
-       return this._HTTP.get<Usuarios[]>(this.apiUrl + 'usuarios', {});
+       return this._HTTP.get<Usuarios[]>(this.apiUrl + 'users', {});
    }
    getUsuarioById(idUsuarios: string): Observable<any> {
        return this._HTTP.get(this.apiUrl + '/Usuarios/?id=' + idUsuarios);
    }
    saveUsuario(usuario: Usuarios): Observable<Usuarios> {
-       return this._HTTP.post<Usuarios>(this.apiUrl + 'usuarios', usuario, this.httpOptions);
+       return this._HTTP.post<Usuarios>(this.apiUrl + 'add', usuario, this.httpOptions);
    }
-   editUsuario(usuario: Usuarios, id: string): Observable<any> {
-      return this._HTTP.put(this.apiUrl + 'usuarios/' + id, usuario, this.httpOptions);
+   editUsuario(usuario: Usuarios): Observable<any> {
+
+     return this._HTTP.put(this.apiUrl + 'update/' + usuario.id, usuario, this.httpOptions);
    }
    deleteUsuario(id: string): Observable<any> {
-       return this._HTTP.delete(this.apiUrl + 'usuarios/' + id, this.httpOptions);
+       return this._HTTP.delete(this.apiUrl + 'delete/' + id, this.httpOptions);
    }
 
 }

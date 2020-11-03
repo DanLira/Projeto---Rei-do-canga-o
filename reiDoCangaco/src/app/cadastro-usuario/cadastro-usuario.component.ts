@@ -18,7 +18,7 @@ export class CadastroUsuarioComponent implements OnInit {
   filterFormNutricionista: FormGroup;
   usuarioList: Usuarios[] = [];
   filterFormUsuario: FormGroup;
-  displayedColumns: string[] = ['login', 'dateUpdate', 'action'];
+  displayedColumns: string[] = ['tipo', 'login', 'dateUpdate', 'action'];
   dataSource = new MatTableDataSource<Usuarios>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -47,32 +47,36 @@ export class CadastroUsuarioComponent implements OnInit {
   private createForm(): void {
     this.formsRegister = new FormGroup({
 
-        _id: new FormControl(null),
+        id: new FormControl(null),
+        tipo: new FormControl('', Validators.required),
         login: new FormControl('', Validators.required),
         senha: new FormControl('', Validators.required),
-        createAt: new FormControl(''),
-        updatedAt: new FormControl(''),
+        //createAt: new FormControl(''),
+        //updatedAt: new FormControl(''),
         //ativo: new FormControl(this.data.usuario.ativo, false)
      });
   }
 
 
-  saveUsuario(): void {
+  salvarUsuario(): void {
+    
     const usuario: Usuarios = {
-      _id: this.formsRegister.get('_id').value,
+      id: this.formsRegister.get('id').value,
+      tipo: this.formsRegister.get('tipo').value,
       login: this.formsRegister.get('login').value,
       senha: this.formsRegister.get('senha').value,
       //ativo: !this.formsRegister.get('ativo').value,
-      updatedAt: new Date()
+      //updatedAt: new Date()
 
     };
-    if (this.formsRegister.value._id) {
-        this.usuarioService.editUsuario(usuario, this.formsRegister.value._id).subscribe(() => {
+    if (this.formsRegister.value.id) {
+
+        this.usuarioService.editUsuario(usuario).subscribe(() => {
           this.usuarioService.getAllUsuario().subscribe(usuarios => {
             this.usuarioList = (!!usuarios) ? usuarios : [];
             this.dataSource.data = [...this.usuarioList];
             this.toastr.success('Usuário editado com sucesso!', 'Editar');
-
+            this.limpar();
           });
         });
     } else {
@@ -81,7 +85,7 @@ export class CadastroUsuarioComponent implements OnInit {
             this.usuarioList = (!!usuarios) ? usuarios : [];
             this.dataSource.data = [...this.usuarioList];
             this.toastr.success('Usuário salvo com sucesso!', 'Salvar');
-
+            this.limpar();
           });
         });
     }
@@ -103,6 +107,16 @@ export class CadastroUsuarioComponent implements OnInit {
       });
      });
   }
+
+
+  getRowTableUsuario(value: any): void {
+
+    this.formsRegister.get('id').setValue(value.id);
+    this.formsRegister.get('tipo').setValue(value.tipo);
+    this.formsRegister.get('login').setValue(value.login);
+    // this.formsRegister.get('senha').setValue(value.senha);
+  }
+
 
 
   filterTabelaUsuario(): void {

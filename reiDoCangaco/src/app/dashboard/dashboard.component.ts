@@ -94,8 +94,6 @@ export class DashboardComponent implements OnInit {
       }
      });
 
-
-
      //Total de pedidos em aberto no mês
     // tslint:disable-next-line: no-unused-expression
     new Chart(this.element3.nativeElement, {
@@ -106,7 +104,7 @@ export class DashboardComponent implements OnInit {
         datasets: [
           {
             label: 'Total de pedidos em aberto no mês',
-            data: [50, 147, 233, 238, 155, 68, 200, 55, 68, 100, 77, 100],
+            data: [100, 147, 233, 238, 155, 68, 200, 55, 308, 100, 277, 100],
             options: {
               tooltips: {
                 mode: 'point'

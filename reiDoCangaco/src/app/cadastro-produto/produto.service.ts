@@ -7,7 +7,7 @@ import { Produto } from '../models/produto.model';
 })
 export class ProdutoService {
 
-  readonly apiUrl = 'http://localhost:3000/';
+  readonly apiUrl = 'http://localhost:5000/';
 
    httpOptions = {
      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
