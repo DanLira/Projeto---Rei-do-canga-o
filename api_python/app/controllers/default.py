@@ -1,15 +1,12 @@
 from flask import render_template
 from app import app
+from app.controllers import controllerUsers
 
 
 @app.route("/index")
 @app.route("/")
 def index():
     return render_template('index.html')
-
-@app.route("/dashboard")
-def dashboardpage():
-    return "Dashboard Page"
 
 @app.route("/cadastroempregado")
 def cadastroempregado():
@@ -31,9 +28,9 @@ def gerarpedido():
 def cadastroproduto():
     return "Cadastro de Produto Page"
 
-@app.route("/cadastrousuario")
+@app.route("/usuario")
 def cadastrousuario():
-    return "Cadastro de User Page"
+    return controllerUsers.DAOUsuario
 
 @app.route("/cadastrovendedor")
 def cadastrovendedor():
