@@ -1,5 +1,9 @@
-from flask import render_template
+import pymysql
 from app import app
+from config import mysql
+from flask import flash, render_template, request, redirect 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 @app.route("/index")
@@ -13,7 +17,8 @@ def dashboardpage():
 
 @app.route("/cadastroempregado")
 def cadastroempregado():
-    return "Cadastro de Empregado Page"    
+    return "Cadastro de empregado aqui"
+
 
 @app.route("/cadastrocliente")
 def cadastrocliente():
