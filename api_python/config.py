@@ -11,12 +11,11 @@ MYSQL_DATABASE_DB = 'reidocangacodb'
 MYSQL_DATABASE_HOST = 'localhost'
 MYSQL_DATABASE_CHARSET = 'utf8'
 
-<<<<<<< HEAD
-=======
+mysql.connect(host = MYSQL_DATABASE_HOST, user = MYSQL_DATABASE_USER, passwd = MYSQL_DATABASE_PASSWORD, db = MYSQL_DATABASE_DB)
 
-
->>>>>>> c725f57a97ce60515791897face188ab3662ea59
 mysql.init_app(app)
+
+
 
 
 
