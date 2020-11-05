@@ -17,17 +17,17 @@ export class UsuarioService {
 
 
    getAllUsuario(): Observable<Usuarios[]> {
-       return this._HTTP.get<Usuarios[]>(this.apiUrl + 'users', {});
+       return this._HTTP.get<Usuarios[]>(this.apiUrl + 'usuario/getAll', {});
    }
    getUsuarioById(idUsuarios: string): Observable<any> {
        return this._HTTP.get(this.apiUrl + '/Usuarios/?id=' + idUsuarios);
    }
    saveUsuario(usuario: Usuarios): Observable<Usuarios> {
-       return this._HTTP.post<Usuarios>(this.apiUrl + 'add', usuario, this.httpOptions);
+       return this._HTTP.post<Usuarios>(this.apiUrl + 'usuario/create', usuario, this.httpOptions);
    }
    editUsuario(usuario: Usuarios): Observable<any> {
 
-     return this._HTTP.put(this.apiUrl + 'update/' + usuario.id, usuario, this.httpOptions);
+     return this._HTTP.put(this.apiUrl + 'update/?id=' + usuario.id, usuario, this.httpOptions);
    }
    deleteUsuario(id: string): Observable<any> {
        return this._HTTP.delete(this.apiUrl + 'delete/' + id, this.httpOptions);
