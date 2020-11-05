@@ -32,9 +32,25 @@ def gerarpedido():
 def cadastroproduto():
     return "Cadastro de Produto Page"
 
-@app.route("/usuario")
-def cadastrousuario():
-    return controllerUsers.DAOUsuario
+@app.route("/users",  methods=['POST'])
+def add_user():
+    return controllerUsers.DAOUsuario.add_user()    
+
+@app.route("/users",  methods=['GET'])
+def listarUsers():
+    return controllerUsers.DAOUsuario.users()
+
+@app.route("/users/<int:id>",  methods=['GET'])
+def getById(id):
+    return controllerUsers.DAOUsuario.getById(id)
+
+# @app.route("/users",  methods=['PUT'])
+# def cadastrousuario():
+#     return controllerUsers.DAOUsuario
+
+# @app.route("/users/<int:id>", methods=['DELETE'])
+# def cadastrousuario():
+#     return controllerUsers.DAOUsuario    
 
 @app.route("/cadastrovendedor")
 def cadastrovendedor():

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
-  readonly apiUrl = 'http://localhost:5000/';
+  readonly apiUrl = 'http://localhost:5000';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,13 +17,14 @@ export class UsuarioService {
 
 
    getAllUsuario(): Observable<Usuarios[]> {
-       return this._HTTP.get<Usuarios[]>(this.apiUrl + 'usuario/getAll', {});
+      //  return this._HTTP.get<Usuarios[]>(this.apiUrl + 'user/getAll', {});
+       return this._HTTP.get<Usuarios[]>(this.apiUrl + '/users', {});
    }
    getUsuarioById(idUsuarios: string): Observable<any> {
        return this._HTTP.get(this.apiUrl + '/Usuarios/?id=' + idUsuarios);
    }
    saveUsuario(usuario: Usuarios): Observable<Usuarios> {
-       return this._HTTP.post<Usuarios>(this.apiUrl + 'usuario/create', usuario, this.httpOptions);
+       return this._HTTP.post<Usuarios>(this.apiUrl + 'user/create', usuario, this.httpOptions);
    }
    editUsuario(usuario: Usuarios): Observable<any> {
 

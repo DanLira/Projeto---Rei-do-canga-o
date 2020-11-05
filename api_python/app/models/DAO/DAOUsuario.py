@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.classes_basicas.User import User
 		
 
-@app.route('/create', methods=['POST'])
+
 def add_user():
 	try:
 		
@@ -37,28 +37,28 @@ def add_user():
 		cursor.close() 
 		conn.close()
 		
-@app.route('/getAll')
+
 def users():
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		cursor.execute("SELECT user_id id, user_tipo tipo, user_login login, user_senha senha FROM tbl_user")
+		cursor.execute("SELECT id_user, username, senha, tipo, id_empregado FROM usuarios")
 		rows = cursor.fetchall()
 		resp = jsonify(rows)
 		resp.status_code = 200
 		return resp
 	except Exception as e:
-		print(e)
+		print(e + "TESTE")
 	finally:
 		cursor.close() 
 		conn.close()
 		
-@app.route('/getById/<int:id>')
-def user(id):
+
+def getById(id):
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		cursor.execute("SELECT user_id id, user_tipo tipo, user_login login, user_senha senha FROM tbl_user WHERE user_id=%s", id)
+		cursor.execute("SELECT id_user, username, senha, tipo, id_empregado FROM usuarios WHERE id_user=%s", id)
 		row = cursor.fetchone()
 		resp = jsonify(row)
 		resp.status_code = 200
