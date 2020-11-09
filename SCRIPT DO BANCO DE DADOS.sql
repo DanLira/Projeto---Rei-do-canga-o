@@ -38,6 +38,7 @@ CREATE TABLE USUARIOS (
     CONSTRAINT fk_id_empregado FOREIGN KEY (id_empregado) REFERENCES EMPREGADOS(id_empregado)
 )
 #ALTER TABLE USUARIOS AUTO_INCREMENT = 1000
+#ALTER TABLE USUARIOS MODIFY COLUMN senha varchar(600)
 
 INSERT INTO USUARIOS (username, senha, tipo, id_empregado)
 VALUES              ("Administrador", "adm001", "Administrador", 1000)
