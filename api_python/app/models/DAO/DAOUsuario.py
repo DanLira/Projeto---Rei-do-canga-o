@@ -32,13 +32,14 @@ def listarUsers():
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios")
+        sql = "SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios"
+        cursor.execute(sql)
         rows = cursor.fetchall()
         resp = jsonify(rows)
         resp.status_code = 200
         return resp
-    except Exception as e:
-        print(e + "TESTE")
+    except Exception as ex:
+        print(ex)
     finally:
         cursor.close() 
         conn.close()
@@ -48,7 +49,8 @@ def getById(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios WHERE id_user=%s", id)
+        sql = "SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios WHERE id_user=%s"
+        cursor.execute(sql, id)
         row = cursor.fetchone()
         resp = jsonify(row)
         resp.status_code = 200

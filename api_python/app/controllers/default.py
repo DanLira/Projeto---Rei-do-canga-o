@@ -1,6 +1,7 @@
 #import pymysql
 from app import app
 from app.controllers import controllerUsers
+from app.controllers import controllerEmpregado
 from config import mysql
 from flask import Flask, request, flash, render_template, redirect, jsonify
 from app.models.classes_basicas.User import User
@@ -13,6 +14,8 @@ import json
 def index():
     return "index"
 
+
+###ROTAS DE USERS
 
 @app.route("/users",  methods=["POST"])
 def add_user():
@@ -30,7 +33,7 @@ def listarUsers():
     return controllerUsers.listarUsers()
 
 @app.route("/users/<int:id>",  methods=['GET'])
-def getById(id):
+def getUserById(id):
     return controllerUsers.getById(id)
 
 @app.route("/users",  methods=["PUT"])
@@ -74,10 +77,55 @@ def add_empregado():
     _cidade = str(_json['cidade'])
     _estado = str(_json['estado'])
     _pais = str(_json['pais'])
+    _status = str(_json['status'])
+
+    empregado = Empregado(_nome_empregado, _cpf, _sexo, _data_nascimento, _celular, _email, _endereco, _bairro, _cidade, _estado, _pais, _status)
+    empregado.setTelefone(_telefone)
+    empregado.setComplemento(_complemento)
+    empregado.setCep(_cep)  
+    return controllerEmpregado.add_empregado(empregado)
 
 
-    #empregado = Empregado() 
-    return "ok"
+@app.route("/empregados",  methods=['GET'])
+def listarEmpregados():
+    return controllerEmpregado.listarEmpregados()
+
+
+@app.route("/empregados/<int:id>",  methods=['GET'])
+def getEmpregadoById(id):
+    return controllerEmpregado.getById(id)
+
+
+@app.route("/empregados",  methods=["PUT"])
+def update_empregado():
+    _json = request.json
+    _id_empregado = str(_json['id_empregado'])
+    _nome_empregado = str(_json['nome_empregado'])
+    _cpf = str(_json['cpf']) 
+    _sexo = str(_json['sexo'])
+    _data_nascimento = str(_json['data_nascimento'])
+    _telefone = str(_json['telefone'])
+    _celular = str(_json['celular'])
+    _email = str(_json['email'])
+    _endereco = str(_json['endereco'])
+    _complemento = str(_json['complemento'])
+    _bairro = str(_json['bairro'])
+    _cep = str(_json['cep'])
+    _cidade = str(_json['cidade'])
+    _estado = str(_json['estado'])
+    _pais = str(_json['pais'])
+    _status = str(_json['status'])
     
-    #return controllerUsers.add_user(user)
 
+    empregado = Empregado(_nome_empregado, _cpf, _sexo, _data_nascimento, _celular, _email, _endereco, _bairro, _cidade, _estado, _pais, _status)
+    empregado.setTelefone(_telefone)
+    empregado.setComplemento(_complemento)
+    empregado.setCep(_cep) 
+    return controllerEmpregado.update_empregado(empregado)
+
+
+@app.route("/empregados", methods=['DELETE'])
+def delete_empregado():
+    _json = request.json
+    _id_empregado = str(_json['id_empregado'])
+    return controllerEmpregado.delete_empregado(_id_empregado) 
