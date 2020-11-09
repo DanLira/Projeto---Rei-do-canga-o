@@ -12,15 +12,15 @@ def add_user(user):
     
     try:
         _hashed_password = generate_password_hash(user.getSenha())
-        sql = "INSERT INTO USUARIOS(username, senha, tipo, id_empregado) VALUES(%s, %s, %s,%s)"
-        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado())
+        sql = "INSERT INTO USUARIOS(username, senha, tipo, id_empregado, status) VALUES(%s, %s, %s,%s, %s)"
+        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getStatus())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)
         conn.commit()
         resp = jsonify('User added successfully!')
         resp.status_code = 200
-        return _hashed_password
+        return resp
     except Exception as e:
         print(e)
     finally:
@@ -32,7 +32,7 @@ def listarUsers():
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado FROM usuarios")
+        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios")
         rows = cursor.fetchall()
         resp = jsonify(rows)
         resp.status_code = 200
@@ -48,7 +48,7 @@ def getById(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado FROM usuarios WHERE id_user=%s", id)
+        cursor.execute("SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios WHERE id_user=%s", id)
         row = cursor.fetchone()
         resp = jsonify(row)
         resp.status_code = 200
@@ -63,8 +63,8 @@ def getById(id):
 def update_user(user):
     try:
         _hashed_password = generate_password_hash(user.getSenha())
-        sql = "UPDATE USUARIOS SET username=%s, senha=%s, tipo=%s, id_empregado=%s WHERE id_user=%s"
-        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getIdUser())
+        sql = "UPDATE USUARIOS SET username=%s, senha=%s, tipo=%s, id_empregado=%s, status=%s WHERE id_user=%s"
+        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getStatus(), user.getIdUser())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)

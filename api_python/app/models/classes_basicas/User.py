@@ -5,12 +5,14 @@ class User(object):
     senha = None
     tipo = None
     id_empregado = None
+    status = None
 
-    def __init__(self, username, senha, tipo, id_empregado):
+    def __init__(self, username, senha, tipo, id_empregado, status):
         self.username = username
         self.senha = senha
         self.tipo = tipo
         self.id_empregado = id_empregado
+        self.status = status
 
     def getIdUser(self):
         return self.id_user
@@ -39,5 +41,11 @@ class User(object):
     def getIdEmpregado(self):
         return self.id_empregado
 
-    def setTipo(self, id_empregado):
+    def setIdEmpregado(self, id_empregado):
         self.id_empregado = id_empregado
+
+    def getStatus(self):
+        return self.status
+
+    def setStatus(self, status):
+        self.status = status

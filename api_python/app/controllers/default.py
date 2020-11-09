@@ -21,7 +21,8 @@ def add_user():
     _senha = str(_json['senha']) 
     _tipo = str(_json['tipo'])
     _id_empregado = str(_json['id_empregado'])
-    user = User(_username, _senha, _tipo, _id_empregado) 
+    _status = str(_json['status'])
+    user = User(_username, _senha, _tipo, _id_empregado, _status) 
     return controllerUsers.add_user(user)    
 
 @app.route("/users",  methods=['GET'])
@@ -40,7 +41,8 @@ def update_user():
     _senha = str(_json['senha']) 
     _tipo = str(_json['tipo'])
     _id_empregado = int(_json['id_empregado'])
-    user = User(_username, _senha, _tipo, _id_empregado)
+    _status = str(_json['status'])
+    user = User(_username, _senha, _tipo, _id_empregado, _status)
     user.setIdUser(_id_user) 
     return controllerUsers.update_user(user)   
 
