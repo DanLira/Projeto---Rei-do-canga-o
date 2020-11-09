@@ -34,6 +34,21 @@ def listarUsers():
 def getById(id):
     return controllerUsers.getById(id)
 
+@app.route("/users",  methods=["PUT"])
+def update_user():
+    _json = request.json
+    _id_user = str(_json['id_user'])
+    _username = str(_json['username'])
+    _senha = str(_json['senha']) 
+    _tipo = str(_json['tipo'])
+    _id_empregado = int(_json['id_empregado'])
+
+    user = User(_username, _senha, _tipo, _id_empregado)
+    user.setIdUser(_id_user) 
+    
+    #return user.getIdUser()
+    return controllerUsers.update_user(user)   
+
 
 #@app.route("/users/<int:id>", methods=['DELETE'])
 #def cadastrousuario():

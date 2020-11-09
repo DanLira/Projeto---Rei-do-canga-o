@@ -59,30 +59,19 @@ def getById(id):
         cursor.close() 
         conn.close()
 
-@app.route('/update', methods=['PUT'])
-def update_user():
+
+def update_user(user):
     try:
-        _json = request.json
-        _id = _json['id']
-        _tipo = _json['tipo']
-        _login = _json['login']
-        _senha = _json['senha']		
-        # validate the received values
-        if _tipo and _login and _senha and _id and request.method == 'PUT':
-            #do not save password as a plain text
-            _hashed_password = generate_password_hash(_senha)
-            # save edits
-            sql = "UPDATE tbl_user SET user_tipo=%s, user_login=%s, user_senha=%s WHERE user_id=%s"
-            data = (_tipo, _login, _hashed_password, _id,)
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sql, data)
-            conn.commit()
-            resp = jsonify('User updated successfully!')
-            resp.status_code = 200
-            return resp
-        else:
-            return not_found()
+        _hashed_password = generate_password_hash(user.getSenha())
+        sql = "UPDATE USUARIOS SET username=%s, senha=%s, tipo=%s, id_empregado=%s WHERE id_user=%s"
+        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getIdUser())
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql, data)
+        conn.commit()
+        resp = jsonify('User updated successfully!')
+        resp.status_code = 200
+        return resp
     except Exception as e:
         print(e)
     finally:

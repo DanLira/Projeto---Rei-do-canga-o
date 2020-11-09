@@ -18,8 +18,8 @@ def listarUsers():
 def getById(id):
     return DAOUsuario.getById(id)
 
-def update_user():
-    return DAOUsuario.update_user()   
+def update_user(user):
+    return DAOUsuario.update_user(user)   
 
 def delete_user(id):
     return DAOUsuario.delete_user(id)
