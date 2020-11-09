@@ -33,6 +33,7 @@ import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.co
 import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.component';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empregado.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CadastroVendedorComponent,
     RelatorioVendasComponent,
     CadastroFornecedorComponent,
-    DashboardComponent
+    DashboardComponent,
+    CadastroEmpregadoComponent
    ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empregado.component';
 import { CadastroVendedorComponent } from './cadastro-vendedor/cadastro-vendedor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -45,6 +46,11 @@ const routes: Routes = [
 {
   path: 'vendedor',
   component: CadastroVendedorComponent, canActivate: [AuthGuard]
+},
+{
+  path: 'empregado',
+  component: CadastroEmpregadoComponent,
+  //canActivate: [AuthGuard]
 },
 {
   path: 'fornecedor',

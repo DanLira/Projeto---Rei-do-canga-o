@@ -18,7 +18,7 @@ export class CadastroUsuarioComponent implements OnInit {
   filterFormNutricionista: FormGroup;
   usuarioList: Usuarios[] = [];
   filterFormUsuario: FormGroup;
-  displayedColumns: string[] = ['tipo', 'login', 'dateUpdate', 'action'];
+  displayedColumns: string[] = ['tipo', 'login', 'action'];
   dataSource = new MatTableDataSource<Usuarios>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -50,23 +50,18 @@ export class CadastroUsuarioComponent implements OnInit {
         id: new FormControl(null),
         tipo: new FormControl('', Validators.required),
         login: new FormControl('', Validators.required),
-        senha: new FormControl('', Validators.required),
-        //createAt: new FormControl(''),
-        //updatedAt: new FormControl(''),
-        //ativo: new FormControl(this.data.usuario.ativo, false)
+        senha: new FormControl('', Validators.required)
      });
   }
 
 
   salvarUsuario(): void {
-    
+
     const usuario: Usuarios = {
       id: this.formsRegister.get('id').value,
       tipo: this.formsRegister.get('tipo').value,
       login: this.formsRegister.get('login').value,
-      senha: this.formsRegister.get('senha').value,
-      //ativo: !this.formsRegister.get('ativo').value,
-      //updatedAt: new Date()
+      senha: this.formsRegister.get('senha').value
 
     };
     if (this.formsRegister.value.id) {
