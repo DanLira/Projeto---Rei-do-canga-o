@@ -78,12 +78,14 @@ def update_user(user):
         cursor.close() 
         conn.close()
         
-@app.route('/delete/<int:id>', methods=['DELETE'])
+
 def delete_user(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM tbl_user WHERE user_id=%s", (id,))
+        sql = "DELETE FROM USUARIOS WHERE id_user=%s"
+        data = id
+        cursor.execute(sql, data)
         conn.commit()
         resp = jsonify('User deleted successfully!')
         resp.status_code = 200

@@ -46,12 +46,17 @@ def update_user():
     user = User(_username, _senha, _tipo, _id_empregado)
     user.setIdUser(_id_user) 
     
-    #return user.getIdUser()
     return controllerUsers.update_user(user)   
 
 
-#@app.route("/users/<int:id>", methods=['DELETE'])
-#def cadastrousuario():
-#    return controllerUsers.DAOUsuario    
+@app.route("/users", methods=['DELETE'])
+def delete_user():
+    _json = request.json
+    _id_user = str(_json['id_user'])
+
+    return controllerUsers.delete_user(_id_user)   
+
+
+
 
 
