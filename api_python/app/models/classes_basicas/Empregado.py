@@ -4,7 +4,6 @@ class Empregado(Pessoa):
 
     id_empregado = None
     
-
     def getEmpregado(self):
         return self.id_empregado
 

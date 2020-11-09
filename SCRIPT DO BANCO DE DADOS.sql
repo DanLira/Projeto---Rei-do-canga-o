@@ -24,6 +24,8 @@ CREATE TABLE EMPREGADOS(
     pais varchar(30) not null
 )
 ALTER TABLE EMPREGADOS AUTO_INCREMENT = 1000
+delete from EMPREGADOS where id_empregado < 1110
+ALTER TABLE EMPREGADOS ADD COLUMN status char(1) default "A"
 INSERT INTO EMPREGADOS (nome_empregado, cpf, sexo, data_nascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais)
 VALUES               ('Administrador001', '001.001.001-01', 'M', '27/10/2020','5545672345', '55 81 98775 9874', 'emailadministador', 'rua b, n22', 't comple', 'estancia', '50771-495', 'recife', 'PE', 'Brasil')
 
@@ -39,6 +41,8 @@ CREATE TABLE USUARIOS (
 )
 #ALTER TABLE USUARIOS AUTO_INCREMENT = 1000
 #ALTER TABLE USUARIOS MODIFY COLUMN senha varchar(600)
+#delete from usuarios where id_user < 1110
+#ALTER TABLE USUARIOS ADD COLUMN status char(1) default "A"
 
 INSERT INTO USUARIOS (username, senha, tipo, id_empregado)
 VALUES              ("Administrador", "adm001", "Administrador", 1000)
@@ -64,6 +68,7 @@ CREATE TABLE FORNECEDORESPF(
     pais varchar(30) not null
 )
 #ALTER TABLE FORNECEDORESPF AUTO_INCREMENT = 10000
+ALTER TABLE FORNECEDORESPF ADD COLUMN status char(1) default "A"
 
 CREATE TABLE FORNECEDORESPJ(
 	id_fornecedorpj int auto_increment primary key,
@@ -83,6 +88,7 @@ CREATE TABLE FORNECEDORESPJ(
     pais varchar(30) not null
 )
 #ALTER TABLE FORNECEDORESPJ AUTO_INCREMENT = 100000
+ALTER TABLE FORNECEDORESPJ ADD COLUMN status char(1) default "A"
 
 CREATE TABLE PRODUTOS(
 	id_produto int auto_increment primary key,
@@ -95,6 +101,9 @@ CREATE TABLE PRODUTOS(
     CONSTRAINT fk_id_fornecedorpf_prod  FOREIGN KEY (id_fornecedorpf) REFERENCES FORNECEDORESPF(id_fornecedorpf)
 )
 #ALTER TABLE PRODUTOS AUTO_INCREMENT = 1000
+ALTER TABLE PRODUTOS ADD COLUMN status char(1) default "A"
+
+
 CREATE TABLE FORNECEDORPF_PRODUTO(
 	id_fornecedorpf int not null,
     id_produto int not null,

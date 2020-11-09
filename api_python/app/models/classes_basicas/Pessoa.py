@@ -13,7 +13,7 @@ class Pessoa(object):
         self.nome = nome
         self.cpf = cpf
         self.sexo = sexo
-        self..dataNascimento = dataNascimento
+        self.dataNascimento = dataNascimento
 
     def getNome(self):
         return self.nome
