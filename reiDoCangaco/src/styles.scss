@@ -168,29 +168,7 @@ $break-exlarge: 1140px;
     font-size: 20px;
 }
 
-.expansion-list-todo {
-  border: solid 1px #ccc;
-  min-height: 243px;
-  max-height: 243px;
-  background: #fafafa;
-  border-radius: 4px;
-  overflow: auto;
-  display: block;
-  border-right: #FF9100 solid 3px;
-  
-  ::before{
-    position: absolute;
-    top: 225px;
-    right: 6px;
-    display: inline-block;
-    border-top: 30px solid transparent;
-    border-left: 10px solid #FF6D00;
-    border-right: 0px solid #FF9100;
-    border-bottom: 30px solid transparent;
-    content: " ";
-    z-index: 9;
-  }
-}
+
 .expansion-list-done {
   border: dashed 1px;
   min-height: 327px;
@@ -251,6 +229,14 @@ table {
 .iconSearch {
   color: white !important;
 }
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #FF5722 !important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #FF9100;
+}
+
 
 
 

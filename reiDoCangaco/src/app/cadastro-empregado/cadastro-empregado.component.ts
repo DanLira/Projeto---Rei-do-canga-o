@@ -48,6 +48,7 @@ export class CadastroEmpregadoComponent implements OnInit {
       nomeEmpregado: new FormControl('', Validators.required),
       sexo: new FormControl(''),
       cpf: new FormControl('', Validators.required),
+      dataNscimento: new FormControl(''),
       telefone: new FormControl('', Validators.required),
       celular: new FormControl('', Validators.required),
       email: new FormControl(''),

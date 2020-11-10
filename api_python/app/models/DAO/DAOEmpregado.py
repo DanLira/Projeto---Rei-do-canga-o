@@ -29,7 +29,7 @@ def listarEmpregados():
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		sql = "SELECT id_empregado, nome_empregado, cpf, sexo, data_nascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from EMPREGADOS"
+		sql = "SELECT id_empregado idEmpregado, nome_empregado nomeEmpregado, cpf, sexo, data_nascimento dataNascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from EMPREGADOS"
 		cursor.execute(sql)
 		rows = cursor.fetchall()
 		resp = jsonify(rows)

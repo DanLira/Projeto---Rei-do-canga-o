@@ -6,18 +6,25 @@
             <div class="col-12">
               <div >
                 <h1 class="title-card">Cadastro de Usuários</h1>
-                <h1 class="idPadrao">ID do Usuário: {{formsRegister.value.id}}</h1>
+                <h1 class="idPadrao">ID do Usuário: {{formsRegister.value.idUser}}</h1>
               </div>
               <form [formGroup]="formsRegister" class="row">
-                <mat-form-field class="col-4">
-                  <mat-label>Empregado</mat-label>
-                <input matInput #QuestionnarieAutocomplete placeholder="Empregado" aria-label="Empregado"
-                 [formControl]="formsAutoComplet" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let users of filteredUsersAutoComplete " [value]="users.id_empregado" (click)="setUserActive(users)">
-                    {{users.name}}
-                  </mat-option>
-                </mat-autocomplete>
+                
+                  <!-- <mat-form-field class="full-autocomplete-input col-sm-4">
+                    <mat-label>Empregado</mat-label>
+                    <input matInput #EmpregadoAutocomplete placeholder="empregado" aria-label="Empregado"
+                      [matAutocomplete]="empregadoAuto" [formControl]="idEmpregado">
+                    <mat-autocomplete #empregadoAuto="matAutocomplete">
+                      <mat-option *ngFor="let empregado of empregadoList" [value]="empregado.idEmpregado">
+                        <span>{{ empregado.nomeEmpregado }}</span>
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field> -->
+
+                  <mat-form-field class="col-4">
+                    <mat-label>Login</mat-label>
+                  <input matInput placeholder="Login" required
+                  formControlName="idEmpregado" value={{formsRegister.value.idEmpregado}} >
                 </mat-form-field>
 
 
@@ -33,7 +40,7 @@
                   <mat-form-field class="col-4">
                       <mat-label>Login</mat-label>
                     <input matInput placeholder="Login" required
-                    formControlName="login" value={{formsRegister.value.login}} >
+                    formControlName="userName" value={{formsRegister.value.userName}} >
                   </mat-form-field>
 
                   <mat-form-field class="col-4">
@@ -42,6 +49,11 @@
                     <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
                   </mat-form-field>
+
+                  <div class="col-xs-12 col-md-6">
+                    <mat-slide-toggle formControlName="flagAtivo" class="col-xs-12 col-md-6">Inativo
+                    </mat-slide-toggle>
+                  </div>
 
                   
                 
@@ -85,9 +97,9 @@
                       <th mat-header-cell *matHeaderCellDef id="tipo"> Tipo de usuário </th>
                       <td mat-cell *matCellDef="let element" > {{ element.tipo }} </td>
                     </ng-container>
-                    <ng-container matColumnDef="login">
-                      <th mat-header-cell *matHeaderCellDef id="login"> Nome do Usuário </th>
-                      <td mat-cell *matCellDef="let element" > {{ element.login }} </td>
+                    <ng-container matColumnDef="userName">
+                      <th mat-header-cell *matHeaderCellDef id="userName"> Nome do Usuário </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.userName }} </td>
                     </ng-container>
                     <ng-container matColumnDef="action">
                       <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
@@ -100,7 +112,7 @@
                               <mat-icon>edit</mat-icon>
                               <span>Editar</span>
                           </button>
-                          <button mat-menu-item (click)="excluirUsuario(element.id)">
+                          <button mat-menu-item (click)="excluirUsuario(element.idUser)">
                             <mat-icon>delete</mat-icon>
                             <span>Deletar</span>
                           </button>

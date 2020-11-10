@@ -20,10 +20,10 @@ def index():
 @app.route("/users",  methods=["POST"])
 def add_user():
     _json = request.json
-    _username = str(_json['username'])
+    _username = str(_json['userName'])
     _senha = str(_json['senha']) 
     _tipo = str(_json['tipo'])
-    _id_empregado = str(_json['id_empregado'])
+    _id_empregado = str(_json['idEmpregado'])
     _status = str(_json['status'])
     user = User(_username, _senha, _tipo, _id_empregado, _status) 
     return controllerUsers.add_user(user)    
@@ -39,21 +39,21 @@ def getUserById(id):
 @app.route("/users",  methods=["PUT"])
 def update_user():
     _json = request.json
-    _id_user = str(_json['id_user'])
-    _username = str(_json['username'])
+    _id_user = str(_json['idUser'])
+    _username = str(_json['userName'])
     _senha = str(_json['senha']) 
     _tipo = str(_json['tipo'])
-    _id_empregado = int(_json['id_empregado'])
+    _id_empregado = int(_json['idEmpregado'])
     _status = str(_json['status'])
     user = User(_username, _senha, _tipo, _id_empregado, _status)
     user.setIdUser(_id_user) 
     return controllerUsers.update_user(user)   
 
 
-@app.route("/users", methods=['DELETE'])
-def delete_user():
+@app.route("/users/<int:id>", methods=['DELETE'])
+def delete_user(id):
     _json = request.json
-    _id_user = str(_json['id_user'])
+    _id_user = int(_json['idUser'])
     return controllerUsers.delete_user(_id_user)   
 
 

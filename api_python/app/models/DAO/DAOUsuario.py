@@ -32,7 +32,7 @@ def listarUsers():
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        sql = "SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios"
+        sql = "SELECT id_user idUser, username userName, senha, tipo, id_empregado idEmpregado, status FROM usuarios"
         cursor.execute(sql)
         rows = cursor.fetchall()
         resp = jsonify(rows)

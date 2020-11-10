@@ -1,6 +1,6 @@
 export interface Empregado {
 
-    idEmpregado?: string;
+    idEmpregado?: number;
     nomeEmpregado: string;
     cpf: string;
     sexo: string;
