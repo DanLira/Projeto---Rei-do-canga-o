@@ -54,11 +54,10 @@ def update_user():
     return controllerUsers.update_user(user)   
 
 
-@app.route("/users", methods=['DELETE'])
-def delete_user():
-    _json = request.json
-    _id_user = int(_json['idUser'])
-    return controllerUsers.delete_user(_id_user)   
+@app.route("/users/<int:id>", methods=['DELETE'])
+def delete_user(id):
+    return controllerUsers.delete_user(id)
+      
 
 
 
