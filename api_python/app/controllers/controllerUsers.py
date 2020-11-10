@@ -10,16 +10,37 @@ from app.models.classes_basicas.User import User
 
 
 def add_user(user):
-    return DAOUsuario.add_user(user)
+
+    try:
+        return DAOUsuario.add_user(user)
+    except Exception as ex:
+        print(ex)
+
 
 def listarUsers():
-    return DAOUsuario.listarUsers()
+    try:
+        return DAOUsuario.listarUsers()
+    except Exception as ex:
+        print(ex)
+    
 
 def getById(id):
-    return DAOUsuario.getById(id)
+    try:
+        return DAOUsuario.getById(id)
+    except Exception as ex:
+        print(ex)
+    
 
 def update_user(user):
-    return DAOUsuario.update_user(user)   
+    try:
+        return DAOUsuario.update_user(user)
+    except Exception as ex:
+        print(ex)
+       
 
 def delete_user(id):
-    return DAOUsuario.delete_user(id)
+    try:
+        return DAOUsuario.delete_user(id)
+    except Exception as ex:
+        print(ex)
+    
