@@ -1,14 +1,9 @@
 export interface Usuarios {
-    id?: string;
+    idUser?: string;
     tipo: string;
-    login: string;
+    userName: string;
     senha: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-    //ativo?: boolean;
-
-    // id?: number;
-    // name: string;
-    // email: string;
-    // pwd: string;
+    flagAtivo?: boolean;
+    status?: string;
+    idEmpregado?: number;
 }

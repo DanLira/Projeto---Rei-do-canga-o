@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
   if (this.loginForm.invalid) {
     return;
  } else {
-   const user = this.usuariosList.find(x => x.login === this.f.login.value
+   const user = this.usuariosList.find(x => x.userName === this.f.login.value
     && x.senha === this.f.senha.value );
    if (user) {
        console.log('Login successful');
        sessionStorage.setItem('isLoggedIn', 'true');
-       sessionStorage.setItem('token', this.f.login.value);
-       sessionStorage.setItem('key', user.id);
+       sessionStorage.setItem('token', this.f.userName.value);
+       sessionStorage.setItem('key', user.idUser);
        sessionStorage.setItem('tipo', user.tipo);
        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
        this.router.navigate([this.returnUrl]);

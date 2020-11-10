@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Empregado } from './../models/empregado.model';
+import { EmpregadoService } from './../cadastro-empregado/empregadoService.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { SubSink } from 'subsink/dist/subsink';
 import { Usuarios } from '../models/usuarios.model';
@@ -14,11 +16,13 @@ import { UsuarioService } from './usuario.service';
 export class CadastroUsuarioComponent implements OnInit {
 
   usuarioEdit: Usuarios[] = [];
+  formsAutoComplet = new FormControl();
   formsRegister: FormGroup;
   filterFormNutricionista: FormGroup;
   usuarioList: Usuarios[] = [];
+  empregadoList: Empregado[] = [];
   filterFormUsuario: FormGroup;
-  displayedColumns: string[] = ['tipo', 'login', 'action'];
+  displayedColumns: string[] = ['tipo', 'userName', 'action'];
   dataSource = new MatTableDataSource<Usuarios>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -27,6 +31,7 @@ export class CadastroUsuarioComponent implements OnInit {
 
   constructor( private readonly formBuilder: FormBuilder,
                private readonly usuarioService: UsuarioService,
+               private readonly empregadoService: EmpregadoService,
                private readonly toastr: ToastrService) { }
 
   ngOnInit() {
@@ -40,17 +45,27 @@ export class CadastroUsuarioComponent implements OnInit {
     this.usuarioService.getAllUsuario().subscribe((usuario: Usuarios[]) => {
       this.usuarioList = (!!usuario) ? usuario : [];
       this.dataSource.data = [...this.usuarioList];
+
+      this.empregadoService.getAllEmpregado().subscribe((empregado: Empregado[]) => {
+        this.empregadoList = (!!empregado) ? empregado : [];
+      });
     });
+
+
+
 
   }
 
   private createForm(): void {
     this.formsRegister = new FormGroup({
 
-        id: new FormControl(null),
+        idUser: new FormControl(null),
         tipo: new FormControl('', Validators.required),
-        login: new FormControl('', Validators.required),
-        senha: new FormControl('', Validators.required)
+        userName: new FormControl('', Validators.required),
+        senha: new FormControl('', Validators.required),
+        flagAtivo: new FormControl(false),
+        status: new FormControl(''),
+        idEmpregado: new FormControl('', Validators.required)
      });
   }
 
@@ -58,13 +73,16 @@ export class CadastroUsuarioComponent implements OnInit {
   salvarUsuario(): void {
 
     const usuario: Usuarios = {
-      id: this.formsRegister.get('id').value,
+      idUser: this.formsRegister.get('idUser').value,
       tipo: this.formsRegister.get('tipo').value,
-      login: this.formsRegister.get('login').value,
-      senha: this.formsRegister.get('senha').value
+      userName: this.formsRegister.get('userName').value,
+      senha: this.formsRegister.get('senha').value,
+      status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
+      idEmpregado: this.formsRegister.get('idEmpregado').value
+
 
     };
-    if (this.formsRegister.value.id) {
+    if (this.formsRegister.value.idUser) {
 
         this.usuarioService.editUsuario(usuario).subscribe(() => {
           this.usuarioService.getAllUsuario().subscribe(usuarios => {
@@ -88,12 +106,14 @@ export class CadastroUsuarioComponent implements OnInit {
 
   private limpar(): void {
     this.formsRegister.reset();
+    this.formsAutoComplet.reset();
     this.toastr.info('Campos limpos com sucesso!');
   }
 
 
-  excluirUsuario(id: string): void {
-    this.usuarioService.deleteUsuario(id).subscribe(() => {
+  excluirUsuario(idUser: string): void {
+   
+    this.usuarioService.deleteUsuario(idUser).subscribe(() => {
       this.usuarioService.getAllUsuario().subscribe(usuarios => {
        this.usuarioList = usuarios;
        this.dataSource.data = this.usuarioList;
@@ -106,10 +126,11 @@ export class CadastroUsuarioComponent implements OnInit {
 
   getRowTableUsuario(value: any): void {
 
-    this.formsRegister.get('id').setValue(value.id);
-    this.formsRegister.get('tipo').setValue(value.tipo);
-    this.formsRegister.get('login').setValue(value.login);
-    // this.formsRegister.get('senha').setValue(value.senha);
+    this.formsRegister.get('idUser').setValue(value.idUser);
+    // this.formsRegister.get('tipo').setValue(value.tipo);
+    // this.formsRegister.get('login').setValue(value.login);
+    // // this.formsRegister.get('senha').setValue(value.senha);
+    // this.formsRegister.get('login').setValue(value.login);
   }
 
 
@@ -122,7 +143,7 @@ export class CadastroUsuarioComponent implements OnInit {
     if (this.filterFormUsuario.value.nomeFilterCtrl) {
       filteredTable = filteredTable.filter
       ( x => {
-        return x.login ? x.login.toUpperCase().includes(this.filterFormUsuario.value.nomeFilterCtrl.toUpperCase()) : null;
+        return x.userName ? x.userName.toUpperCase().includes(this.filterFormUsuario.value.nomeFilterCtrl.toUpperCase()) : null;
       });
      }
     this.dataSource.data = filteredTable;
