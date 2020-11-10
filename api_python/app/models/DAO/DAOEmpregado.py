@@ -15,7 +15,7 @@ def add_empregado(e):
 		cursor = conn.cursor()
 		cursor.execute(sql, data)
 		conn.commit()
-		resp = jsonify('Empregado added successfully!')
+		resp = jsonify('Empregado' + e.getNome() + 'added successfully!')
 		resp.status_code = 200
 		return resp
 	except Exception as ex:
@@ -46,7 +46,7 @@ def getById(id):
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		sql = "SELECT id_empregado, nome_empregado, cpf, sexo, data_nascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from EMPREGADOS WHERE id_empregado = %s"
+		sql = "SELECT id_empregado idEmpregado, nome_empregado nomeEmpregado, cpf, sexo, data_nascimento dataNascimento, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from EMPREGADOS WHERE id_empregado = %s"
 		cursor.execute(sql, id)
 		row = cursor.fetchone()
 		resp = jsonify(row)

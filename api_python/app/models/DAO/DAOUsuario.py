@@ -49,7 +49,7 @@ def getById(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        sql = "SELECT id_user, username, senha, tipo, id_empregado, status FROM usuarios WHERE id_user=%s"
+        sql = "SELECT id_user idUser, username userName, senha, tipo, id_empregado idEmpregado, status FROM usuarios WHERE id_user=%s"
         cursor.execute(sql, id)
         row = cursor.fetchone()
         resp = jsonify(row)
