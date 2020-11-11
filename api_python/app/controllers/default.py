@@ -4,12 +4,14 @@ from app.controllers import controllerUsers
 from app.controllers import controllerEmpregado
 from app.controllers import controllerFornecedorPF
 from app.controllers import controllerFornecedorPJ
+from app.controllers import controllerProduto
 from config import mysql
 from flask import Flask, request, flash, render_template, redirect, jsonify
 from app.models.classes_basicas.User import User
 from app.models.classes_basicas.Empregado import Empregado
 from app.models.classes_basicas.FornecedorPF import FornecedorPF
-from app.models.classes_basicas.FornecedorPJ import FornecedorPJ 
+from app.models.classes_basicas.FornecedorPJ import FornecedorPJ
+from app.models.classes_basicas.Produto import Produto 
 import json
 
 
@@ -119,19 +121,17 @@ def update_empregado():
     _pais = str(_json['pais'])
     _status = str(_json['status'])
     
-
     empregado = Empregado(_nome_empregado, _cpf, _sexo, _data_nascimento, _celular, _email, _endereco, _bairro, _cidade, _estado, _pais, _status)
+    empregado.setIdEmpregado(_id_empregado)
     empregado.setTelefone(_telefone)
     empregado.setComplemento(_complemento)
     empregado.setCep(_cep) 
     return controllerEmpregado.update_empregado(empregado)
 
 
-@app.route("/empregados", methods=['DELETE'])
-def delete_empregado():
-    _json = request.json
-    _id_empregado = str(_json['idEmpregado'])
-    return controllerEmpregado.delete_empregado(_id_empregado) 
+@app.route("/empregados/<int:id>", methods=['DELETE'])
+def delete_empregado(id):
+    return controllerEmpregado.delete_empregado(id) 
 
 
 
@@ -205,11 +205,9 @@ def update_fornecedorpf():
     return controllerFornecedorPF.update_fornecedorpf(fornecedorpf)
 
 
-@app.route("/fornecedorespf", methods=['DELETE'])
-def delete_fornecedorpf():
-    _json = request.json
-    _id_fornecedorpf = str(_json['idFornecedorPF'])
-    return controllerFornecedorPF.delete_fornecedorpf(_id_fornecedorpf)
+@app.route("/fornecedorespf/<int:id>", methods=['DELETE'])
+def delete_fornecedorpf(id):
+    return controllerFornecedorPF.delete_fornecedorpf(id)
 
 
 ##ROTAS DE FORNECEDORESPJ
@@ -278,8 +276,52 @@ def update_fornecedorpj():
     return controllerFornecedorPJ.update_fornecedorpj(fornecedorpj)
 
 
-@app.route("/fornecedorespj", methods=['DELETE'])
-def delete_fornecedorpj():
+@app.route("/fornecedorespj/<int:id>", methods=['DELETE'])
+def delete_fornecedorpj(id):
+    return controllerFornecedorPJ.delete_fornecedorpj(id)
+
+
+
+
+##ROTAS DE PRODUTOS
+
+@app.route("/produtos",  methods=["POST"])
+def add_produto():
     _json = request.json
-    _id_fornecedorpj = str(_json['idFornecedorPJ'])
-    return controllerFornecedorPJ.delete_fornecedorpj(_id_fornecedorpj)
+    _desc_produto = str(_json['descProduto'])
+    _tipo_volume = str(_json['tipoVolume'])
+    _preco = str(_json['preco'])
+    _id_fornecedorpj = str(_json['idFornecedorPJ']) 
+    _id_fornecedorpf = str(_json['idFornecedorPF'])
+    _status = str(_json['status'])
+
+    produto = Produto(_desc_produto, _tipo_volume, _preco, _id_fornecedorpj, _id_fornecedorpf, _status)
+    return controllerProduto.add_produto(produto)
+
+
+@app.route("/produtos",  methods=['GET'])
+def listarProdutos():
+    return controllerProduto.listarProdutos()
+
+@app.route("/produtos/<int:id>",  methods=['GET'])
+def getProdutoById(id):
+    return controllerProduto.getProdutoById(id)
+
+@app.route("/produtos",  methods=["PUT"])
+def update_produto():
+    _json = request.json
+    _id_produto = str(_json['idProduto'])
+    _desc_produto = str(_json['descProduto'])
+    _tipo_volume = str(_json['tipoVolume'])
+    _preco = str(_json['preco'])
+    _id_fornecedorpj = str(_json['idFornecedorPJ']) 
+    _id_fornecedorpf = str(_json['idFornecedorPF'])
+    _status = str(_json['status'])
+
+    produto = Produto(_desc_produto, _tipo_volume, _preco, _id_fornecedorpj, _id_fornecedorpf, _status)
+    return controllerProduto.add_update(produto)
+
+
+@app.route("/produto/<int:id>", methods=['DELETE'])
+def delete_produto(id):
+    return controllerProduto.delete_produto(id)

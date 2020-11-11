@@ -3,7 +3,6 @@ from app import app
 from config import mysql
 from flask import jsonify
 from flask import flash, request
-from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.classes_basicas.Empregado import Empregado
 		
 
@@ -94,4 +93,17 @@ def delete_empregado(id):
     finally:
         cursor.close() 
         conn.close()
+
+
+
+@app.errorhandler(404)
+def not_found(error=None):
+    message = {
+        'status': 404,
+        'message': 'Not Found: ' + request.url,
+    }
+    resp = jsonify(message)
+    resp.status_code = 404
+
+    return resp
         
