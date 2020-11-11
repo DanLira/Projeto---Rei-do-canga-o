@@ -25,7 +25,7 @@ export class ProdutoService {
         return this._HTTP.post<Produto>(this.apiUrl + 'produtos', produto, this.httpOptions);
     }
     editProduto(produto: Produto): Observable<any> {
-       return this._HTTP.put(this.apiUrl + 'produtos/' + produto._id, produto, this.httpOptions);
+       return this._HTTP.put(this.apiUrl + 'produtos/' +  produto, this.httpOptions);
     }
     deleteProduto(id: string): Observable<any> {
         return this._HTTP.delete(this.apiUrl + 'produtos/' + id, this.httpOptions);

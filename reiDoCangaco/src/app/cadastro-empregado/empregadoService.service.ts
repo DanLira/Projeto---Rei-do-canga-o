@@ -23,14 +23,14 @@ export class EmpregadoService {
        return this._HTTP.get(this.apiUrl + '/empregado/?id=' + idEmpregado);
    }
    saveEmpregado(empregado: Empregado): Observable<Empregado> {
-       return this._HTTP.post<Empregado>(this.apiUrl + 'empregado/create', empregado, this.httpOptions);
+       return this._HTTP.post<Empregado>(this.apiUrl + '/empregados', empregado, this.httpOptions);
    }
    editEmpregado(empregado: Empregado): Observable<any> {
 
-     return this._HTTP.put(this.apiUrl + 'empregado/update/' + empregado.idEmpregado, empregado, this.httpOptions);
+     return this._HTTP.put(this.apiUrl + '/empregados', empregado, this.httpOptions);
    }
    deleteEmpregado(id: string): Observable<any> {
-       return this._HTTP.delete(this.apiUrl + 'delete/' + id, this.httpOptions);
+       return this._HTTP.delete(this.apiUrl + '/empregados/' + id, this.httpOptions);
    }
 
 }

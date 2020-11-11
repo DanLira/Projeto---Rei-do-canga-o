@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { SubSink } from 'subsink/dist/subsink';
 import { Usuarios } from '../models/usuarios.model';
 import { UsuarioService } from './usuario.service';
+import { fromEvent, Observable } from 'rxjs';
+import {debounceTime, map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -15,16 +17,15 @@ import { UsuarioService } from './usuario.service';
 })
 export class CadastroUsuarioComponent implements OnInit {
 
-  usuarioEdit: Usuarios[] = [];
-  formsAutoComplet = new FormControl();
   formsRegister: FormGroup;
-  filterFormNutricionista: FormGroup;
   usuarioList: Usuarios[] = [];
-  empregadoList: Empregado[] = [];
+  empregadoList: Empregado[];
+  empregadoAutocomplete: Empregado[];
+  idEmpregado: Empregado;
   filterFormUsuario: FormGroup;
   displayedColumns: string[] = ['tipo', 'userName', 'action'];
   dataSource = new MatTableDataSource<Usuarios>();
-  todoDataSource: any[];
+  @ViewChild('empregadoAuto') empregadoAuto;
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   private readonly subs = new SubSink();
@@ -47,14 +48,48 @@ export class CadastroUsuarioComponent implements OnInit {
       this.dataSource.data = [...this.usuarioList];
 
       this.empregadoService.getAllEmpregado().subscribe((empregado: Empregado[]) => {
-        this.empregadoList = (!!empregado) ? empregado : [];
+        this.empregadoAutocomplete = (!!empregado) ? empregado : [];
+
+
+        fromEvent(this.empregadoAuto.nativeElement, 'keyup').pipe(
+          map((event: any) => {
+            return event.target.value;
+          })
+          , debounceTime(1000)
+        ).subscribe((text: string) => {
+          if (text) {
+            this._filterEmpregado(text);
+          }
+
       });
+
     });
 
-
+  });
 
 
   }
+
+
+  private _filterEmpregado(paramOfFilter: string): void {
+    if (!!paramOfFilter) {
+      this.empregadoList = this.empregadoAutocomplete.filter
+        (x =>
+          x.nomeEmpregado.toUpperCase().includes(paramOfFilter.toUpperCase())
+        );
+    }
+  }
+
+  resetFiltered(): void {
+    if (!this.idEmpregado) {
+
+      if (this.formsRegister.get('idEmpregado').value !==  this.idEmpregado.idEmpregado) {
+
+        this.formsRegister.controls['idEmpregado'].setValue(null);
+      }
+    }
+  }
+
 
   private createForm(): void {
     this.formsRegister = new FormGroup({
@@ -106,13 +141,12 @@ export class CadastroUsuarioComponent implements OnInit {
 
   private limpar(): void {
     this.formsRegister.reset();
-    this.formsAutoComplet.reset();
     this.toastr.info('Campos limpos com sucesso!');
   }
 
 
   excluirUsuario(idUser: string): void {
-   
+
     this.usuarioService.deleteUsuario(idUser).subscribe(() => {
       this.usuarioService.getAllUsuario().subscribe(usuarios => {
        this.usuarioList = usuarios;
@@ -127,16 +161,18 @@ export class CadastroUsuarioComponent implements OnInit {
   getRowTableUsuario(value: any): void {
 
     this.formsRegister.get('idUser').setValue(value.idUser);
-    // this.formsRegister.get('tipo').setValue(value.tipo);
-    // this.formsRegister.get('login').setValue(value.login);
-    // // this.formsRegister.get('senha').setValue(value.senha);
-    // this.formsRegister.get('login').setValue(value.login);
+    this.formsRegister.get('tipo').setValue(value.tipo);
+    this.formsRegister.get('userName').setValue(value.userName);
+    this.formsRegister.get('senha').setValue(value.senha);
+    this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
+    this.formsRegister.get('idEmpregado').setValue(value.idEmpregado);
   }
 
 
 
   filterTabelaUsuario(): void {
     let filteredTable: Usuarios[] = this.usuarioList;
+    //let filterEmpregado: Empregado[] = this.empregadoList;
     if (!this.filterFormUsuario.value.nomeFilterCtrl) {
       this.dataSource.data = [...this.usuarioList];
     }

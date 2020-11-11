@@ -1,1 +1,35 @@
-<p>pedidos works!</p>
+<section>
+    <div class="container-fluid">
+      <div class="col-12">
+        <mat-card class="mat-card-padrao">
+          <div class="row">
+            <div class="col-12">
+              <div >
+                <h1 class="title-card">Novo Pedido</h1>
+              </div>
+              <form [formGroup]="formsRegister" class="row">
+                  <!-- <mat-form-field class="col-6">
+                      <mat-label>Digite o código ou o nome produto</mat-label>
+                    <input matInput placeholder="Digite o código ou o nome produto" required
+                    formControlName="">
+                  </mat-form-field> -->
+                  
+
+                  
+                  <!-- <button mat-button class="col-6" [disabled]="!formsRegister.valid" (click)="salvarProduto()">Obter Produto</button> -->
+              </form>
+            </div>
+          </div>
+          
+        </mat-card>
+      </div>
+        <div class="col-12 mt-2">
+          <mat-card class="mat-card-list">
+              <mat-card-title>Lista de Produtos</mat-card-title> 
+             
+            </mat-card>
+      </div>
+    </div>
+  </section>
+  
+  
