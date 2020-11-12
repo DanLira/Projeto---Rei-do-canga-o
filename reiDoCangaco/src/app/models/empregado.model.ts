@@ -4,7 +4,7 @@ export interface Empregado {
     nomeEmpregado: string;
     cpf: string;
     sexo: string;
-    dataNscimento: string;
+    dataNascimento: string;
     telefone: string;
     celular: string;
     email: string;
@@ -15,5 +15,7 @@ export interface Empregado {
     cidade: string;
     estado: string;
     pais: string;
+    flagAtivo?: boolean;
+    status?: string;
 
 }

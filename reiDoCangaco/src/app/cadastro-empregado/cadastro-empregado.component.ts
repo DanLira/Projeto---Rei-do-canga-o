@@ -48,7 +48,7 @@ export class CadastroEmpregadoComponent implements OnInit {
       nomeEmpregado: new FormControl('', Validators.required),
       sexo: new FormControl(''),
       cpf: new FormControl('', Validators.required),
-      dataNscimento: new FormControl(''),
+      dataNascimento: new FormControl(''),
       telefone: new FormControl('', Validators.required),
       celular: new FormControl('', Validators.required),
       email: new FormControl(''),
@@ -58,7 +58,9 @@ export class CadastroEmpregadoComponent implements OnInit {
       cep: new FormControl('', Validators.required),
       cidade: new FormControl(''),
       pais: new FormControl(''),
-      estado: new FormControl('')
+      estado: new FormControl(''),
+      flagAtivo: new FormControl(false),
+      status: new FormControl('')
     });
   }
 
@@ -82,17 +84,18 @@ export class CadastroEmpregadoComponent implements OnInit {
       nomeEmpregado: this.formsRegister.get('nomeEmpregado').value,
       sexo: this.formsRegister.get('sexo').value,
       cpf: this.formsRegister.get('cpf').value,
-      dataNscimento: this.formsRegister.get('dataNscimento').value,
+      dataNascimento: this.formsRegister.get('dataNascimento').value.toLocaleDateString('pt-BR'),
       telefone: this.formsRegister.get('telefone').value,
       celular: this.formsRegister.get('celular').value,
       email: this.formsRegister.get('email').value,
       endereco: this.formsRegister.get('endereco').value,
-      complemento: this.formsRegister.get('idEmpregado').value,
-      bairro: this.formsRegister.get('idEmpregado').value,
-      cep: this.formsRegister.get('idEmpregado').value,
-      cidade: this.formsRegister.get('idEmpregado').value,
-      pais: this.formsRegister.get('idEmpregado').value,
-      estado: this.formsRegister.get('idEmpregado').value
+      complemento: this.formsRegister.get('complemento').value,
+      bairro: this.formsRegister.get('bairro').value,
+      cep: this.formsRegister.get('cep').value,
+      cidade: this.formsRegister.get('cidade').value,
+      pais: this.formsRegister.get('pais').value,
+      estado: this.formsRegister.get('estado').value,
+      status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
 
     };
     if (this.formsRegister.value.idEmpregado) {
@@ -129,6 +132,7 @@ export class CadastroEmpregadoComponent implements OnInit {
     this.formsRegister.get('nomeEmpregado').setValue(value.nomeEmpregado);
     this.formsRegister.get('sexo').setValue(value.sexo);
     this.formsRegister.get('cpf').setValue(value.cpf);
+    this.formsRegister.get('dataNascimento').setValue(new Date (this.formatDate(value.dataNascimento)));
     this.formsRegister.get('telefone').setValue(value.telefone);
     this.formsRegister.get('celular').setValue(value.celular);
     this.formsRegister.get('email').setValue(value.email);
@@ -139,6 +143,7 @@ export class CadastroEmpregadoComponent implements OnInit {
     this.formsRegister.get('cidade').setValue(value.cidade);
     this.formsRegister.get('pais').setValue(value.pais);
     this.formsRegister.get('estado').setValue(value.estado);
+    this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
   }
 
   filterTabelaEmpregado(): void {
@@ -155,5 +160,8 @@ export class CadastroEmpregadoComponent implements OnInit {
     this.dataSource.data = filteredTable;
   }
 
-
+  formatDate(newDate): Date {
+    const split = newDate.split('/');
+    return new Date(split[1] + '/' + split[0] + '/' + split[2]);
+  }
 }

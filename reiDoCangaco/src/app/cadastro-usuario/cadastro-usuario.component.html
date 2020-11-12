@@ -10,22 +10,23 @@
               </div>
               <form [formGroup]="formsRegister" class="row">
                 
-                  <!-- <mat-form-field class="full-autocomplete-input col-sm-4">
+                  <mat-form-field class="full-autocomplete-input col-sm-4">
                     <mat-label>Empregado</mat-label>
-                    <input matInput #EmpregadoAutocomplete placeholder="empregado" aria-label="Empregado"
-                      [matAutocomplete]="empregadoAuto" [formControl]="idEmpregado">
+                    <input matInput #empregadoAuto placeholder="empregado" aria-label="Empregado"
+                      [matAutocomplete]="empregadoAuto" formControlName="idEmpregado" (blur)="resetFiltered();"
+                      value={{formsRegister.value.idEmpregado}}>
                     <mat-autocomplete #empregadoAuto="matAutocomplete">
                       <mat-option *ngFor="let empregado of empregadoList" [value]="empregado.idEmpregado">
                         <span>{{ empregado.nomeEmpregado }}</span>
                       </mat-option>
                     </mat-autocomplete>
-                  </mat-form-field> -->
+                  </mat-form-field>
 
-                  <mat-form-field class="col-4">
+                  <!-- <mat-form-field class="col-4">
                     <mat-label>Login</mat-label>
                   <input matInput placeholder="Login" required
                   formControlName="idEmpregado" value={{formsRegister.value.idEmpregado}} >
-                </mat-form-field>
+                </mat-form-field> -->
 
 
                   <mat-form-field class="col-4">

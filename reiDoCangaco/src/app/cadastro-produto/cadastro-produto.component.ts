@@ -44,36 +44,30 @@ export class CadastroProdutoComponent implements OnInit {
 
   private createForm(): void {
     this.formsRegister = this.formBuilder.group({
-      _id: [null],
+      idProduto: [null],
       descProduto: [''],
       descAbrevProduto: [''],
       preco: [''],
-      unidadeMedCompra: [''],
-      unidadeMedVenda: [''],
       tipoVolume: [''],
       fornecedorPj: [''],
       fornecedorPf: [''],
-      createAt: [''],
-      updatedAt: ['']
+      status: ['']
     });
   }
 
 
 salvarProduto() {
   const produto: Produto = {
-    _id: this.formsRegister.value._id,
+    idProduto: this.formsRegister.value.idProduto,
     descProduto: this.formsRegister.get('descProduto').value,
-    descAbrevProduto: this.formsRegister.get('descAbrevProduto').value,
     preco: this.formsRegister.get('preco').value,
-    unidadeMedCompra: this.formsRegister.get('unidadeMedCompra').value,
-    unidadeMedVenda: this.formsRegister.get('unidadeMedVenda').value,
     tipoVolume: this.formsRegister.get('tipoVolume').value,
     fornecedorPj: this.formsRegister.get('fornecedorPj').value,
     fornecedorPf: this.formsRegister.get('fornecedorPf').value,
-    updatedAt: new Date()
+
   };
 
-  if (!!this.formsRegister.value._id) {
+  if (!!this.formsRegister.value.idProduto) {
     this.produtoService.editProduto(produto).subscribe(() => {
       this.produtoService.getAllProduto().subscribe(produtos => {
         this.produtoList = produtos;
@@ -114,12 +108,9 @@ limpar() {
 
 getRowTableProduto(value: any): void {
 
-  this.formsRegister.get('_id').setValue(value._id);
+  this.formsRegister.get('_id').setValue(value.idProduto);
   this.formsRegister.get('descProduto').setValue(value.descProduto);
-  this.formsRegister.get('descAbrevProduto').setValue(value.descAbrevProduto);
   this.formsRegister.get('preco').setValue(value.preco);
-  this.formsRegister.get('unidadeMedCompra').setValue(value.unidadeMedCompra);
-  this.formsRegister.get('unidadeMedVenda').setValue(value.unidadeMedVenda);
   this.formsRegister.get('tipoVolume').setValue(value.tipoVolume);
   this.formsRegister.get('fornecedorPj').setValue(value.fornecedorPj);
   this.formsRegister.get('fornecedorPf').setValue(value.fornecedorPf);
