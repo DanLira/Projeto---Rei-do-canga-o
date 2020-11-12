@@ -317,11 +317,11 @@ def update_produto():
     _id_fornecedorpj = str(_json['idFornecedorPJ']) 
     _id_fornecedorpf = str(_json['idFornecedorPF'])
     _status = str(_json['status'])
-
     produto = Produto(_desc_produto, _tipo_volume, _preco, _id_fornecedorpj, _id_fornecedorpf, _status)
-    return controllerProduto.add_update(produto)
+    produto.setIdProduto(_id_produto)
+    return controllerProduto.update_produto(produto)
 
 
-@app.route("/produto/<int:id>", methods=['DELETE'])
+@app.route("/produtos/<int:id>", methods=['DELETE'])
 def delete_produto(id):
     return controllerProduto.delete_produto(id)

@@ -4,6 +4,7 @@ from app import app
 from config import mysql
 from flask import jsonify
 from flask import flash, request
+from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.classes_basicas.Produto import Produto
 
 
@@ -31,13 +32,19 @@ def listarProdutos():
 
 def getProdutoById(id):
     try:
-        return DAOProduto.getById(id)
+        return DAOProduto.getProdutoById(id)
     except Exception as ex:
         print(ex)
     
 
 def update_produto(produto):
     try:
+        if produto.getIdFornecedorPF()=="":
+            produto.setIdFornecedorPF(None)
+        else:
+            if produto.getIdFornecedorPJ()=="":
+                produto.setIdFornecedorPJ(None)
+
         return DAOProduto.update_produto(produto)
     except Exception as ex:
         print(ex)
