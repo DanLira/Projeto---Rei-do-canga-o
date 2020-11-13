@@ -8,12 +8,12 @@
 	<form [formGroup]="loginForm">
 	  <p>
 		<mat-form-field>
-		  <input type="text" matInput placeholder="Usuário" formControlName="login">
+		  <input type="text" matInput placeholder="Usuário" required formControlName="userName">
 		</mat-form-field>
 	  </p>
 	  <p>
 		<mat-form-field>
-		  <input matInput  placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
+		  <input matInput placeholder="Senha" required formControlName="senha" [type]="hide ? 'text' : 'password'">
 		  <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
 		  <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 		  </button>
