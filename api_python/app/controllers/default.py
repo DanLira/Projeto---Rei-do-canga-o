@@ -5,13 +5,15 @@ from app.controllers import controllerEmpregado
 from app.controllers import controllerFornecedorPF
 from app.controllers import controllerFornecedorPJ
 from app.controllers import controllerProduto
+from app.controllers import controllerPedido
 from config import mysql
 from flask import Flask, request, flash, render_template, redirect, jsonify
 from app.models.classes_basicas.User import User
 from app.models.classes_basicas.Empregado import Empregado
 from app.models.classes_basicas.FornecedorPF import FornecedorPF
 from app.models.classes_basicas.FornecedorPJ import FornecedorPJ
-from app.models.classes_basicas.Produto import Produto 
+from app.models.classes_basicas.Produto import Produto
+from app.models.classes_basicas.Pedido import Pedido 
 import json
 
 
@@ -324,4 +326,41 @@ def update_produto():
 
 @app.route("/produtos/<int:id>", methods=['DELETE'])
 def delete_produto(id):
+    return controllerProduto.delete_produto(id)
+
+
+##ROTAS DE PEDIDOS
+
+@app.route("/pedidos",  methods=["POST"])
+def add_pedido():
+    _json = request.json
+    _pedido = _json['pedido']
+    return controllerPedido.add_pedido(_pedido)
+
+
+@app.route("/pedidos",  methods=['GET'])
+def listarPedidos():
+    return controllerProduto.listarProdutos()
+
+@app.route("/pedidos/<int:id>",  methods=['GET'])
+def getPedidoById(id):
+    return controllerProduto.getProdutoById(id)
+
+@app.route("/pedidos",  methods=["PUT"])
+def update_pedido():
+    _json = request.json
+    _id_produto = str(_json['idProduto'])
+    _desc_produto = str(_json['descProduto'])
+    _tipo_volume = str(_json['tipoVolume'])
+    _preco = str(_json['preco'])
+    _id_fornecedorpj = str(_json['idFornecedorPJ']) 
+    _id_fornecedorpf = str(_json['idFornecedorPF'])
+    _status = str(_json['status'])
+    produto = Produto(_desc_produto, _tipo_volume, _preco, _id_fornecedorpj, _id_fornecedorpf, _status)
+    produto.setIdProduto(_id_produto)
+    return controllerProduto.update_produto(produto)
+
+
+@app.route("/pedidos/<int:id>", methods=['DELETE'])
+def delete_pedido(id):
     return controllerProduto.delete_produto(id)

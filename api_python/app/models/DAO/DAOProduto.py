@@ -63,7 +63,7 @@ def getProdutoById(id):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         sql = "SELECT id_produto idProduto, desc_produto descProduto, tipo_volume tipoVolume, preco, id_fornecedorpj idFornecedorPJ, id_fornecedorpf idFornecedorPF, status  FROM PRODUTOS  WHERE id_produto=%s"
         cursor.execute(sql, id)
-        rows = cursor.fetchall()
+        rows = cursor.fetchone()
         resp = jsonify(rows)
         resp.status_code = 200
         return resp
