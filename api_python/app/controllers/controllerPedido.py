@@ -11,9 +11,12 @@ import json
 
 def add_pedido(_pedido):
     try:
-        _id_user = str(_pedido['idUser'])
-        
-        return DAOPedido.add_pedido(p)
+        idUser = _pedido['idUser']
+        pedido = Pedido(idUser)
+        pedido.setDataPedido("16/11/2020")
+        pedido.setStatusPedido("Finalizado")
+
+        return DAOPedido.add_pedido(pedido)
     except Exception as ex:
         print(ex)
 
