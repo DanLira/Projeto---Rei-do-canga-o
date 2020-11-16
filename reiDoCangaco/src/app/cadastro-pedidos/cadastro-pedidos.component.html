@@ -7,16 +7,46 @@
               <div >
                 <h1 class="title-card">Novo Pedido</h1>
               </div>
-              <form [formGroup]="formsRegister" class="row">
-                  <!-- <mat-form-field class="col-6">
-                      <mat-label>Digite o código ou o nome produto</mat-label>
-                    <input matInput placeholder="Digite o código ou o nome produto" required
-                    formControlName="">
-                  </mat-form-field> -->
+              <form [formGroup]="formsPedido" class="row mx-auto">
                   
+                  <mat-form-field class="col-4">
+                    <mat-label>Digite o código ou o nome produto</mat-label>
+                    <input matInput #produtoAuto placeholder="Digite o código ou o nome produto" aria-label="Produto"
+                      [matAutocomplete]="produtoAuto" formControlName="idProduto" (blur)="resetFiltered();"
+                      value={{formsPedido.value.idProduto}}>
+                    <mat-autocomplete #produtoAuto="matAutocomplete">
+                      <mat-option *ngFor="let produto of produtoList" [value]="produto.idProduto">
+                        <span>{{ produto.descProduto }}</span>
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
 
                   
-                  <!-- <button mat-button class="col-6" [disabled]="!formsRegister.valid" (click)="salvarProduto()">Obter Produto</button> -->
+                  
+                  <mat-form-field class="col-1">
+                    <mat-label>Volume</mat-label>
+                    <input matInput placeholder="Tipo Volume"
+                    formControlName="tipoVolume" value={{formsPedido.value.tipoVolume}} >
+                  </mat-form-field>
+
+                  <span class="simbolo">R$</span>
+                  <mat-form-field class="col-1">
+                      <mat-label>Preço</mat-label>
+                      <input matInput placeholder="Preço"
+                      formControlName="preco" value={{formsPedido.value.preco}} >
+                  </mat-form-field>
+
+                  <mat-form-field class="col-1">
+                    <mat-label>Qtde</mat-label>
+                    <input matInput placeholder="Qtde" required
+                    formControlName="quantidadeProduto" value={{formsPedido.value.quantidadeProduto}} >
+                </mat-form-field>
+
+                  
+                  
+                    <button mat-button class="btn-addProduto col-4 mt-2" (click)="adicionarProduto()">Adicionar Produto</button>
+
+                  
               </form>
             </div>
           </div>
@@ -25,7 +55,87 @@
       </div>
         <div class="col-12 mt-2">
           <mat-card class="mat-card-list">
-              <mat-card-title>Lista de Produtos</mat-card-title> 
+              <div class="row mx-auto">
+
+                
+
+                  <mat-card class="mat-card-padrao col-7 ml-4">
+                    <mat-card-title>Produtos</mat-card-title> 
+                    <div class="mat-elevation-z8 mt-2">
+                      <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="idProduto">
+                          <th mat-header-cell *matHeaderCellDef id="idProduto"> Código </th>
+                          <td mat-cell *matCellDef="let element" > {{ element.idProduto }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="descProduto">
+                          <th mat-header-cell *matHeaderCellDef id="descProduto"> Descrição </th>
+                          <td mat-cell *matCellDef="let element" > {{ element.descProduto }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="tipoVolume">
+                          <th mat-header-cell *matHeaderCellDef id="tipoVolume"> Tipo Volume </th>
+                          <td mat-cell *matCellDef="let element" > {{element.tipoVolume}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="preco">
+                          <th mat-header-cell *matHeaderCellDef id="preco"> Valor Unitário </th>
+                          <td mat-cell *matCellDef="let element" > {{ element.preco }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qtde">
+                          <th mat-header-cell *matHeaderCellDef id="qtde"> Qtde </th>
+                          <td mat-cell *matCellDef="let element" > {{ element.quantidadeProduto }} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="total">
+                            <th mat-header-cell *matHeaderCellDef id="total"> Total </th>
+                            <td mat-cell *matCellDef="let element" > {{element.total}} </td>
+                          </ng-container>
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
+                          <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="getRowTablePedido(element)">
+                                  <mat-icon>edit</mat-icon>
+                                  <span>Editar</span>
+                              </button>
+                              <button mat-menu-item (click)="excluirPedido(element._id)">
+                                <mat-icon>delete</mat-icon>
+                                <span>Remover</span>
+                              </button>
+                            </mat-menu>
+                          </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                      <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+                    </div>
+                  </mat-card>
+  
+                <mat-card class="mat-card-padrao col-4 ml-5">
+                  <mat-card-title>Total do Pedido</mat-card-title> 
+                  <mat-card>
+
+                    <div class="row mx-auto">
+
+                      <div class="valorTotal col-12">
+                        R$ 
+                      </div>
+                      <div class="col-12">
+                        <button mat-button class="col-12 mt-2" (click)="can()">Cancelar</button>
+                        <button mat-button class="col-12 mt-2" (click)="obterProduto()">Finalizar Pedido</button>
+  
+                      </div>
+
+
+                    </div>
+                  </mat-card>
+
+                </mat-card>
+
+              </div>
              
             </mat-card>
       </div>

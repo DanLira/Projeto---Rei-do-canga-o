@@ -7,8 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { SubSink } from 'subsink/dist/subsink';
 import { Usuarios } from '../models/usuarios.model';
 import { UsuarioService } from './usuario.service';
-import { fromEvent, Observable } from 'rxjs';
-import {debounceTime, map, startWith} from 'rxjs/operators';
+import { fromEvent,  } from 'rxjs';
+import {debounceTime, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastro-usuario',

@@ -8,11 +8,14 @@ import { AuthService } from '../guards/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-isHome: boolean;
+  isHome: boolean;
+  userName: string;
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.isHome = true;
+    this.userName = sessionStorage.getItem('username');
   }
 
   onLogout() {

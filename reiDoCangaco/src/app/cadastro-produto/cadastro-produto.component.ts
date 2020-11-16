@@ -18,7 +18,6 @@ export class CadastroProdutoComponent implements OnInit {
   filterFormProduto: FormGroup;
   displayedColumns: string[] = ['descProduto', 'preco', 'tipoVolume', 'dataCreate', 'dateUpdate', 'action'];
   dataSource = new MatTableDataSource<Produto>();
-  todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   constructor(private readonly formBuilder: FormBuilder,

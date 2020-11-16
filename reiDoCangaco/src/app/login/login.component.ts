@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      login: ['', Validators.required],
+      userName: ['', Validators.required],
       senha: ['', Validators.required]
     });
     this.returnUrl = '/home';
@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit {
   if (this.loginForm.invalid) {
     return;
  } else {
-   const user = this.usuariosList.find(x => x.userName === this.f.login.value
+   const user = this.usuariosList.find(x => x.userName === this.f.userName.value
     && x.senha === this.f.senha.value );
    if (user) {
        console.log('Login successful');
        sessionStorage.setItem('isLoggedIn', 'true');
-       sessionStorage.setItem('token', this.f.userName.value);
+       sessionStorage.setItem('username', this.f.userName.value);
        sessionStorage.setItem('key', user.idUser);
        sessionStorage.setItem('tipo', user.tipo);
        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
