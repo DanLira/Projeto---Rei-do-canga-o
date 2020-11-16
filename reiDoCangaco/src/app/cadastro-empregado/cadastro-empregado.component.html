@@ -168,48 +168,6 @@
                         <mat-option value="Bósnia e Herzegovina"> Bósnia e Herzegovina </mat-option>
                         <mat-option value="Botsuana"> Botsuana </mat-option>
                         <mat-option value="Brasil"> Brasil </mat-option>
-                        <mat-option value="fornecedorPJ"> Brunei </mat-option>
-                        <mat-option value="fornecedorPJ"> Bulgária </mat-option>
-                        <mat-option value="fornecedorPJ"> Burquina Faso </mat-option>
-                        <mat-option value="fornecedorPJ"> Burúndi </mat-option>
-                        <mat-option value="fornecedorPJ"> Butão </mat-option>
-                        <mat-option value="fornecedorPJ"> Cabo Verde </mat-option>
-                        <mat-option value="fornecedorPJ"> Camarões </mat-option>
-                        <mat-option value="fornecedorPJ"> Camboja </mat-option>
-                        <mat-option value="fornecedorPJ"> Canadá </mat-option>
-                        <mat-option value="fornecedorPJ"> Catar </mat-option>
-                        <mat-option value="fornecedorPJ"> Cazaquistão </mat-option>
-                        <mat-option value="fornecedorPJ"> Chade </mat-option>
-                        <mat-option value="fornecedorPJ"> Chile </mat-option>
-                        <mat-option value="fornecedorPJ"> China </mat-option>
-                        <mat-option value="fornecedorPJ"> Chipre </mat-option>
-                        <mat-option value="fornecedorPJ"> Clipperton Island </mat-option>
-                        <mat-option value="fornecedorPJ"> Colômbia </mat-option>
-                        <mat-option value="fornecedorPJ"> Comores </mat-option>
-                        <mat-option value="fornecedorPJ"> Coreia do Norte </mat-option>
-                        <mat-option value="fornecedorPJ"> Coreia do Sul </mat-option>
-                        <mat-option value="fornecedorPJ"> Costa do Marfim </mat-option>
-                        <mat-option value="fornecedorPJ"> Costa Rica </mat-option>
-                        <mat-option value="fornecedorPJ"> Tonga </mat-option>
-                        <mat-option value="fornecedorPJ"> Trindade e Tobago </mat-option>
-                        <mat-option value="fornecedorPJ"> Tunísia </mat-option>
-                        <mat-option value="fornecedorPJ"> Turquemenistão </mat-option>
-                        <mat-option value="fornecedorPJ"> Turquia </mat-option>
-                        <mat-option value="fornecedorPJ"> Tuvalu </mat-option>
-                        <mat-option value="fornecedorPJ"> Ucrânia </mat-option>
-                        <mat-option value="fornecedorPJ"> Uganda </mat-option>
-                        <mat-option value="fornecedorPJ"> União Europeia </mat-option>
-                        <mat-option value="fornecedorPJ"> Uruguai </mat-option>
-                        <mat-option value="fornecedorPJ"> Usbequistão </mat-option>
-                        <mat-option value="fornecedorPJ"> Vanuatu </mat-option>
-                        <mat-option value="fornecedorPJ"> Vaticano </mat-option>
-                        <mat-option value="fornecedorPJ"> Venezuela </mat-option>
-                        <mat-option value="fornecedorPJ"> Vietname </mat-option>
-                        <mat-option value="fornecedorPJ"> Wake Island </mat-option>
-                        <mat-option value="fornecedorPJ"> Wallis e Futuna </mat-option>
-                        <mat-option value="fornecedorPJ"> West Bank </mat-option>
-                        <mat-option value="fornecedorPJ"> Zâmbia </mat-option>
-                        <mat-option value="fornecedorPJ"> Zimbabué </mat-option>
                       </mat-select>
                     </mat-form-field>
 
@@ -217,20 +175,23 @@
                   </mat-card>
                 </div> 
                 
+                <div class="col-sm-12 col-md-4">
+                  <mat-slide-toggle formControlName="flagAtivo" class="col-12">Inativo
+                  </mat-slide-toggle>
+                </div>
             </form>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <mat-slide-toggle formControlName="flagAtivo" class="col-12">Inativo
-            </mat-slide-toggle>
-          </div>
+        <div class="my-auto align-self-end">
+          <div class="d-flex">
 
-            <div class="col-sm-12 col-md-1 offset-md-10">
-                <button mat-button class="col-12" (click)="limpar()">Limpar</button>
+            <div class="offset-md-10">
+                <button mat-button class="button-ajusted col-12" (click)="limpar()">Limpar</button>
             </div>
-          <div class="col-sm-12 col-md-1">
-            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarEmpregado()">Salvar</button>
+            <div class="ml-auto">
+            <button mat-button class="button-ajusted col-12" [disabled]="!formsRegister.valid" (click)="salvarEmpregado()"><span class="material-icons">save</span>Salvar</button>
+            </div>
+
           </div>
         </div> 
       </mat-card>

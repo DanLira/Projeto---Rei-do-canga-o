@@ -209,12 +209,18 @@ table {
 
 .mat-button {
 	text-align: center;
-	background-color: #D84315;
-	color: white;
+	background-color: #fff;
+  color: #D84315;
+  border-radius: 50px !important;
+  border: solid 2px #D84315 !important;
   }
 
   .button-submit {
     position: relative;
+  }
+
+  .button-ajusted {
+    margin-bottom: 10px;
   }
 
   .iconPlus {

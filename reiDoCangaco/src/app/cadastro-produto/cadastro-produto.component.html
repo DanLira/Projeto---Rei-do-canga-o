@@ -49,12 +49,12 @@
               </form>
             </div>
           </div>
-          <div class="row">
-              <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+          <div class="d-flex">
+              <div class="offset-md-10">
                   <button mat-button class="col-12" (click)="limpar()">Limpar</button>
                 </div>
-            <div class="col-sm-12 col-md-1  mt-4">
-              <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarProduto()">Salvar</button>
+            <div class="ml-auto">
+              <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarProduto()"> <span class="material-icons">save</span>Salvar</button>
             </div>
           </div> 
         </mat-card>

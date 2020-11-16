@@ -4,6 +4,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { FornecedorPj } from '../models/fornecedorPj.model';
+import { FornecedorPjService } from './service/fornecedorPj.service';
+import { FornecedorPfService } from './service/fornecedorPf.service';
 
 @Component({
   selector: 'app-cadastro-fornecedor',
@@ -14,9 +16,11 @@ export class CadastroFornecedorComponent implements OnInit {
 
   fornecedorPj: FornecedorPj [];
   fornecedorPJList: FornecedorPj [] = [];
+  pj: boolean;
 
   fornecedorPf: FornecedorPf [];
   fornecedorPfList: FornecedorPf [] = [];
+  pf: boolean;
 
   formsRegister: FormGroup;
   filterFormFornecedorPj: FormGroup;
@@ -28,20 +32,33 @@ export class CadastroFornecedorComponent implements OnInit {
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
-  constructor(private readonly fb: FormBuilder, private readonly toastr: ToastrService) { }
+  constructor(private readonly fb: FormBuilder,
+              private readonly fornecedorPjService: FornecedorPjService,
+              private readonly fornecedorPfService: FornecedorPfService,
+              private readonly toastr: ToastrService) { }
 
   ngOnInit() {
     this.createForm();
     this.createFilterFormPj();
     this.createFilterFormPf();
+    this.listarFornecedorPJ();
+    
     this.dataSourcePj.paginator = this.MatPaginator;
 
+  }
+
+  private listarFornecedorPJ(): void {
+    this.fornecedorPjService.getAllFornecedorPj().subscribe((fornecedorPj: FornecedorPj[]) => {
+      this.fornecedorPJList = (!!fornecedorPj) ? fornecedorPj : [];
+      this.dataSourcePj.data = [...this.fornecedorPJList];
+    });
   }
 
 
   private createForm(): void {
     this.formsRegister = this.fb.group({
-      id: new FormControl(''),
+      idFornecedorPJ: new FormControl(''),
+      idFornecedorPF: new FormControl(''),
       razaoSocial: new FormControl('', Validators.required),
       nomeFantasia: new FormControl(''),
       nickName: new FormControl(''),
@@ -54,12 +71,13 @@ export class CadastroFornecedorComponent implements OnInit {
       bairro: new FormControl(''),
       cep: new FormControl('', Validators.required),
       cidade: new FormControl(''),
-      uf: new FormControl(''),
+      estado: new FormControl(''),
       pais: new FormControl(''),
       tipoFornecedor: new FormControl(''),
       nome: new FormControl('', Validators.required),
       sexo: new FormControl(''),
-      cpf: new FormControl('', Validators.required)
+      cpf: new FormControl('', Validators.required),
+      flagAtivo: new FormControl(false)
     });
   }
 
@@ -85,6 +103,7 @@ export class CadastroFornecedorComponent implements OnInit {
   private fornecedorSelecionado(event: any): void {
 
     if (event.value === 'fornecedorPJ') {
+          this.pj = true;
           this.addFormValidators(['razaoSocial', 'cnpj']);
 
           this.formsRegister.get('nome').clearValidators();
@@ -93,6 +112,7 @@ export class CadastroFornecedorComponent implements OnInit {
           this.formsRegister.get('cpf').updateValueAndValidity();
 
       } else if (event.value === 'fornecedorPF') {
+          this.pf = true;
           this.addFormValidators(['nome', 'cpf']);
 
           this.formsRegister.get('razaoSocial').clearValidators();
@@ -100,6 +120,53 @@ export class CadastroFornecedorComponent implements OnInit {
           this.formsRegister.get('razaoSocial').updateValueAndValidity();
           this.formsRegister.get('cnpj').updateValueAndValidity();
       }
+  }
+
+
+
+  private salvarFornecedor(): void {
+
+    if (this.pj) {
+
+      const fornecedorPJ: FornecedorPj = {
+
+        idFornecedorPJ: this.formsRegister.get('idFornecedorPJ').value,
+        nomeFantasia: this.formsRegister.get('nomeFantasia').value,
+        razaoSocial: this.formsRegister.get('razaoSocial').value,
+        cnpj: this.formsRegister.get('cnpj').value,
+        nickName: this.formsRegister.get('nickName').value,
+        telefone: this.formsRegister.get('telefone').value,
+        celular: this.formsRegister.get('celular').value,
+        email: this.formsRegister.get('email').value,
+        endereco: this.formsRegister.get('endereco').value,
+        complemento: this.formsRegister.get('complemento').value,
+        bairro: this.formsRegister.get('bairro').value,
+        cep: this.formsRegister.get('cep').value,
+        cidade: this.formsRegister.get('cidade').value,
+        pais: this.formsRegister.get('pais').value,
+        estado: this.formsRegister.get('estado').value,
+        status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
+
+      };
+      if (this.formsRegister.value.idFornecedorPJ) {
+
+          this.fornecedorPjService.editFornecedorPj(fornecedorPJ).subscribe(() => {
+            this.listarFornecedorPJ();
+            this.toastr.success('Fornecedo editado com sucesso!', 'Editar');
+            this.limpar();
+          });
+      } else {
+         this.fornecedorPjService.saveFornecedorPj(fornecedorPJ).subscribe(() => {
+          this.listarFornecedorPJ();
+          this.toastr.success('Fornecedor salvo com sucesso!', 'Salvar');
+          this.limpar();
+          });
+      }
+
+    } else {
+
+    }
+
   }
 
 

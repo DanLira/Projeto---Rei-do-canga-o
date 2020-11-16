@@ -50,6 +50,7 @@ export class CadastroProdutoComponent implements OnInit {
       tipoVolume: [''],
       fornecedorPj: [''],
       fornecedorPf: [''],
+      flagAtivo: [false],
       status: ['']
     });
   }
@@ -63,6 +64,7 @@ salvarProduto() {
     tipoVolume: this.formsRegister.get('tipoVolume').value,
     fornecedorPj: this.formsRegister.get('fornecedorPj').value,
     fornecedorPf: this.formsRegister.get('fornecedorPf').value,
+    status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
 
   };
 

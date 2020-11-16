@@ -1,6 +1,6 @@
 export interface FornecedorPf {
-    id?: string;
-    nome?: string;
+    idFornecedorPF?: string;
+    nomeFornecedorPF?: string;
     sexo?: string;
     cpf?: string;
     telefone: string;
@@ -11,6 +11,8 @@ export interface FornecedorPf {
     bairro: string;
     cep: string;
     cidade: string;
-    uf: string;
+    estado: string;
     pais: string;
+    status?: string;
+    flagAtivo?: boolean;
 }

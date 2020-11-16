@@ -43,7 +43,7 @@ export class CadastroEmpregadoComponent implements OnInit {
 
 
   private createForm(): void {
-    this.formsRegister = this.fb.group({
+    this.formsRegister = new FormGroup({
       idEmpregado: new FormControl(''),
       nomeEmpregado: new FormControl('', Validators.required),
       sexo: new FormControl(''),

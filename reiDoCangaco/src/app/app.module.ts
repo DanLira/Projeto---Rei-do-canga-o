@@ -33,6 +33,7 @@ import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.co
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empregado.component';
+import { ModalAlertaComponent } from './shared/component/modals/modal-alerta/modal-alerta.component';
 
 
 
@@ -47,7 +48,8 @@ import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empreg
     RelatorioVendasComponent,
     CadastroFornecedorComponent,
     DashboardComponent,
-    CadastroEmpregadoComponent
+    CadastroEmpregadoComponent,
+    ModalAlertaComponent
    ],
   imports: [
     BrowserModule,
@@ -80,6 +82,7 @@ import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empreg
   ],
   providers: [AuthGuard, AuthService, MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, ],
-  bootstrap: [AppComponent]
+    entryComponents: [ModalAlertaComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

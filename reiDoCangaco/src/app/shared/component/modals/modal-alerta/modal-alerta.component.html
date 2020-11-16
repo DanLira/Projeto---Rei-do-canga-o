@@ -1,0 +1,22 @@
+
+
+  <div mat-dialog-content>
+    <div class="top">
+    
+      <!-- <h1 mat-dialog-title>error_outline</h1> -->
+
+      <span class="material-icons"> error_outline</span>
+    
+    </div>
+    <p>Tem certeza que quer cancelar o pedido?</p>
+    <mat-form-field>
+      <mat-label>Favorite Animal</mat-label>
+    </mat-form-field>
+  </div>
+  <div class="col-12 d-flex">
+    <button mat-button class="col-4 ml-2 cancelar px-5" (click)="cancelar()"> Sim </button>
+    <button mat-button class="col-4 ml-5" (click)="close()" > Não </button>
+  </div>
+
+
+

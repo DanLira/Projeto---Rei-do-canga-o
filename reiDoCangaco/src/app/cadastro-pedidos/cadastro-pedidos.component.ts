@@ -7,7 +7,8 @@ import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 import { ProdutoService } from '../cadastro-produto/produto.service';
 import { PedidoService } from './pedidoService.service';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ModalAlertaComponent } from '../shared/component/modals/modal-alerta/modal-alerta.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -29,6 +30,7 @@ export class CadastroPedidosComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
               private readonly pedidoService: PedidoService,
               private readonly produtoService: ProdutoService,
+              public dialog: MatDialog,
               private readonly toastr: ToastrService) { }
 
   ngOnInit() {
@@ -111,5 +113,13 @@ export class CadastroPedidosComponent implements OnInit {
 
 
   }
+
+
+
+  cancelarPedido(): void {
+    this.dialog.open(ModalAlertaComponent, {
+
+   });
+ }
 
 }

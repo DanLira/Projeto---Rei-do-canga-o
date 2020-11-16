@@ -1,6 +1,6 @@
 export interface FornecedorPj {
 
-    id?: string;
+    idFornecedorPJ?: string;
     razaoSocial?: string;
     nomeFantasia?: string;
     nickName?: string;
@@ -13,6 +13,8 @@ export interface FornecedorPj {
     bairro: string;
     cep: string;
     cidade: string;
-    uf: string;
+    estado: string;
     pais: string;
+    status?: string;
+    flagAtivo?: boolean;
 }

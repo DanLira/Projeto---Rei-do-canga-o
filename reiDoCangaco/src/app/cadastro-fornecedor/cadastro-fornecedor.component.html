@@ -26,7 +26,7 @@
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                     <mat-label>Nome</mat-label>
                     <input matInput placeholder="Nome" 
-                    formControlName="nome"  >
+                    formControlName="nomeFornecedorPF" {{formsRegister.value.nomeFornecedorPF}} >
                   </mat-form-field>
 
                   <mat-form-field class="col-6" 
@@ -54,7 +54,7 @@
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>Razão Social</mat-label>
                   <input matInput placeholder="Razão Social" 
-                 formControlName="razaoSocial">
+                 formControlName="razaoSocial" {{formsRegister.value.razaoSocial}}>
                 </mat-form-field>
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
@@ -65,7 +65,7 @@
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>CNPJ</mat-label>
-                    <input matInput type="number" placeholder="CNPJ"
+                    <input matInput placeholder="CNPJ"
                     formControlName="cnpj"  >
                 </mat-form-field>
                 </mat-card>
@@ -76,13 +76,13 @@
               <div class="dados mb-2">Contatos</div>
               <mat-form-field class="col-4">
                 <mat-label>Telefone</mat-label>
-                <input matInput type="number" placeholder="Telefone" 
+                <input matInput placeholder="Telefone" 
                 formControlName="telefone"  >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>Celular</mat-label>
-                <input matInput type="number" placeholder="Celular" 
+                <input matInput placeholder="Celular" 
                 formControlName="celular"  >
               </mat-form-field>
 
@@ -118,7 +118,7 @@
 
               <mat-form-field class="col-2">
                 <mat-label>Cep</mat-label>
-                <input matInput type="number" placeholder="Cep"
+                <input matInput placeholder="Cep"
                 formControlName="cep"  >
               </mat-form-field>
 
@@ -130,7 +130,7 @@
 
               <mat-form-field class="col-4">
                 <mat-label>UF</mat-label>
-                <mat-select formControlName="uf" >
+                <mat-select formControlName="estado" value={{formsRegister.value.estado}}>
                   <mat-option>Selecione</mat-option>
 
                   <mat-option value="AC">Acre</mat-option>
@@ -166,79 +166,42 @@
 
               <mat-form-field class="col-4">
                 <mat-label>País</mat-label>
-                <mat-select formControlName="pais" >
+                <mat-select formControlName="pais" value={{formsRegister.value.pais}}>
                   <mat-option>Selecione</mat-option>
-                  <mat-option value="afeganistao"> Afeganistão </mat-option>
-                  <mat-option value="fornecedorPJ"> África do Sul </mat-option>
-                  <mat-option value="fornecedorPJ"> Akrotiri </mat-option>
-                  <mat-option value="fornecedorPJ"> Albânia  </mat-option>
-                  <mat-option value="fornecedorPJ"> Alemanha </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Andorra </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Angola </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Anguila </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Antárctida </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Antígua e Barbuda </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Arábia Saudita </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Arctic Ocean </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Argélia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Argentina </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Arménia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Aruba </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Austrália </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Áustria </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Azerbaijão </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Bangladeche </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Bolívia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Bósnia e Herzegovina </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Botsuana </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Brasil </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Brunei </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Bulgária </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Burquina Faso </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Burúndi </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Butão </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Cabo Verde </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Camarões </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Camboja </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Canadá </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Catar </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Cazaquistão </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Chade </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Chile </mat-option>
-                  <mat-option [value]="fornecedorPJ"> China </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Chipre </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Clipperton Island </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Colômbia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Comores </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Coreia do Norte </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Coreia do Sul </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Costa do Marfim </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Costa Rica </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Tonga </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Trindade e Tobago </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Tunísia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Turquemenistão </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Turquia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Tuvalu </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Ucrânia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Uganda </mat-option>
-                  <mat-option [value]="fornecedorPJ"> União Europeia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Uruguai </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Usbequistão </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Vanuatu </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Vaticano </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Venezuela </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Vietname </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Wake Island </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Wallis e Futuna </mat-option>
-                  <mat-option [value]="fornecedorPJ"> West Bank </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Zâmbia </mat-option>
-                  <mat-option [value]="fornecedorPJ"> Zimbabué </mat-option>
+                  <mat-option value="Afeganistao"> Afeganistão </mat-option>
+                  <mat-option value="África do Sul"> África do Sul </mat-option>
+                  <mat-option value="Akrotiri"> Akrotiri </mat-option>
+                  <mat-option value="Albânia"> Albânia  </mat-option>
+                  <mat-option value="Alemanha"> Alemanha </mat-option>
+                  <mat-option value="Andorra"> Andorra </mat-option>
+                  <mat-option value="Angola"> Angola </mat-option>
+                  <mat-option value="Anguila"> Anguila </mat-option>
+                  <mat-option value="Antárctida"> Antárctida </mat-option>
+                  <mat-option value="Antígua e Barbuda"> Antígua e Barbuda </mat-option>
+                  <mat-option value="Arábia Saudita"> Arábia Saudita </mat-option>
+                  <mat-option value="Arctic Ocean"> Arctic Ocean </mat-option>
+                  <mat-option value="Argélia"> Argélia </mat-option>
+                  <mat-option value="Argentina"> Argentina </mat-option>
+                  <mat-option value="Arménia"> Arménia </mat-option>
+                  <mat-option value="Aruba"> Aruba </mat-option>
+                  <mat-option value="Austrália"> Austrália </mat-option>
+                  <mat-option value="Austrália"> Áustria </mat-option>
+                  <mat-option value="Azerbaijão"> Azerbaijão </mat-option>
+                  <mat-option value="Bangladeche"> Bangladeche </mat-option>
+                  <mat-option value="Bolívia"> Bolívia </mat-option>
+                  <mat-option value="Bósnia e Herzegovina"> Bósnia e Herzegovina </mat-option>
+                  <mat-option value="Botsuana"> Botsuana </mat-option>
+                  <mat-option value="Brasil"> Brasil </mat-option>
                 </mat-select>
               </mat-form-field>
 
             </mat-card>
           </div> 
+
+          <div class="col-sm-12 col-md-4">
+            <mat-slide-toggle formControlName="flagAtivo" class="col-12">Inativo
+            </mat-slide-toggle>
+          </div>
               
             </form>
           </div>
@@ -248,7 +211,7 @@
                 <button mat-button class="col-12" (click)="limpar()">Limpar</button>
               </div>
           <div class="col-sm-12 col-md-1  mt-4">
-            <button mat-button class="col-12" [disabled]="!formsRegister.valid" >Salvar</button>
+            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarFornecedor()">Salvar</button>
           </div>
         </div> 
       </mat-card>

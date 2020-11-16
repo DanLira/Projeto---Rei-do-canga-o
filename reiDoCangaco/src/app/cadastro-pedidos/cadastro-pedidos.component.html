@@ -23,7 +23,7 @@
 
                   
                   
-                  <mat-form-field class="col-1">
+                  <mat-form-field class="col-1 ml-2">
                     <mat-label>Volume</mat-label>
                     <input matInput placeholder="Tipo Volume"
                     formControlName="tipoVolume" value={{formsPedido.value.tipoVolume}} >
@@ -36,7 +36,7 @@
                       formControlName="preco" value={{formsPedido.value.preco}} >
                   </mat-form-field>
 
-                  <mat-form-field class="col-1">
+                  <mat-form-field class="col-1 ml-2">
                     <mat-label>Qtde</mat-label>
                     <input matInput placeholder="Qtde" required
                     formControlName="quantidadeProduto" value={{formsPedido.value.quantidadeProduto}} >
@@ -44,7 +44,7 @@
 
                   
                   
-                    <button mat-button class="btn-addProduto col-4 mt-2" (click)="adicionarProduto()">Adicionar Produto</button>
+                    <button mat-button class="btn-addProduto col-4 mt-2" (click)="adicionarProduto()"> <span class="material-icons">add_circle</span> Adicionar Produto</button>
 
                   
               </form>
@@ -124,8 +124,8 @@
                         R$ 
                       </div>
                       <div class="col-12">
-                        <button mat-button class="col-12 mt-2" (click)="can()">Cancelar</button>
-                        <button mat-button class="col-12 mt-2" (click)="obterProduto()">Finalizar Pedido</button>
+                        <button mat-button class="col-12 mt-2" (click)="cancelarPedido()">Cancelar</button>
+                        <button mat-button class="col-12 mt-2" (click)="finalizarPedido()">Finalizar Pedido</button>
   
                       </div>
 
