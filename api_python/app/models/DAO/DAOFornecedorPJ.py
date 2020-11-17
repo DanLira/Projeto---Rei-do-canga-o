@@ -28,7 +28,7 @@ def listarFornecedorespj():
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		sql = "SELECT id_fornecedorpj idFornecedorPJ, razao_social razaoSocial, nome_fantasia nomeFantasia ,nickname nickName, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from FORNECEDORESPJ"
+		sql = "SELECT id_fornecedorpj idFornecedorPJ, razao_social razaoSocial, nome_fantasia nomeFantasia ,nickname nickName, cnpj, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from FORNECEDORESPJ"
 		cursor.execute(sql)
 		rows = cursor.fetchall()
 		resp = jsonify(rows)

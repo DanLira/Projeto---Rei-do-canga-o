@@ -1,6 +1,7 @@
 export interface FornecedorPf {
     idFornecedorPF?: string;
     nomeFornecedorPF?: string;
+    nickName: string;
     sexo?: string;
     cpf?: string;
     telefone: string;

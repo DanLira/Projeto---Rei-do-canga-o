@@ -18,7 +18,7 @@ export class CadastroEmpregadoComponent implements OnInit {
 
   formsRegister: FormGroup;
   filterForm: FormGroup;
-  displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'action'];
+  displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'status', 'action'];
   dataSource = new MatTableDataSource<Empregado>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;

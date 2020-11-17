@@ -26,19 +26,19 @@
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                     <mat-label>Nome</mat-label>
                     <input matInput placeholder="Nome" 
-                    formControlName="nomeFornecedorPF" {{formsRegister.value.nomeFornecedorPF}} >
+                    formControlName="nomeFornecedorPF" value={{formsRegister.value.nomeFornecedorPF}} >
                   </mat-form-field>
 
                   <mat-form-field class="col-6" 
                   *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ' || formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                       <mat-label>NickName</mat-label>
                       <input matInput placeholder="NickName"
-                      formControlName="nickName" >
+                      formControlName="nickName" value={{formsRegister.value.nickName}}>
                   </mat-form-field>
 
                   <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                     <mat-label>Sexo</mat-label>
-                    <mat-select matNativeControl formControlName="sexo">
+                    <mat-select matNativeControl formControlName="sexo" value={{formsRegister.value.sexo}}>
                         <mat-option>Selecione</mat-option>
                         <mat-option value="M">Masculino</mat-option>
                         <mat-option value="F">Feminino</mat-option>
@@ -47,26 +47,26 @@
 
                 <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                   <mat-label>CPF</mat-label>
-                    <input matInput type="number" placeholder="CPF" 
-                    formControlName="cpf">         
+                    <input matInput placeholder="CPF" 
+                    formControlName="cpf" value={{formsRegister.value.cpf}}>         
                 </mat-form-field>
 
                   <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>Razão Social</mat-label>
                   <input matInput placeholder="Razão Social" 
-                 formControlName="razaoSocial" {{formsRegister.value.razaoSocial}}>
+                 formControlName="razaoSocial" value={{formsRegister.value.razaoSocial}}>
                 </mat-form-field>
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                   <mat-label>Nome Fantasia</mat-label>
                   <input matInput placeholder="Nome Fantasia" 
-                  formControlName="nomeFantasia"  >
+                  formControlName="nomeFantasia" value={{formsRegister.value.nomeFantasia}}>
                 </mat-form-field>
 
                 <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>CNPJ</mat-label>
                     <input matInput placeholder="CNPJ"
-                    formControlName="cnpj"  >
+                    formControlName="cnpj" value={{formsRegister.value.cnpj}}>
                 </mat-form-field>
                 </mat-card>
             </div>
@@ -77,19 +77,19 @@
               <mat-form-field class="col-4">
                 <mat-label>Telefone</mat-label>
                 <input matInput placeholder="Telefone" 
-                formControlName="telefone"  >
+                formControlName="telefone" value={{formsRegister.value.telefone}} >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>Celular</mat-label>
                 <input matInput placeholder="Celular" 
-                formControlName="celular"  >
+                formControlName="celular" value={{formsRegister.value.celular}} >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>E-Mail</mat-label>
-                <input matInput placeholder="E-Mail"
-                formControlName="email"  >
+                <input matInput placeholder="E-Mail" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+                formControlName="email" value={{formsRegister.value.email}} >
               </mat-form-field>
 
             </mat-card>
@@ -101,31 +101,31 @@
               <mat-form-field class="col-4">
                 <mat-label>Endereço</mat-label>
                 <input matInput placeholder="Endereço"
-                formControlName="endereco"  >
+                formControlName="endereco" value={{formsRegister.value.endereco}} >
               </mat-form-field>
 
               <mat-form-field class="col-2">
                 <mat-label>Complemento</mat-label>
                 <input matInput placeholder="Complemento"
-                formControlName="complemento"  >
+                formControlName="complemento" value={{formsRegister.value.complemento}} >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>Bairro</mat-label>
                 <input matInput placeholder="Bairro"
-                formControlName="bairro"  >
+                formControlName="bairro" value={{formsRegister.value.bairro}}>
               </mat-form-field>
 
               <mat-form-field class="col-2">
                 <mat-label>Cep</mat-label>
                 <input matInput placeholder="Cep"
-                formControlName="cep"  >
+                formControlName="cep" value={{formsRegister.value.cep}} >
               </mat-form-field>
 
               <mat-form-field class="col-4">
                 <mat-label>Cidade</mat-label>
                 <input matInput placeholder="Cidade"
-                formControlName="cidade"  >
+                formControlName="cidade" value={{formsRegister.value.cidade}} >
               </mat-form-field>
 
               <mat-form-field class="col-4">
@@ -206,12 +206,12 @@
             </form>
           </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+        <div class="d-flex">
+            <div class=" offset-md-10">
                 <button mat-button class="col-12" (click)="limpar()">Limpar</button>
               </div>
-          <div class="col-sm-12 col-md-1  mt-4">
-            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarFornecedor()">Salvar</button>
+          <div class="ml-auto">
+            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarFornecedor()"><span class="material-icons">save</span>Salvar</button>
           </div>
         </div> 
       </mat-card>
@@ -253,14 +253,10 @@
                     <th mat-header-cell *matHeaderCellDef id="quantidade"> Telefone </th>
                     <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
                   </ng-container>
-                  <ng-container matColumnDef="dataCreate">
-                      <th mat-header-cell *matHeaderCellDef id="dataCreate"> Data de Criação </th>
-                      <td mat-cell *matCellDef="let element" > {{element.createdAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="dateUpdate">
-                      <th mat-header-cell *matHeaderCellDef id="dateUpdate"> Data de Alteração </th>
-                      <td mat-cell *matCellDef="let element" > {{element.updatedAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                    </ng-container>
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef id="status"> Status </th>
+                    <td mat-cell *matCellDef="let element" > {{ element.status }} </td>
+                  </ng-container>
                   <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
                     <td mat-cell *matCellDef="let element">
@@ -314,27 +310,23 @@
           </mat-accordion>
             <div class="mat-elevation-z8 mt-2">
               <table mat-table [dataSource]="dataSourcePf">
-                <ng-container matColumnDef="nome">
-                  <th mat-header-cell *matHeaderCellDef id="nome"> Nome </th>
-                  <td mat-cell *matCellDef="let element" > {{ element.nome }} </td>
-                </ng-container>
-                <ng-container matColumnDef="endereco">
-                  <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
-                  <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
-                </ng-container>
-                <ng-container matColumnDef="telefone">
-                  <th mat-header-cell *matHeaderCellDef id="telefone"> Telefone </th>
-                  <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
-                </ng-container>
-                <ng-container matColumnDef="dataCreate">
-                    <th mat-header-cell *matHeaderCellDef id="dataCreate"> Data de Criação </th>
-                    <td mat-cell *matCellDef="let element" > {{element.createdAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="dateUpdate">
-                    <th mat-header-cell *matHeaderCellDef id="dateUpdate"> Data de Alteração </th>
-                    <td mat-cell *matCellDef="let element" > {{element.updatedAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                  </ng-container>
-                <ng-container matColumnDef="action">
+                    <ng-container matColumnDef="nome">
+                      <th mat-header-cell *matHeaderCellDef id="nome"> Nome </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.nome }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="endereco">
+                      <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="telefone">
+                      <th mat-header-cell *matHeaderCellDef id="telefone"> Telefone </th>
+                      <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef id="status"> Status </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.status }} </td>
+                    </ng-container>
+                  <ng-container matColumnDef="action">
                   <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
                   <td mat-cell *matCellDef="let element">
                     <button mat-icon-button [matMenuTriggerFor]="menu">

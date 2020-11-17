@@ -23,7 +23,7 @@ export class CadastroUsuarioComponent implements OnInit {
   empregadoAutocomplete: Empregado[];
   idEmpregado: Empregado;
   filterFormUsuario: FormGroup;
-  displayedColumns: string[] = ['tipo', 'userName', 'action'];
+  displayedColumns: string[] = ['tipo', 'userName', 'status', 'action'];
   dataSource = new MatTableDataSource<Usuarios>();
   @ViewChild('empregadoAuto') empregadoAuto;
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -172,7 +172,6 @@ export class CadastroUsuarioComponent implements OnInit {
 
   filterTabelaUsuario(): void {
     let filteredTable: Usuarios[] = this.usuarioList;
-    //let filterEmpregado: Empregado[] = this.empregadoList;
     if (!this.filterFormUsuario.value.nomeFilterCtrl) {
       this.dataSource.data = [...this.usuarioList];
     }

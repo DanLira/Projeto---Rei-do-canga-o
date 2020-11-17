@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
 
   fazerLogin() {
   if (this.loginForm.invalid) {
+    this.toastr.warning('Favor preencher Login e Senha!', '');
     return;
  } else {
    const user = this.usuariosList.find(x => x.userName === this.f.userName.value

@@ -25,9 +25,9 @@ export class CadastroFornecedorComponent implements OnInit {
   formsRegister: FormGroup;
   filterFormFornecedorPj: FormGroup;
   filterFormFornecedorPf: FormGroup;
-  displayedColumnsPj: string[] = ['razaoSocial', 'endereco', 'telefone', 'dataCreate', 'dateUpdate', 'action'];
+  displayedColumnsPj: string[] = ['razaoSocial', 'endereco', 'telefone', 'status', 'action'];
   dataSourcePj = new MatTableDataSource<FornecedorPj>();
-  displayedColumnsPf: string[] = ['nome', 'endereco', 'telefone', 'dataCreate', 'dateUpdate', 'action'];
+  displayedColumnsPf: string[] = ['nome', 'endereco', 'telefone', 'status', 'action'];
   dataSourcePf = new MatTableDataSource<FornecedorPf>();
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -42,7 +42,8 @@ export class CadastroFornecedorComponent implements OnInit {
     this.createFilterFormPj();
     this.createFilterFormPf();
     this.listarFornecedorPJ();
-    
+    this.listarFornecedorPF();
+
     this.dataSourcePj.paginator = this.MatPaginator;
 
   }
@@ -54,9 +55,16 @@ export class CadastroFornecedorComponent implements OnInit {
     });
   }
 
+  private listarFornecedorPF(): void {
+    this.fornecedorPfService.getAllFornecedorPf().subscribe((fornecedorPf: FornecedorPf[]) => {
+      this.fornecedorPfList = (!!fornecedorPf) ? fornecedorPf : [];
+      this.dataSourcePf.data = [...this.fornecedorPfList];
+    });
+  }
+
 
   private createForm(): void {
-    this.formsRegister = this.fb.group({
+    this.formsRegister = new FormGroup({
       idFornecedorPJ: new FormControl(''),
       idFornecedorPF: new FormControl(''),
       razaoSocial: new FormControl('', Validators.required),
@@ -74,7 +82,7 @@ export class CadastroFornecedorComponent implements OnInit {
       estado: new FormControl(''),
       pais: new FormControl(''),
       tipoFornecedor: new FormControl(''),
-      nome: new FormControl('', Validators.required),
+      nomeFornecedorPF: new FormControl('', Validators.required),
       sexo: new FormControl(''),
       cpf: new FormControl('', Validators.required),
       flagAtivo: new FormControl(false)
@@ -106,14 +114,14 @@ export class CadastroFornecedorComponent implements OnInit {
           this.pj = true;
           this.addFormValidators(['razaoSocial', 'cnpj']);
 
-          this.formsRegister.get('nome').clearValidators();
+          this.formsRegister.get('nomeFornecedorPF').clearValidators();
           this.formsRegister.get('cpf').clearValidators();
-          this.formsRegister.get('nome').updateValueAndValidity();
+          this.formsRegister.get('nomeFornecedorPF').updateValueAndValidity();
           this.formsRegister.get('cpf').updateValueAndValidity();
 
       } else if (event.value === 'fornecedorPF') {
           this.pf = true;
-          this.addFormValidators(['nome', 'cpf']);
+          this.addFormValidators(['nomeFornecedorPF', 'cpf']);
 
           this.formsRegister.get('razaoSocial').clearValidators();
           this.formsRegister.get('cnpj').clearValidators();
@@ -163,8 +171,41 @@ export class CadastroFornecedorComponent implements OnInit {
           });
       }
 
-    } else {
+    } else if (this.pf) {
+      const fornecedorPF: FornecedorPf = {
 
+        idFornecedorPF: this.formsRegister.get('idFornecedorPF').value,
+        nomeFornecedorPF: this.formsRegister.get('nomeFornecedorPF').value,
+        cpf: this.formsRegister.get('cpf').value,
+        sexo: this.formsRegister.get('sexo').value,
+        nickName: this.formsRegister.get('nickName').value,
+        telefone: this.formsRegister.get('telefone').value,
+        celular: this.formsRegister.get('celular').value,
+        email: this.formsRegister.get('email').value,
+        endereco: this.formsRegister.get('endereco').value,
+        complemento: this.formsRegister.get('complemento').value,
+        bairro: this.formsRegister.get('bairro').value,
+        cep: this.formsRegister.get('cep').value,
+        cidade: this.formsRegister.get('cidade').value,
+        pais: this.formsRegister.get('pais').value,
+        estado: this.formsRegister.get('estado').value,
+        status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
+
+      };
+      if (this.formsRegister.value.idFornecedorPF) {
+
+          this.fornecedorPfService.editFornecedorPf(fornecedorPF).subscribe(() => {
+            this.listarFornecedorPF();
+            this.toastr.success('Fornecedo editado com sucesso!', 'Editar');
+            this.limpar();
+          });
+      } else {
+         this.fornecedorPfService.saveFornecedorPf(fornecedorPF).subscribe(() => {
+          this.listarFornecedorPF();
+          this.toastr.success('Fornecedor salvo com sucesso!', 'Salvar');
+          this.limpar();
+          });
+      }
     }
 
   }
@@ -173,6 +214,26 @@ export class CadastroFornecedorComponent implements OnInit {
   private limpar(): void {
     this.formsRegister.reset();
     this.toastr.info('Campos limpos!', 'Limpar');
+  }
+
+
+  private getRowTableFornecedorPj(value: any): void {
+    this.formsRegister.get('idFornecedorPJ').setValue(value.idFornecedorPJ);
+    this.formsRegister.get('nomeFantasia').setValue(value.nomeFantasia);
+    this.formsRegister.get('razaoSocial').setValue(value.razaoSocial);
+    this.formsRegister.get('cnpj').setValue(value.cnpj);
+    this.formsRegister.get('nickName').setValue(value.nickName);
+    this.formsRegister.get('telefone').setValue(value.telefone);
+    this.formsRegister.get('celular').setValue(value.celular);
+    this.formsRegister.get('email').setValue(value.email);
+    this.formsRegister.get('endereco').setValue(value.endereco);
+    this.formsRegister.get('complemento').setValue(value.complemento);
+    this.formsRegister.get('bairro').setValue(value.bairro);
+    this.formsRegister.get('cep').setValue(value.cep);
+    this.formsRegister.get('cidade').setValue(value.cidade);
+    this.formsRegister.get('pais').setValue(value.pais);
+    this.formsRegister.get('estado').setValue(value.estado);
+    this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
   }
 
 

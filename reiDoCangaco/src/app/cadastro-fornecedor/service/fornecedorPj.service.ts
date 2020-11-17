@@ -17,20 +17,20 @@ export class FornecedorPjService {
 
 
    getAllFornecedorPj(): Observable<FornecedorPj[]> {
-       return this._HTTP.get<FornecedorPj[]>(this.apiUrl + '/fornecedorPj', {});
+       return this._HTTP.get<FornecedorPj[]>(this.apiUrl + '/fornecedorespj', {});
    }
    getFornecedorPjById(idFornecedorPj: string): Observable<any> {
-       return this._HTTP.get(this.apiUrl + '/fornecedorPj/?id=' + idFornecedorPj);
+       return this._HTTP.get(this.apiUrl + '/fornecedorespj/?id=' + idFornecedorPj);
    }
    saveFornecedorPj(fornecedorPj: FornecedorPj): Observable<FornecedorPj> {
-       return this._HTTP.post<FornecedorPj>(this.apiUrl + '/fornecedorPj', fornecedorPj, this.httpOptions);
+       return this._HTTP.post<FornecedorPj>(this.apiUrl + '/fornecedorespj', fornecedorPj, this.httpOptions);
    }
    editFornecedorPj(fornecedorPj: FornecedorPj): Observable<any> {
 
-     return this._HTTP.put(this.apiUrl + '/fornecedorPj', fornecedorPj, this.httpOptions);
+     return this._HTTP.put(this.apiUrl + '/fornecedorespj', fornecedorPj, this.httpOptions);
    }
    deleteFornecedorPj(id: string): Observable<any> {
-       return this._HTTP.delete(this.apiUrl + '/fornecedorPj/' + id, this.httpOptions);
+       return this._HTTP.delete(this.apiUrl + '/fornecedorespj/' + id, this.httpOptions);
    }
 
 }
