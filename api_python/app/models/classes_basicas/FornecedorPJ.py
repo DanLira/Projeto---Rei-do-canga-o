@@ -36,7 +36,7 @@ class FornecedorPJ(object):
         return self.id_fornecedorpj
 
     def setIdFornecedorPJ(self, id_fornecedorPJ):
-        self.id_fornecedorPJ = id_fornecedorPJ
+        self.id_fornecedorpj = id_fornecedorPJ
 
     def getRazaoSocial(self):
         return self.razaoSocial
