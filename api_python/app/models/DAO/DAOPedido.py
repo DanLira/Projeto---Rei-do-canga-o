@@ -4,35 +4,40 @@ from config import mysql
 from flask import jsonify
 from flask import flash, request
 from app.models.classes_basicas.Pedido import Pedido
-from datetime import datetime
+
         
 
 
 def add_pedido(p):   
     try:
         sql = "INSERT INTO PEDIDOS(data_pedido, status_pedido, id_user) VALUES(%s, %s, %s)"
-        data_atual = datetime.now()
-        data = (data_atual, p.getStatusPedido(), p.getIdUser())
+        data = (p.getDataPedido(), p.getStatusPedido(), p.getIdUser())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)
         idPedido = cursor.lastrowid
-
-        for produto in p.listaProdutos:
-            sql = "INSERT INTO PEDIDO_PRODUTOS(id_pedido, id_produto, quantidade_produto, valor_total_produto) VALUES(%s, %s, %s, %s)"
-            valorTotalProduto = produto.getPreco() * produto.getQuantidade()
-            data = ()
-
-
+        valorTotalProduto = None
         conn.commit()
-        resp = jsonify('Pedido added successfully!')
-        resp.status_code = 200
-        return jsonify(idPedido)
-    except Exception as e:
-        print(e)
-    finally:
         cursor.close() 
         conn.close()
+
+        for prod in p.listaProdutos:
+            sql_pp = "INSERT INTO PEDIDO_PRODUTOS(id_pedido, id_produto, preco_produto, quantidade_produto, valor_total_produto) VALUES(%s, %s, %s, %s, %s)"
+            valorTotalProduto = float(prod.getPreco()) * int(prod.getQuantidade())
+            data = (idPedido, prod.getIdProduto(), prod.getPreco(), prod.getQuantidade(),  valorTotalProduto)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql_pp, data)
+            conn.commit()
+            cursor.close()
+            conn.close()
+ 
+        resp = jsonify('Pedido added successfully!')
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+    
         
 
 def listarPedidos():
