@@ -4,13 +4,15 @@ from config import mysql
 from flask import jsonify
 from flask import flash, request
 from app.models.classes_basicas.Pedido import Pedido
+from datetime import datetime
         
 
 
 def add_pedido(p):   
     try:
         sql = "INSERT INTO PEDIDOS(data_pedido, status_pedido, id_user) VALUES(%s, %s, %s)"
-        data = (p.getDataPedido(), p.getStatusPedido(), p.getIdUser())
+        data_atual = datetime.now()
+        data = (data_atual, p.getStatusPedido(), p.getIdUser())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)

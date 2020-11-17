@@ -7,6 +7,8 @@ class Produto(object):
     id_fornecedorPJ = None
     id_fornecedorPF = None
     status = None
+
+    quantidade = None
     
 
     def __init__(self, descProduto, tipoVolume, preco, id_fornecedorPJ, id_fornecedorPF, status):
@@ -58,4 +60,10 @@ class Produto(object):
 
     def setIdFornecedorPF(self, id_fornecedorPF):
         self.id_fornecedorPF = id_fornecedorPF
+
+    def getQuantidade(self):
+        return self.quantidade
+
+    def setQuantidade(self, quantidade):
+        self.quantidade = quantidade
 
