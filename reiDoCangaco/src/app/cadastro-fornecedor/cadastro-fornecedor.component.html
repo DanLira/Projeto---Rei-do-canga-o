@@ -13,7 +13,7 @@
                 <mat-card class="mat-card-padrao">
                   <div class="dados mb-2">Dados do Fornecedor</div>
 
-                  <mat-form-field class="col-6">
+                  <mat-form-field class="col-4">
                     <mat-label>Tipo de Fornecedor</mat-label>
                     <mat-select matNativeControl formControlName="tipoFornecedor"
                       value="formsRegister.value.tipoFornecedor" (selectionChange)="fornecedorSelecionado($event)">
@@ -23,17 +23,24 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                  <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                     <mat-label>Nome</mat-label>
                     <input matInput placeholder="Nome" 
-                    formControlName="nomeFornecedorPF" value={{formsRegister.value.nomeFornecedorPF}} >
+                    formControlName="nome" value={{formsRegister.value.nome}} >
                   </mat-form-field>
 
-                  <mat-form-field class="col-6" 
+                  <mat-form-field class="col-4" 
                   *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ' || formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                       <mat-label>NickName</mat-label>
                       <input matInput placeholder="NickName"
                       formControlName="nickName" value={{formsRegister.value.nickName}}>
+                  </mat-form-field>
+
+                  <mat-form-field class="col-3" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento"
+                     formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>          
                   </mat-form-field>
 
                   <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
@@ -51,7 +58,7 @@
                     formControlName="cpf" value={{formsRegister.value.cpf}}>         
                 </mat-form-field>
 
-                  <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+                  <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>Razão Social</mat-label>
                   <input matInput placeholder="Razão Social" 
                  formControlName="razaoSocial" value={{formsRegister.value.razaoSocial}}>
@@ -268,7 +275,7 @@
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
                         </button>
-                        <button mat-menu-item (click)="excluirFornecedorPj(element._id)">
+                        <button mat-menu-item (click)="excluirFornecedorPj(element.idFornecedorPJ)">
                           <mat-icon>delete</mat-icon>
                           <span>Deletar</span>
                         </button>
@@ -337,7 +344,7 @@
                           <mat-icon>edit</mat-icon>
                           <span>Editar</span>
                       </button>
-                      <button mat-menu-item (click)="excluirFornecedorPf(element._id)">
+                      <button mat-menu-item (click)="excluirFornecedorPf(element.idFornecedorPF)">
                         <mat-icon>delete</mat-icon>
                         <span>Deletar</span>
                       </button>

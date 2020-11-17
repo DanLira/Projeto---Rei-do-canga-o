@@ -61,7 +61,7 @@ def getFornecedorPJById(id):
 def update_fornecedorpj(f):
     try:
         sql = "UPDATE FORNECEDORESPJ SET razao_social=%s, nome_fantasia=%s, nickname=%s, cnpj=%s, telefone=%s, celular=%s, email=%s, endereco=%s, complemento=%s, bairro=%s, cep=%s, cidade=%s, estado=%s, pais=%s, status=%s WHERE id_fornecedorpj=%s"
-        data = (f.getRazaoSocial(), f.getNomeFantasia(),  f.getNickName(), f.getCnpj(), f.getTelefone(), f.getCelular(), f.getEmail(), f.getEndereco(), f.getComplemento(), f.getBairro(), f.getCep(), f.getCidade(), f.getEstado(), f.getPais(), f.getStatus(), f.getIdFornecedorPJ())
+        data = (f.getRazaoSocial(), f.getNomeFantasia(), f.getNickName(), f.getCnpj(), f.getTelefone(), f.getCelular(), f.getEmail(), f.getEndereco(), f.getComplemento(), f.getBairro(), f.getCep(), f.getCidade(), f.getEstado(), f.getPais(), f.getStatus(), f.getIdFornecedorPJ())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)

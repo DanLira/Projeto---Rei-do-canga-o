@@ -82,9 +82,10 @@ export class CadastroFornecedorComponent implements OnInit {
       estado: new FormControl(''),
       pais: new FormControl(''),
       tipoFornecedor: new FormControl(''),
-      nomeFornecedorPF: new FormControl('', Validators.required),
+      nome: new FormControl('', Validators.required),
       sexo: new FormControl(''),
       cpf: new FormControl('', Validators.required),
+      dataNascimento: new FormControl(''),
       flagAtivo: new FormControl(false)
     });
   }
@@ -114,14 +115,14 @@ export class CadastroFornecedorComponent implements OnInit {
           this.pj = true;
           this.addFormValidators(['razaoSocial', 'cnpj']);
 
-          this.formsRegister.get('nomeFornecedorPF').clearValidators();
+          this.formsRegister.get('nome').clearValidators();
           this.formsRegister.get('cpf').clearValidators();
-          this.formsRegister.get('nomeFornecedorPF').updateValueAndValidity();
+          this.formsRegister.get('nome').updateValueAndValidity();
           this.formsRegister.get('cpf').updateValueAndValidity();
 
       } else if (event.value === 'fornecedorPF') {
           this.pf = true;
-          this.addFormValidators(['nomeFornecedorPF', 'cpf']);
+          this.addFormValidators(['nome', 'cpf']);
 
           this.formsRegister.get('razaoSocial').clearValidators();
           this.formsRegister.get('cnpj').clearValidators();
@@ -157,7 +158,6 @@ export class CadastroFornecedorComponent implements OnInit {
 
       };
       if (this.formsRegister.value.idFornecedorPJ) {
-
           this.fornecedorPjService.editFornecedorPj(fornecedorPJ).subscribe(() => {
             this.listarFornecedorPJ();
             this.toastr.success('Fornecedo editado com sucesso!', 'Editar');
@@ -175,9 +175,10 @@ export class CadastroFornecedorComponent implements OnInit {
       const fornecedorPF: FornecedorPf = {
 
         idFornecedorPF: this.formsRegister.get('idFornecedorPF').value,
-        nomeFornecedorPF: this.formsRegister.get('nomeFornecedorPF').value,
+        nome: this.formsRegister.get('nome').value,
         cpf: this.formsRegister.get('cpf').value,
         sexo: this.formsRegister.get('sexo').value,
+        dataNascimento: this.formsRegister.get('dataNascimento').value.toLocaleDateString('pt-BR'),
         nickName: this.formsRegister.get('nickName').value,
         telefone: this.formsRegister.get('telefone').value,
         celular: this.formsRegister.get('celular').value,
@@ -216,7 +217,7 @@ export class CadastroFornecedorComponent implements OnInit {
     this.toastr.info('Campos limpos!', 'Limpar');
   }
 
-
+// FORNECEDOR PJ
   private getRowTableFornecedorPj(value: any): void {
     this.formsRegister.get('idFornecedorPJ').setValue(value.idFornecedorPJ);
     this.formsRegister.get('nomeFantasia').setValue(value.nomeFantasia);
@@ -234,6 +235,57 @@ export class CadastroFornecedorComponent implements OnInit {
     this.formsRegister.get('pais').setValue(value.pais);
     this.formsRegister.get('estado').setValue(value.estado);
     this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
+  }
+
+
+  private excluirFornecedorPj(id: string): void {
+    this.fornecedorPjService.deleteFornecedorPj(id).subscribe(() => {
+      this.fornecedorPjService.getAllFornecedorPj().subscribe(fornecedorpj => {
+       this.fornecedorPJList = fornecedorpj;
+       this.dataSourcePj.data = this.fornecedorPJList;
+       this.toastr.success('Fornecedor excluído com sucesso!', 'Excluir');
+      });
+     });
+  }
+
+// FORNECEDOR PF
+
+private getRowTableFornecedorPf(value: any): void {
+  this.formsRegister.get('idFornecedorPF').setValue(value.idFornecedorPF);
+  this.formsRegister.get('nome').setValue(value.nome);
+  this.formsRegister.get('sexo').setValue(value.sexo);
+  this.formsRegister.get('dataNascimento').setValue(new Date (this.formatDate(value.dataNascimento)));
+  this.formsRegister.get('cpf').setValue(value.cpf);
+  this.formsRegister.get('nickName').setValue(value.nickName);
+  this.formsRegister.get('telefone').setValue(value.telefone);
+  this.formsRegister.get('celular').setValue(value.celular);
+  this.formsRegister.get('email').setValue(value.email);
+  this.formsRegister.get('endereco').setValue(value.endereco);
+  this.formsRegister.get('complemento').setValue(value.complemento);
+  this.formsRegister.get('bairro').setValue(value.bairro);
+  this.formsRegister.get('cep').setValue(value.cep);
+  this.formsRegister.get('cidade').setValue(value.cidade);
+  this.formsRegister.get('pais').setValue(value.pais);
+  this.formsRegister.get('estado').setValue(value.estado);
+  this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
+}
+
+
+private excluirFornecedorPf(id: string): void {
+  this.fornecedorPfService.deleteFornecedorPf(id).subscribe(() => {
+    this.fornecedorPfService.getAllFornecedorPf().subscribe(fornecedorpf => {
+     this.fornecedorPfList = fornecedorpf;
+     this.dataSourcePf.data = this.fornecedorPfList;
+     this.toastr.success('Fornecedor excluído com sucesso!', 'Excluir');
+    });
+   });
+}
+
+
+
+  formatDate(newDate): Date {
+    const split = newDate.split('/');
+    return new Date(split[1] + '/' + split[0] + '/' + split[2]);
   }
 
 

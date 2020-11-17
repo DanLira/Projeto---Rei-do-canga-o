@@ -142,7 +142,7 @@ def delete_empregado(id):
 @app.route("/fornecedorespf",  methods=["POST"])
 def add_fornecedorpf():
     _json = request.json
-    _nome_fornecedorpf = str(_json['nomeFornecedorPF'])
+    _nome_fornecedorpf = str(_json['nome'])
     _nick_name = str(_json['nickName'])
     _cpf = str(_json['cpf']) 
     _sexo = str(_json['sexo'])
@@ -181,7 +181,7 @@ def getFornecedorPFById(id):
 def update_fornecedorpf():
     _json = request.json
     _id_fornecedorpf = str(_json['idFornecedorPF'])
-    _nome_fornecedorpf = str(_json['nomeFornecedorPF'])
+    _nome_fornecedorpf = str(_json['nome'])
     _nick_name = str(_json['nickName'])
     _cpf = str(_json['cpf']) 
     _sexo = str(_json['sexo'])
