@@ -14,10 +14,18 @@ def add_pedido(p):
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)
+        idPedido = cursor.lastrowid
+
+        for produto in p.listaProdutos:
+            sql = "INSERT INTO PEDIDO_PRODUTOS(id_pedido, id_produto, quantidade_produto, valor_total_produto) VALUES(%s, %s, %s, %s)"
+            valorTotalProduto = produto.getPreco() * produto.getQuantidade()
+            data = ()
+
+
         conn.commit()
         resp = jsonify('Pedido added successfully!')
         resp.status_code = 200
-        return resp
+        return jsonify(idPedido)
     except Exception as e:
         print(e)
     finally:
