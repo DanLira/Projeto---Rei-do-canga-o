@@ -36,6 +36,7 @@ CREATE TABLE USUARIOS (
 )
 ALTER TABLE USUARIOS AUTO_INCREMENT = 1000
 SELECT * FROM USUARIOS
+delete from usuarios where id_user > 1000
 
 CREATE TABLE FORNECEDORESPF(
 	id_fornecedorpf int auto_increment primary key,
@@ -91,7 +92,8 @@ CREATE TABLE PRODUTOS(
     CONSTRAINT fk_id_fornecedorpj_prod  FOREIGN KEY (id_fornecedorpj) REFERENCES FORNECEDORESPJ(id_fornecedorpj),
     CONSTRAINT fk_id_fornecedorpf_prod  FOREIGN KEY (id_fornecedorpf) REFERENCES FORNECEDORESPF(id_fornecedorpf)
 )
-SELECT * FROM PRODUTO
+SELECT * FROM PRODUTOS
+
 
 CREATE TABLE PEDIDOS(
 	id_pedido int auto_increment primary key,
@@ -101,15 +103,22 @@ CREATE TABLE PEDIDOS(
     CONSTRAINT fk_id_user_pedido FOREIGN KEY (id_user) REFERENCES USUARIOS(id_user)
 )
 ALTER TABLE PEDIDOS MODIFY COLUMN status_pedido varchar(15) not null default 'Finalizado'
+select * From pedidos
+delete from pedidos where id_pedido > 1
 
 CREATE TABLE PEDIDO_PRODUTOS(
 	id_pedido int not null,
     id_produto int not null,
+    preco_produto decimal(15,2) not null,
     quantidade_produto int not null,
-    valor_registrado decimal(15,2),
+    valor_total_produto decimal(15,2),
     CONSTRAINT fk_id_pedido_pedidoproduto FOREIGN KEY (id_pedido) REFERENCES PEDIDOS(id_pedido),
     CONSTRAINT fk_id_produto_pedidoproduto FOREIGN KEY (id_produto) REFERENCES PRODUTOS(id_produto)
 )
+SELECT * FROM PEDIDO_PRODUTOS
+
+
+
 
 CREATE TABLE VENDAS(
 	id_venda int auto_increment primary key,
