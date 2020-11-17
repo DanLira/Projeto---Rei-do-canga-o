@@ -13,7 +13,7 @@ def add_user(user):
     try:
         _hashed_password = generate_password_hash(user.getSenha())
         sql = "INSERT INTO USUARIOS(username, senha, tipo, id_empregado, status) VALUES(%s, %s, %s,%s, %s)"
-        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getStatus())
+        data = (user.getUsername(), user.getSenha(), user.getTipo(), user.getIdEmpregado(), user.getStatus())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)
@@ -66,7 +66,7 @@ def update_user(user):
     try:
         _hashed_password = generate_password_hash(user.getSenha())
         sql = "UPDATE USUARIOS SET username=%s, senha=%s, tipo=%s, id_empregado=%s, status=%s WHERE id_user=%s"
-        data = (user.getUsername(), _hashed_password, user.getTipo(), user.getIdEmpregado(), user.getStatus(), user.getIdUser())
+        data = (user.getUsername(), user.getSenha(), user.getTipo(), user.getIdEmpregado(), user.getStatus(), user.getIdUser())
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql, data)
