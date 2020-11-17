@@ -45,7 +45,7 @@ def getFornecedorPJById(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        sql = "SELECT id_fornecedorpj idFornecedorPJ, razao_social razaoSocial, nome_fantasia nomeFantasia ,nickname nickName, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from FORNECEDORESPJ WHERE id_fornecedorpj=%s"
+        sql = "SELECT id_fornecedorpj idFornecedorPJ, razao_social razaoSocial, nome_fantasia nomeFantasia ,nickname nickName, cnpj, telefone, celular, email, endereco, complemento, bairro, cep, cidade, estado, pais, status from FORNECEDORESPJ WHERE id_fornecedorpj=%s"
         cursor.execute(sql, id)
         row = cursor.fetchone()
         resp = jsonify(row)
