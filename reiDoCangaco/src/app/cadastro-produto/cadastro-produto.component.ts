@@ -110,7 +110,6 @@ salvarProduto() {
     });
 
   } else {
-    debugger;
       this.produtoService.saveProduto(produto).subscribe(() => {
        this.produtoService.getAllProduto().subscribe(produtos => {
         this.produtoList = produtos;
