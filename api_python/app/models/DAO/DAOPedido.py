@@ -42,7 +42,7 @@ def listarPedidos():
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        sql = "SELECT P.id_pedido idPedido, P.data_pedido dataPedido, P.status_pedido statusPedido, P.id_user idUser, PP.preco_produto preco, PP.tipo_volume tipoVolume, PP.quantidade_produto quantidade, PP.valor_total_produto valorTotalProduto FROM PEDIDOS P INNER JOIN PEDIDO_PRODUTOS PP ON P.id_pedido = PP.id_pedido"
+        sql = "SELECT P.id_pedido idPedido, P.data_pedido dataPedido, P.status_pedido statusPedido, P.id_user idUser, PP.id_produto idProduto, PP.preco_produto preco, PP.tipo_volume tipoVolume, PP.quantidade_produto quantidade, PP.valor_total_produto valorTotalProduto FROM PEDIDOS P INNER JOIN PEDIDO_PRODUTOS PP ON P.id_pedido = PP.id_pedido"
         cursor.execute(sql)
         rows = cursor.fetchall()
         resp = jsonify(rows)
@@ -61,7 +61,7 @@ def getPedidoById(id):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         sql = "SELECT P.id_pedido idPedido, P.data_pedido dataPedido, P.status_pedido statusPedido, P.id_user idUser, PP.preco_produto preco, PP.tipo_volume tipoVolume, PP.quantidade_produto quantidade, PP.valor_total_produto valorTotalProduto FROM PEDIDOS P INNER JOIN PEDIDO_PRODUTOS PP ON P.id_pedido = PP.id_pedido WHERE P.id_pedido=%s"
         cursor.execute(sql, id)
-        row = cursor.fetchone()
+        row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         return resp
