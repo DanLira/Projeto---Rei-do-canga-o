@@ -20,25 +20,17 @@ def add_pedido(_pedido):
         pedido.setDataPedido(dataFormatada)
         pedido.setStatusPedido("Finalizado")
 
+        pedido.listaProdutos.clear()
         
+        dic = json.loads(_pedido['listaProdutos']) 
+
 
         produto = Produto("PRODUTO 002", "KG", "10.59", 100000, "", "A")
         produto.setIdProduto(1009)
         produto.setQuantidade(500)
 
-        produtob = Produto("TESTE", "KG", "1.59", 100000, "", "A")
-        produtob.setIdProduto(1008)
-        produtob.setQuantidade(10)
-
-
-        produtoc = Produto("PRODUTO 002", "KG", "5.59", 100000, "", "A")
-        produtoc.setIdProduto(1009)
-        produtoc.setQuantidade(1)
-
 
         pedido.listaProdutos.append(produto)
-        pedido.listaProdutos.append(produtob)
-        pedido.listaProdutos.append(produtoc)
         
         return DAOPedido.add_pedido(pedido)
     except Exception as ex:
