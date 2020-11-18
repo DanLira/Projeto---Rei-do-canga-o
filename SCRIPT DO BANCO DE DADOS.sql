@@ -98,26 +98,29 @@ SELECT * FROM PRODUTOS
 CREATE TABLE PEDIDOS(
 	id_pedido int auto_increment primary key,
     data_pedido char(10) not null,
-    status_pedido varchar(15) not null default 'Aberto',
+    status_pedido varchar(15) not null default 'Finalizado',
     id_user int not null,
     CONSTRAINT fk_id_user_pedido FOREIGN KEY (id_user) REFERENCES USUARIOS(id_user)
 )
 ALTER TABLE PEDIDOS MODIFY COLUMN status_pedido varchar(15) not null default 'Finalizado'
-select * From pedidos
-delete from pedidos where id_pedido > 1
 
 CREATE TABLE PEDIDO_PRODUTOS(
 	id_pedido int not null,
     id_produto int not null,
     preco_produto decimal(15,2) not null,
+    tipo_volume char(2) not null,
     quantidade_produto int not null,
     valor_total_produto decimal(15,2),
     CONSTRAINT fk_id_pedido_pedidoproduto FOREIGN KEY (id_pedido) REFERENCES PEDIDOS(id_pedido),
     CONSTRAINT fk_id_produto_pedidoproduto FOREIGN KEY (id_produto) REFERENCES PRODUTOS(id_produto)
 )
+
+select * From pedidos
 SELECT * FROM PEDIDO_PRODUTOS
 
-
+SELECT P.id_pedido idPedido, P.data_pedido dataPedido, P.status_pedido statusPedido, P.id_user idUser, PP.preco_produto preco, 
+PP.tipo_volume tipoVolume, PP.quantidade_produto quantidade, PP.valor_total_produto valorTotalProduto 
+FROM PEDIDOS P INNER JOIN PEDIDO_PRODUTOS PP ON P.id_pedido = PP.id_pedido WHERE P.id_pedido=7
 
 
 CREATE TABLE VENDAS(
