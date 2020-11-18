@@ -340,27 +340,19 @@ def add_pedido():
 
 @app.route("/pedidos",  methods=['GET'])
 def listarPedidos():
-    return controllerProduto.listarProdutos()
+    return controllerPedido.listarPedidos()
 
 @app.route("/pedidos/<int:id>",  methods=['GET'])
 def getPedidoById(id):
-    return controllerProduto.getProdutoById(id)
+    return controllerPedido.getPedidoById(id)
 
 @app.route("/pedidos",  methods=["PUT"])
 def update_pedido():
     _json = request.json
-    _id_produto = str(_json['idProduto'])
-    _desc_produto = str(_json['descProduto'])
-    _tipo_volume = str(_json['tipoVolume'])
-    _preco = str(_json['preco'])
-    _id_fornecedorpj = str(_json['idFornecedorPJ']) 
-    _id_fornecedorpf = str(_json['idFornecedorPF'])
-    _status = str(_json['status'])
-    produto = Produto(_desc_produto, _tipo_volume, _preco, _id_fornecedorpj, _id_fornecedorpf, _status)
-    produto.setIdProduto(_id_produto)
-    return controllerProduto.update_produto(produto)
+    _pedido = _json['pedido']
+    return controllerPedido.update_pedido(_pedido)
 
 
 @app.route("/pedidos/<int:id>", methods=['DELETE'])
 def delete_pedido(id):
-    return controllerProduto.delete_produto(id)
+    return controllerPedido.delete_pedido(id)
