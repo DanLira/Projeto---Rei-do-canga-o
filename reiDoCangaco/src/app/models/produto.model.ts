@@ -3,8 +3,8 @@ export interface Produto {
     descProduto: string;
     preco: number;
     tipoVolume: number;
-    fornecedorPj?: string;
-    fornecedorPf?: string;
+    idFornecedorPJ?: string;
+    idFornecedorPF?: string;
     status?: string;
 
 }

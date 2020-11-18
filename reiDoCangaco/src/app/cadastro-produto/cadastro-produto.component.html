@@ -9,6 +9,16 @@
                 <h1 class="idPadrao">ID do Produto: {{formsRegister.value.idProduto}}</h1>
               </div>
               <form [formGroup]="formsRegister" class="row">
+                <mat-form-field class="col-2">
+                  <mat-label>Tipo de Fornecedor</mat-label>
+                  <mat-select matNativeControl formControlName="tipoFornecedor"
+                    value="formsRegister.value.tipoFornecedor">
+                    <mat-option>Selecione</mat-option>
+                    <mat-option value="fornecedorPJ">Fornecedor PJ</mat-option>
+                    <mat-option value="fornecedorPF">Fornecedor PF</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
                   <mat-form-field class="col-4">
                       <mat-label>Descrição do Produto</mat-label>
                     <input matInput placeholder="Descrição do Produto" required
@@ -32,16 +42,24 @@
                   </mat-form-field>
 
 
-                  <mat-form-field class="col-4">
+                  <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
                     <mat-label>Fornecedor</mat-label>
-                    <mat-select formControlName="fornecedorPj" value={{formsRegister.value.fornecedorPj}}>
+                    <mat-select formControlName="idFornecedorPJ" value={{formsRegister.value.idFornecedorPJ}}>
                       <mat-option>Selecione</mat-option>
-                      <mat-option value="Teste">Teste</mat-option>
+                      <mat-option [value]="fpj.idFornecedorPJ" *ngFor="let fpj of fornecedoresPj">{{fpj.nomeFantasia}}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
-                  <div class="col-xs-12 col-md-6">
-                    <mat-slide-toggle formControlName="flagAtivo" class="col-xs-12 col-md-6">Inativo
+                  <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <mat-label>Fornecedor</mat-label>
+                    <mat-select formControlName="idFornecedorPF" value={{formsRegister.value.idFornecedorPF}}>
+                      <mat-option>Selecione</mat-option>
+                      <mat-option [value]="fpf.idFornecedorPF" *ngFor="let fpf of fornecedoresPf">{{fpf.nome}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <div class="col-4">
+                    <mat-slide-toggle formControlName="flagAtivo" class="col-4">Inativo
                     </mat-slide-toggle>
                   </div>
                 
@@ -54,7 +72,8 @@
                   <button mat-button class="col-12" (click)="limpar()">Limpar</button>
                 </div>
             <div class="ml-auto">
-              <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarProduto()"> <span class="material-icons">save</span>Salvar</button>
+              <button mat-button class="col-12" [disabled]="!formsRegister.valid" 
+              (click)="salvarProduto()"> <mat-icon>save</mat-icon>Salvar</button>
             </div>
           </div> 
         </mat-card>
@@ -72,10 +91,10 @@
                   <form [formGroup]="filterFormProduto" class="row">
                       <mat-form-field class="col-xs-12 col-md-4">
                           <mat-label>Nome do Produto</mat-label>
-                      <input matInput placeholder="Nome" formControlName="nomeFilterCtrl">
+                      <input matInput placeholder="Nome" formControlName="descricaoFilterCtrl">
                     </mat-form-field>
                     <div class="col-xs-12 col-md-1">
-                      <button mat-button   class="mt-2">Buscar</button>
+                      <button mat-button class="mt-2" (click)="filterTabelaEmpregado()">Buscar</button>
                     </div>
                   </form>
                 </mat-expansion-panel>
@@ -94,14 +113,6 @@
                       <th mat-header-cell *matHeaderCellDef id="tipoVolume"> Tipo Volume </th>
                       <td mat-cell *matCellDef="let element" > {{element.tipoVolume}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="dataCreate">
-                        <th mat-header-cell *matHeaderCellDef id="dataCreate"> Data de Criação </th>
-                        <td mat-cell *matCellDef="let element" > {{element.createdAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="dateUpdate">
-                        <th mat-header-cell *matHeaderCellDef id="dateUpdate"> Data de Alteração </th>
-                        <td mat-cell *matCellDef="let element" > {{element.updatedAt | date:'dd/MM/yyyy HH:mm'}} </td>
-                      </ng-container>
                     <ng-container matColumnDef="action">
                       <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
                       <td mat-cell *matCellDef="let element">
@@ -113,7 +124,7 @@
                               <mat-icon>edit</mat-icon>
                               <span>Editar</span>
                           </button>
-                          <button mat-menu-item (click)="excluirProduto(element._id)">
+                          <button mat-menu-item (click)="excluirProduto(element.idProduto)">
                             <mat-icon>delete</mat-icon>
                             <span>Deletar</span>
                           </button>

@@ -95,11 +95,12 @@ export class CadastroPedidosComponent implements OnInit {
   private adicionarProduto(): void {
 
     const item: any = {
-      //idProduto: this.formsPedido.value.idProduto,
+      idProduto: this.formsPedido.value.idProduto,
       descProduto: this.formsPedido.get('descProduto').value,
       preco: this.formsPedido.get('preco').value,
       tipoVolume: this.formsPedido.get('tipoVolume').value,
-      quantidadeProduto: this.formsPedido.get('quantidadeProduto').value
+      quantidadeProduto: this.formsPedido.get('quantidadeProduto').value,
+      //valorTotalProduto: (this.formsPedido.get('preco').value x this.formsPedido.get('quantidadeProduto').value)
     };
 
     if (this.formsPedido.get('quantidadeProduto').value === '') {

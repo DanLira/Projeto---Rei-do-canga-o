@@ -20,7 +20,6 @@ export class CadastroEmpregadoComponent implements OnInit {
   filterForm: FormGroup;
   displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'status', 'action'];
   dataSource = new MatTableDataSource<Empregado>();
-  todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   constructor(private readonly fb: FormBuilder,

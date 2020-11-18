@@ -22,17 +22,20 @@
                   </mat-form-field>
 
                   
-                  
-                  <mat-form-field class="col-1 ml-2">
+                  <mat-form-field class="col-2 ml-2">
                     <mat-label>Volume</mat-label>
-                    <input matInput placeholder="Tipo Volume"
-                    formControlName="tipoVolume" value={{formsPedido.value.tipoVolume}} >
+                    <mat-select formControlName="tipoVolume" required >
+                      <mat-option>Selecione</mat-option>
+                      <mat-option value="KG">KG</mat-option>
+                      <mat-option value="PC">PC</mat-option>
+                      <mat-option value="FD">FD</mat-option>
+                    </mat-select>
                   </mat-form-field>
 
                   <span class="simbolo">R$</span>
                   <mat-form-field class="col-1">
                       <mat-label>Preço</mat-label>
-                      <input matInput placeholder="Preço"
+                      <input matInput placeholder="Preço" required
                       formControlName="preco" value={{formsPedido.value.preco}} >
                   </mat-form-field>
 
@@ -43,8 +46,7 @@
                 </mat-form-field>
 
                   
-                  
-                    <button mat-button class="btn-addProduto col-4 mt-2" (click)="adicionarProduto()"> <span class="material-icons">add_circle</span> Adicionar Produto</button>
+                    <button mat-button class="btn-addProduto col-2 mt-2" (click)="adicionarProduto()"> <mat-icon>add_shopping_cart</mat-icon> Adicionar Produto</button>
 
                   
               </form>

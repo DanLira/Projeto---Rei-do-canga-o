@@ -29,7 +29,6 @@ export class CadastroFornecedorComponent implements OnInit {
   dataSourcePj = new MatTableDataSource<FornecedorPj>();
   displayedColumnsPf: string[] = ['nome', 'endereco', 'telefone', 'status', 'action'];
   dataSourcePf = new MatTableDataSource<FornecedorPf>();
-  todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   constructor(private readonly fb: FormBuilder,
@@ -248,6 +247,22 @@ export class CadastroFornecedorComponent implements OnInit {
      });
   }
 
+
+  filterTabelaFornecedorPj(): void {
+    let filteredTable: FornecedorPj[] = this.fornecedorPJList;
+    if (!this.filterFormFornecedorPj.value.razaoSocialFilterCtrl) {
+      this.dataSourcePj.data = [...this.fornecedorPJList];
+    }
+    if (this.filterFormFornecedorPj.value.razaoSocialFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x => {
+        return x.razaoSocial ? x.razaoSocial.toUpperCase()
+        .includes(this.filterFormFornecedorPj.value.razaoSocialFilterCtrl.toUpperCase()) : null;
+      });
+     }
+    this.dataSourcePj.data = filteredTable;
+  }
+
 // FORNECEDOR PF
 
 private getRowTableFornecedorPf(value: any): void {
@@ -279,6 +294,22 @@ private excluirFornecedorPf(id: string): void {
      this.toastr.success('Fornecedor excluído com sucesso!', 'Excluir');
     });
    });
+}
+
+
+filterTabelaFornecedorPf(): void {
+  let filteredTable: FornecedorPf[] = this.fornecedorPfList;
+  if (!this.filterFormFornecedorPf.value.nomeFilterCtrl) {
+    this.dataSourcePf.data = [...this.fornecedorPfList];
+  }
+  if (this.filterFormFornecedorPf.value.nomeFilterCtrl) {
+    filteredTable = filteredTable.filter
+    ( x => {
+      return x.nome ? x.nome.toUpperCase()
+      .includes(this.filterFormFornecedorPf.value.nomeFilterCtrl.toUpperCase()) : null;
+    });
+   }
+  this.dataSourcePf.data = filteredTable;
 }
 
 
