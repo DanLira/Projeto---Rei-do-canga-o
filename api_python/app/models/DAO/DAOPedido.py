@@ -18,6 +18,7 @@ def add_pedido(p):
         conn.commit()
         cursor.close() 
         conn.close()
+        
 
         for prod in p.listaProdutos:
             sql_pp = "INSERT INTO PEDIDO_PRODUTOS(id_pedido, id_produto, preco_produto, tipo_volume, quantidade_produto, valor_total_produto) VALUES(%s, %s, %s, %s, %s, %s)"
