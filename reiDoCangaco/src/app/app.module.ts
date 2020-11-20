@@ -34,7 +34,7 @@ import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-forn
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empregado.component';
 import { ModalAlertaComponent } from './shared/component/modals/modal-alerta/modal-alerta.component';
-
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -73,6 +73,7 @@ import { ModalAlertaComponent } from './shared/component/modals/modal-alerta/mod
     MatSelectModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    NgxMaskModule.forRoot(),
     MatGridListModule,
     LayoutModule,
     SharedModule,
@@ -83,6 +84,7 @@ import { ModalAlertaComponent } from './shared/component/modals/modal-alerta/mod
   providers: [AuthGuard, AuthService, MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, ],
     entryComponents: [ModalAlertaComponent],
+    exports: [NgxMaskModule],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

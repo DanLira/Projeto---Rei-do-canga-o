@@ -20,13 +20,13 @@ const routes: Routes = [
 {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
 },
 
 {
   path: 'dashboard',
   component: DashboardComponent,
-  // canActivate: [AuthGuard]
+  canActivate: [AuthGuard]
 },
 
 {
@@ -41,22 +41,22 @@ const routes: Routes = [
 {
   path: 'produto',
   component: CadastroProdutoComponent,
-  //canActivate: [AuthGuard]
+  canActivate: [AuthGuard]
 },
 {
   path: 'pedido',
   component: CadastroPedidosComponent, 
-  //canActivate: [AuthGuard]
+  canActivate: [AuthGuard]
 },
 {
   path: 'empregado',
   component: CadastroEmpregadoComponent,
-  //canActivate: [AuthGuard]
+  canActivate: [AuthGuard]
 },
 {
   path: 'fornecedor',
   component: CadastroFornecedorComponent, 
-  //canActivate: [AuthGuard]
+  canActivate: [AuthGuard]
 },
 
 

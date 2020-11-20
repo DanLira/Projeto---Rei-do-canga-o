@@ -1,4 +1,3 @@
-import { Pedidos } from './../models/pedidos.model';
 import { Produto } from './../models/produto.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -9,6 +8,7 @@ import { ProdutoService } from '../cadastro-produto/produto.service';
 import { PedidoService } from './pedidoService.service';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ModalAlertaComponent } from '../shared/component/modals/modal-alerta/modal-alerta.component';
+import { PedidoProduto } from '../models/pedido-produto.model';
 
 @Component({
   selector: 'app-pedidos',
@@ -18,10 +18,15 @@ import { ModalAlertaComponent } from '../shared/component/modals/modal-alerta/mo
 export class CadastroPedidosComponent implements OnInit {
 
   formsPedido: FormGroup;
-  pedidoList: Pedidos[] = [];
+  pedidoList: PedidoProduto[] = [];
+  valorTotalPedido: 0;
+  itemList: any [] = [];
   produtoList: any[] = [];
   produtoAutocomplete: Produto[];
   idProduto: Produto;
+  desc: string;
+  vol: string;
+  preco: number;
   displayedColumns: string[] = ['idProduto', 'descProduto', 'tipoVolume', 'preco', 'qtde',  'total', 'action'];
   dataSource = new MatTableDataSource<any[]>();
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -56,6 +61,10 @@ export class CadastroPedidosComponent implements OnInit {
 
   }
 
+  displayFn(produto: Produto): string {
+    return produto ? produto.descProduto : undefined;
+  }
+
   private _filterProduto(paramOfFilter: string): void {
     if (!!paramOfFilter) {
       this.produtoList = this.produtoAutocomplete.filter
@@ -84,32 +93,57 @@ export class CadastroPedidosComponent implements OnInit {
       statusPedito: new FormControl(''),
       idUser: new FormControl(''),
       quantidadeProduto: new FormControl(''),
-      preco: new FormControl(''),
+      precoProduto: new FormControl(''),
       idProduto: new FormControl(''),
       descProduto: new FormControl(''),
-      tipoVolume: new FormControl('')
+      tipoVolume: new FormControl(''),
+      valorTotalProduto: new FormControl('')
     });
 
   }
 
+  private addIdProduto(id: any): void {
+      this.idProduto = id;
+
+      this.produtoAutocomplete.find(x => {
+       if (x.idProduto === id) {
+            this.desc = x.descProduto;
+            this.vol = x.tipoVolume;
+            this.preco = x.preco;
+            this.formsPedido.get('tipoVolume').setValue(this.vol);
+            this.formsPedido.get('precoProduto').setValue(this.preco);
+       }
+      });
+
+  }
+
+
   private adicionarProduto(): void {
 
     const item: any = {
-      idProduto: this.formsPedido.value.idProduto,
-      descProduto: this.formsPedido.get('descProduto').value,
-      preco: this.formsPedido.get('preco').value,
+      idProduto: this.idProduto,
+      descProduto: this.desc,
+      precoProduto: this.formsPedido.get('precoProduto').value,
       tipoVolume: this.formsPedido.get('tipoVolume').value,
       quantidadeProduto: this.formsPedido.get('quantidadeProduto').value,
-      //valorTotalProduto: (this.formsPedido.get('preco').value x this.formsPedido.get('quantidadeProduto').value)
+      valorTotalProduto: this.formsPedido.get('precoProduto').value * this.formsPedido.get('quantidadeProduto').value
     };
 
     if (this.formsPedido.get('quantidadeProduto').value === '') {
         this.toastr.warning('Favor preencher os campos obrigatorios!');
         return;
     }
+    this.itemList.push(item);
+    this.dataSource.data = [...this.itemList];
+    this.pedidoList =  [...this.itemList];
 
-    this.produtoList.push(item);
-    this.dataSource.data = [...this.produtoList];
+    const totalPedido = this.itemList.map(p => {
+      return p.valorTotalProduto;
+    });
+
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    this.valorTotalPedido = totalPedido.reduce(reducer);
+
     this.formsPedido.reset();
 
 

@@ -1,3 +1,4 @@
+import { masks } from './../shared/masks.models';
 import { Empregado } from './../models/empregado.model';
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { EmpregadoService } from './empregadoService.service';
+import { Masks } from '../shared/masks.interfaces';
 
 @Component({
   selector: 'app-cadastro-empregado',
@@ -15,7 +17,8 @@ export class CadastroEmpregadoComponent implements OnInit {
 
   empregado: Empregado [];
   empregadoList: Empregado [] = [];
-
+  public masks: Masks;
+  cpf: string;
   formsRegister: FormGroup;
   filterForm: FormGroup;
   displayedColumns: string[] = ['nome', 'endereco', 'telefone', 'status', 'action'];
@@ -28,6 +31,7 @@ export class CadastroEmpregadoComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    //this.cpf = this.masks.cpf.masks;
     this.createFilterForm();
     this.dataSource.paginator = this.MatPaginator;
     this.listarEmpregados();

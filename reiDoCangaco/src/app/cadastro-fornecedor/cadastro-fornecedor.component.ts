@@ -110,7 +110,8 @@ export class CadastroFornecedorComponent implements OnInit {
 
   private fornecedorSelecionado(event: any): void {
 
-    if (event.value === 'fornecedorPJ') {
+          if (event.value === 'fornecedorPJ') {
+
           this.pj = true;
           this.addFormValidators(['razaoSocial', 'cnpj']);
 
@@ -119,7 +120,8 @@ export class CadastroFornecedorComponent implements OnInit {
           this.formsRegister.get('nome').updateValueAndValidity();
           this.formsRegister.get('cpf').updateValueAndValidity();
 
-      } else if (event.value === 'fornecedorPF') {
+         } else if (event.value === 'fornecedorPF') {
+
           this.pf = true;
           this.addFormValidators(['nome', 'cpf']);
 
@@ -127,7 +129,7 @@ export class CadastroFornecedorComponent implements OnInit {
           this.formsRegister.get('cnpj').clearValidators();
           this.formsRegister.get('razaoSocial').updateValueAndValidity();
           this.formsRegister.get('cnpj').updateValueAndValidity();
-      }
+        }
   }
 
 
@@ -189,7 +191,7 @@ export class CadastroFornecedorComponent implements OnInit {
         cidade: this.formsRegister.get('cidade').value,
         pais: this.formsRegister.get('pais').value,
         estado: this.formsRegister.get('estado').value,
-        status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
+        status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A'
 
       };
       if (this.formsRegister.value.idFornecedorPF) {
@@ -213,7 +215,6 @@ export class CadastroFornecedorComponent implements OnInit {
 
   private limpar(): void {
     this.formsRegister.reset();
-    this.toastr.info('Campos limpos!', 'Limpar');
   }
 
 // FORNECEDOR PJ

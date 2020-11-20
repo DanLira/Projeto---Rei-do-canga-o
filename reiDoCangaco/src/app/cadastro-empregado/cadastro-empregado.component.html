@@ -31,7 +31,8 @@
 
                       <mat-form-field class="col-4">
                         <mat-label>CPF</mat-label>
-                          <input matInput placeholder="CPF" 
+                          <input matInput
+                           placeholder="CPF" 
                           formControlName="cpf" value={{formsRegister.value.cpf}}>         
                       </mat-form-field>
 
@@ -52,7 +53,7 @@
                       <div class="dados mb-2">Contatos</div>
                       <mat-form-field class="col-4">
                         <mat-label>Telefone</mat-label>
-                        <input matInput placeholder="Telefone" 
+                        <input matInput placeholder="Telefone" mask="(00)0000-0000 || (00) 0 0000-0000"
                         formControlName="telefone" value={{formsRegister.value.telefone}} >
                       </mat-form-field>
 
