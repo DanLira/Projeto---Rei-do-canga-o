@@ -45,7 +45,7 @@
                 </mat-form-field>
 
                   
-                    <button mat-button class="btn-addProduto col-2 mt-2" (click)="adicionarProduto()"> <mat-icon>add_shopping_cart</mat-icon> Adicionar Produto</button>
+                    <button mat-button class="btn-addProduto col-2 mt-2" (click)="adicionarProdutoToList()"> <mat-icon>add_shopping_cart</mat-icon> Adicionar Produto</button>
 
                   
               </form>
@@ -101,7 +101,7 @@
                                   <mat-icon>edit</mat-icon>
                                   <span>Editar</span>
                               </button>
-                              <button mat-menu-item (click)="excluirPedido(element._id)">
+                              <button mat-menu-item (click)="excluirPedido(element.idProduto)">
                                 <mat-icon>delete</mat-icon>
                                 <span>Remover</span>
                               </button>
