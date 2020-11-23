@@ -150,7 +150,7 @@ getRowTableProduto(value: any): void {
 
 
 
-filterTabelaEmpregado(): void {
+filterTabelaProduto(): void {
   let filteredTable: Produto[] = this.produtoList;
   if (!this.filterFormProduto.value.descricaoFilterCtrl) {
     this.dataSource.data = [...this.produtoList];

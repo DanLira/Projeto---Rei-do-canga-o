@@ -29,27 +29,31 @@ import { AuthGuard } from './guards/auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.component';
-import { RelatorioVendasComponent } from './relatorio-vendas/relatorio-vendas.component';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroEmpregadoComponent } from './cadastro-empregado/cadastro-empregado.component';
 import { ModalAlertaComponent } from './shared/component/modals/modal-alerta/modal-alerta.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ModalFinalizarVendaComponent } from './shared/component/modals/modalFinalizarVenda/modalFinalizarVenda.component';
+import { VendasComponent } from './vendas/vendas.component';
+import { ModalDetalhesVendaComponent } from './shared/component/modals/modalDetalhesVenda/modalDetalhesVenda.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     LoginComponent,
     CadastroProdutoComponent,
     CadastroPedidosComponent,
     CadastroUsuarioComponent,
-    RelatorioVendasComponent,
     CadastroFornecedorComponent,
     DashboardComponent,
     CadastroEmpregadoComponent,
-    ModalAlertaComponent
+    ModalAlertaComponent,
+    ModalFinalizarVendaComponent,
+    VendasComponent,
+    ModalDetalhesVendaComponent
    ],
   imports: [
     BrowserModule,
@@ -83,7 +87,7 @@ import { NgxMaskModule } from 'ngx-mask';
   ],
   providers: [AuthGuard, AuthService, MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, ],
-    entryComponents: [ModalAlertaComponent],
+    entryComponents: [ModalAlertaComponent, ModalFinalizarVendaComponent, ModalDetalhesVendaComponent],
     exports: [NgxMaskModule],
     bootstrap: [AppComponent]
 })

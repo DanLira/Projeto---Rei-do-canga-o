@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroPedidosComponent } from './cadastro-pedidos/cadastro-pedidos.component';
+import { VendasComponent } from './vendas/vendas.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
 },
 {
   path: 'pedido',
-  component: CadastroPedidosComponent, 
+  component: CadastroPedidosComponent,
   canActivate: [AuthGuard]
 },
 {
@@ -55,10 +56,14 @@ const routes: Routes = [
 },
 {
   path: 'fornecedor',
-  component: CadastroFornecedorComponent, 
+  component: CadastroFornecedorComponent,
   canActivate: [AuthGuard]
 },
-
+{
+  path: 'vendas',
+  component: VendasComponent,
+  canActivate: [AuthGuard]
+},
 
 ];
 

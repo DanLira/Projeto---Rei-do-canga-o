@@ -5,5 +5,5 @@ export interface Usuarios {
     senha: string;
     flagAtivo?: boolean;
     status?: string;
-    idEmpregado?: number;
+    idEmpregado?: string;
 }

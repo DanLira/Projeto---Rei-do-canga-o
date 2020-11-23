@@ -10,8 +10,8 @@
               <form [formGroup]="formsPedido" class="row mx-auto">
                   
                   <mat-form-field class="col-4">
-                    <mat-label>Digite o código ou o nome produto</mat-label>
-                    <input matInput #produtoAuto placeholder="Digite o código ou o nome produto" aria-label="Produto"
+                    <mat-label>Nome produto</mat-label>
+                    <input matInput #produtoAuto placeholder="Nome produto" aria-label="Produto"
                       [matAutocomplete]="produtoAuto" (blur)="resetFiltered();" formControlName="idProduto">
                     <mat-autocomplete #produtoAuto="matAutocomplete" [displayWith]="displayFn">
                       <mat-option *ngFor="let produto of produtoList" [value]="produto" (click)="addIdProduto(produto.idProduto);">
@@ -101,7 +101,7 @@
                                   <mat-icon>edit</mat-icon>
                                   <span>Editar</span>
                               </button>
-                              <button mat-menu-item (click)="excluirPedido(element.idProduto)">
+                              <button mat-menu-item (click)="modalAlerta(element)">
                                 <mat-icon>delete</mat-icon>
                                 <span>Remover</span>
                               </button>
@@ -126,7 +126,7 @@
                       </div>
                       <div class="col-12">
                         <button mat-button class="col-12 mt-2" (click)="cancelarPedido()">Cancelar</button>
-                        <button mat-button class="col-12 mt-2" (click)="finalizarPedido()">Finalizar Pedido</button>
+                        <button mat-button class="col-12 mt-2" [disabled]="dataSource.data.length === 0" (click)="finalizarPedido()">Finalizar Venda</button>
   
                       </div>
 

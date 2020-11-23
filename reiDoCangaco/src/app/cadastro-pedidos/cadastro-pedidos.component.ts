@@ -9,6 +9,7 @@ import { PedidoService } from './pedidoService.service';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ModalAlertaComponent } from '../shared/component/modals/modal-alerta/modal-alerta.component';
 import { PedidoProduto } from '../models/pedido-produto.model';
+import { ModalFinalizarVendaComponent } from '../shared/component/modals/modalFinalizarVenda/modalFinalizarVenda.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -19,7 +20,7 @@ export class CadastroPedidosComponent implements OnInit {
 
   formsPedido: FormGroup;
   pedidoList: PedidoProduto[] = [];
-  valorTotalPedido: number = 0;
+  valorTotalPedido: number = 0.00;
   itemList: any [] = [];
   produtoList: any[] = [];
   produtoAutocomplete: Produto[];
@@ -28,6 +29,7 @@ export class CadastroPedidosComponent implements OnInit {
   vol: string;
   preco: number;
   idUser: string;
+  teste: boolean;
   displayedColumns: string[] = ['idProduto', 'descProduto', 'tipoVolume', 'preco', 'qtde',  'total', 'action'];
   dataSource = new MatTableDataSource<any[]>();
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -137,8 +139,7 @@ export class CadastroPedidosComponent implements OnInit {
         return;
     }
     this.itemList.push(item);
-    this.dataSource.data = [...this.itemList];
-    this.pedidoList =  [...this.itemList];
+    this.dataSource.data = this.itemList;
 
     const totalPedido = this.itemList.map(p => {
       return p.valorTotalProduto;
@@ -154,7 +155,7 @@ export class CadastroPedidosComponent implements OnInit {
 
   private finalizarPedido(): void {
 
-    const lp = this.pedidoList.map(
+    const lp = this.itemList.map(
       p => {
           return {
             'idProduto': p.idProduto,
@@ -171,26 +172,43 @@ export class CadastroPedidosComponent implements OnInit {
       }
     };
 
-
     this.pedidoService.savePedidos(pedido).subscribe(() => {
       this.dataSource.data = [];
       this.valorTotalPedido = 0;
-      this.toastr.success('Pedido finalizado com sucesso!');
+      this.modalFinalizarVenda();
     });
 
 
   }
 
-  private excluirPedido(id: number): void {
-      this.dataSource.data.splice(id, 1);
-      this.dataSource.filter = '';
-  }
 
-
-
-  cancelarPedido(): void {
-    this.dialog.open(ModalAlertaComponent, {
+  private modalAlerta(val: any): void {
+    const dialogRef = this.dialog.open(ModalAlertaComponent, {
+      width: '400px',
+      data: {
+          descProduto: val.descProduto,
+          preco: val.precoProduto
+      }
    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data.splice(this.dataSource.data.indexOf(val), 1);
+        this.dataSource.data = [...this.dataSource.data];
+        this.valorTotalPedido = this.valorTotalPedido - val.valorTotalProduto;
+      }
+
+  });
  }
+
+ private modalFinalizarVenda(): void {
+  const dialogRef = this.dialog.open(ModalFinalizarVendaComponent, {
+    width: '400px',
+ });
+
+  dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+});
+}
 
 }
