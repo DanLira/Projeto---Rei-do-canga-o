@@ -19,7 +19,7 @@ export class CadastroPedidosComponent implements OnInit {
 
   formsPedido: FormGroup;
   pedidoList: PedidoProduto[] = [];
-  valorTotalPedido: 0;
+  valorTotalPedido: number = 0;
   itemList: any [] = [];
   produtoList: any[] = [];
   produtoAutocomplete: Produto[];
@@ -27,6 +27,7 @@ export class CadastroPedidosComponent implements OnInit {
   desc: string;
   vol: string;
   preco: number;
+  idUser: string;
   displayedColumns: string[] = ['idProduto', 'descProduto', 'tipoVolume', 'preco', 'qtde',  'total', 'action'];
   dataSource = new MatTableDataSource<any[]>();
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
@@ -40,7 +41,7 @@ export class CadastroPedidosComponent implements OnInit {
 
   ngOnInit() {
     this.createPedidoForm();
-
+    this.idUser = sessionStorage.getItem('idUser');
     this.produtoService.getAllProduto().subscribe((produto: Produto[]) => {
       this.produtoAutocomplete = (!!produto) ? produto : [];
 
@@ -118,7 +119,7 @@ export class CadastroPedidosComponent implements OnInit {
   }
 
 
-  private adicionarProduto(): void {
+  private adicionarProdutoToList(): void {
 
     const item: any = {
       idProduto: this.idProduto,
@@ -129,7 +130,9 @@ export class CadastroPedidosComponent implements OnInit {
       valorTotalProduto: this.formsPedido.get('precoProduto').value * this.formsPedido.get('quantidadeProduto').value
     };
 
-    if (this.formsPedido.get('quantidadeProduto').value === '') {
+    if (this.idProduto === undefined || this.formsPedido.get('quantidadeProduto').value === ''
+    || this.formsPedido.get('precoProduto').value === ''
+     || this.formsPedido.get('tipoVolume').value === '') {
         this.toastr.warning('Favor preencher os campos obrigatorios!');
         return;
     }
@@ -146,14 +149,47 @@ export class CadastroPedidosComponent implements OnInit {
 
     this.formsPedido.reset();
 
+  }
 
+
+  private finalizarPedido(): void {
+
+    const lp = this.pedidoList.map(
+      p => {
+          return {
+            'idProduto': p.idProduto,
+            'tipoVolume': p.tipoVolume,
+            'preco': p.precoProduto,
+            'quantidade': p.quantidadeProduto
+          };
+    });
+
+    const pedido: any = {
+      pedido: {
+        idUser: this.idUser,
+        listaProdutos: lp
+      }
+    };
+
+
+    this.pedidoService.savePedidos(pedido).subscribe(() => {
+      this.dataSource.data = [];
+      this.valorTotalPedido = 0;
+      this.toastr.success('Pedido finalizado com sucesso!');
+    });
+
+
+  }
+
+  private excluirPedido(id: number): void {
+      this.dataSource.data.splice(id, 1);
+      this.dataSource.filter = '';
   }
 
 
 
   cancelarPedido(): void {
     this.dialog.open(ModalAlertaComponent, {
-
    });
  }
 

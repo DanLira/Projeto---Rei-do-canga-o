@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
        console.log('Login successful');
        sessionStorage.setItem('isLoggedIn', 'true');
        sessionStorage.setItem('username', this.f.userName.value);
-       sessionStorage.setItem('key', user.idUser);
+       sessionStorage.setItem('idUser', user.idUser);
        sessionStorage.setItem('tipo', user.tipo);
        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
        this.router.navigate([this.returnUrl]);

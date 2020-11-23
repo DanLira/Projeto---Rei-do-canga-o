@@ -22,6 +22,7 @@ export class CadastroProdutoComponent implements OnInit {
   fornecedoresPj: FornecedorPj [];
   fornecedoresPf: FornecedorPf [];
   fornecedorPfList: FornecedorPf [] = [];
+  showFornecedor = false;
   formsRegister: FormGroup;
   filterFormProduto: FormGroup;
   displayedColumns: string[] = ['idProduto', 'descProduto', 'preco', 'tipoVolume', 'action'];
@@ -68,8 +69,6 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
 
-
-
   private createForm(): void {
     this.formsRegister = new FormGroup({
       idProduto: new FormControl(''),
@@ -91,14 +90,13 @@ salvarProduto() {
     descProduto: this.formsRegister.get('descProduto').value,
     preco: this.formsRegister.get('preco').value,
     tipoVolume: this.formsRegister.get('tipoVolume').value,
-    idFornecedorPJ: this.formsRegister.get('idFornecedorPJ').value ?
-    this.formsRegister.get('idFornecedorPJ').value : '',
-    idFornecedorPF: this.formsRegister.get('idFornecedorPF').value ?
+    idFornecedorPJ: this.formsRegister.get('tipoFornecedor').value === 'fornecedorPJ' ?
+     this.formsRegister.get('idFornecedorPJ').value : '',
+    idFornecedorPF: this.formsRegister.get('tipoFornecedor').value === 'fornecedorPF' ?
     this.formsRegister.get('idFornecedorPF').value : '',
     status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
 
   };
-
   if (!!this.formsRegister.value.idProduto) {
     this.produtoService.editProduto(produto).subscribe(() => {
       this.produtoService.getAllProduto().subscribe(produtos => {
@@ -139,7 +137,6 @@ limpar() {
 
 
 getRowTableProduto(value: any): void {
-
   this.formsRegister.get('idProduto').setValue(value.idProduto);
   this.formsRegister.get('descProduto').setValue(value.descProduto);
   this.formsRegister.get('preco').setValue(value.preco);

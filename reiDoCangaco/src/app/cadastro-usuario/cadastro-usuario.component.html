@@ -10,7 +10,7 @@
               </div>
               <form [formGroup]="formsRegister" class="row">
                 
-                  <mat-form-field class="full-autocomplete-input col-sm-4">
+                  <mat-form-field class="col-sm-4 col-xs-12">
                     <mat-label>Empregado</mat-label>
                     <input matInput #empregadoAuto placeholder="empregado" aria-label="Empregado"
                       [matAutocomplete]="empregadoAuto" formControlName="idEmpregado" (blur)="resetFiltered();"
@@ -22,7 +22,7 @@
                     </mat-autocomplete>
                   </mat-form-field>
 
-                  <mat-form-field class="col-4">
+                  <mat-form-field class="col-sm-4 col-xs-12">
                     <mat-label>Tipo de Usuário</mat-label>
                     <mat-select formControlName="tipo" value={{formsRegister.value.tipo}}>
                       <mat-option>Selecione</mat-option>
@@ -31,30 +31,28 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field class="col-4">
+                  <mat-form-field class="col-sm-4 col-xs-12">
                       <mat-label>Login</mat-label>
                     <input matInput placeholder="Login" required
                     formControlName="userName" value={{formsRegister.value.userName}} >
                   </mat-form-field>
 
-                  <mat-form-field class="col-4">
+                  <mat-form-field class="col-sm-4 col-xs-12">
                     <input matInput  placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
                     <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
                   </mat-form-field>
 
-                  <div class="col-xs-12 col-md-6">
+                  <div class="col-xs-12 col-sm-6">
                     <mat-slide-toggle formControlName="flagAtivo" class="col-xs-12 col-md-6">Inativo
                     </mat-slide-toggle>
                   </div>
 
-                  
-                
               </form>
             </div>
           </div>
-          <div class="d-flex">
+          <div class="d-flex col-12">
               <div class="offset-md-10">
                   <button mat-button class="col-12" (click)="limpar()">Limpar</button>
               </div>
