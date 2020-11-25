@@ -37,10 +37,10 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ModalFinalizarVendaComponent } from './shared/component/modals/modalFinalizarVenda/modalFinalizarVenda.component';
 import { VendasComponent } from './vendas/vendas.component';
 import { ModalDetalhesVendaComponent } from './shared/component/modals/modalDetalhesVenda/modalDetalhesVenda.component';
-
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -82,7 +82,8 @@ import { ModalDetalhesVendaComponent } from './shared/component/modals/modalDeta
     LayoutModule,
     SharedModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatListModule
 
   ],
   providers: [AuthGuard, AuthService, MatDatepickerModule,

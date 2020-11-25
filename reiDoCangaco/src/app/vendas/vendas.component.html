@@ -1,6 +1,6 @@
 
  <div class="col-12 mt-2">
-  <mat-card class="mat-card-list">
+  <!-- <mat-card class="mat-card-list">
       <mat-card-title>Listagem de Vendas</mat-card-title> 
       <mat-accordion>
         <mat-expansion-panel>
@@ -43,5 +43,56 @@
           </table>
           <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
         </div>
+    </mat-card> -->
+
+    <mat-card class="mat-card-list">
+      <mat-card-title>Listagem de Vendas</mat-card-title> 
+      <table mat-table
+       [dataSource]="dataSource2" multiTemplateDataRows
+       class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <th mat-header-cell *matHeaderCellDef id=""> {{column}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail"
+              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-id"> {{element.idPedido}} </div>
+              <div class="example-element-preco"> {{element.preco}} </div>
+              <div class="example-element-name"> {{element.userName}} </div>
+              <div class="example-element-data"> {{element.dataPedido}} </div>
+            </div>
+            <div class="example-element-description">
+              <mat-list>
+              <mat-list-item *ngFor="let item of element.listaProdutos">
+                <div mat-line>Código do Produto: {{item.idProduto}}</div>
+                <div mat-line>Descrição do Produto: {{item.descProduto}}</div>
+                <div mat-line> Tipo do Volume: {{item.tipoVolume}}</div>
+                <div mat-line>Preço Unitário: {{item.preco}}</div>
+              </mat-list-item>
+            </mat-list>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          (click)="expandedElement = element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+
     </mat-card>
+
+
+
+
 </div>

@@ -24,6 +24,7 @@
               <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/produto" routerLinkActive="active">
                 Novo Produto</div>
             </div>
+            
             <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cliente" routerLinkActive="active"></div>
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">groups</mat-icon>
@@ -33,14 +34,7 @@
               <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/empregado" routerLinkActive="active">
                 Novo Empregado</div>
             </div>
-            <div class="sub-menu">
-              <mat-icon class="sub-menu-icon">local_grocery_store</mat-icon>
-              <div class="sub-menu-title">Vendas</div>
-            </div>
-            <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/vendas" routerLinkActive="active">
-                Vendas</div>
-            </div>
+            
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">local_shipping</mat-icon>
               <div class="sub-menu-title">Fornecedores</div>
@@ -49,6 +43,7 @@
               <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/fornecedor" routerLinkActive="active">
                 Novo Fornecedor</div>
             </div>
+
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">event_note</mat-icon>
               <div class="sub-menu-title">Pedidos</div>
@@ -58,7 +53,18 @@
                 Iniciar Pedido</div>
             </div>
 
+            
             <div *ngIf="userName === 'Administrador'">
+              
+              <div class="sub-menu">
+                <mat-icon class="sub-menu-icon">local_grocery_store</mat-icon>
+                <div class="sub-menu-title">Vendas</div>
+              </div>
+              <div class="sub-menu-items">
+                <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/vendas" routerLinkActive="active">
+                  Vendas</div>
+              </div>
+
               <div class="sub-menu">
                 <mat-icon class="sub-menu-icon">account_circle</mat-icon>
                 <div class="sub-menu-title">Usuários</div>

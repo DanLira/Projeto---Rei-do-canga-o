@@ -46,7 +46,8 @@
                     <mat-label>Fornecedor</mat-label>
                     <mat-select formControlName="idFornecedorPJ" value={{formsRegister.value.idFornecedorPJ}}>
                       <mat-option>Selecione</mat-option>
-                      <mat-option [value]="fpj.idFornecedorPJ" *ngFor="let fpj of fornecedoresPj">{{fpj.nomeFantasia}}</mat-option>
+                      <mat-option [value]="fpj.idFornecedorPJ" *ngFor="let fpj of fornecedoresPj">{{fpj.nomeFantasia}}
+                      </mat-option>
                     </mat-select>
                   </mat-form-field>
 
