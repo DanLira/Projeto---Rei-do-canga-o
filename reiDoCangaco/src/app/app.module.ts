@@ -89,7 +89,7 @@ import { MatListModule } from '@angular/material/list';
   providers: [AuthGuard, AuthService, MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, ],
     entryComponents: [ModalAlertaComponent, ModalFinalizarVendaComponent, ModalDetalhesVendaComponent],
-    exports: [NgxMaskModule],
+    //exports: [NgxMaskModule],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

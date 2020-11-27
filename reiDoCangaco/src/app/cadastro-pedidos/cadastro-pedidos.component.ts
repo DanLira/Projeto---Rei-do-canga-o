@@ -10,6 +10,8 @@ import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ModalAlertaComponent } from '../shared/component/modals/modal-alerta/modal-alerta.component';
 import { PedidoProduto } from '../models/pedido-produto.model';
 import { ModalFinalizarVendaComponent } from '../shared/component/modals/modalFinalizarVenda/modalFinalizarVenda.component';
+import { MaskService } from '../shared/mask.service';
+import { Masks } from '../shared/masks.interfaces';
 
 @Component({
   selector: 'app-pedidos',
@@ -21,6 +23,7 @@ export class CadastroPedidosComponent implements OnInit {
   formsPedido: FormGroup;
   pedidoList: PedidoProduto[] = [];
   valorTotalPedido: number = 0.00;
+  public masks: Masks = this.maskService.masks;
   itemList: any [] = [];
   produtoList: any[] = [];
   produtoAutocomplete: Produto[];
@@ -36,6 +39,7 @@ export class CadastroPedidosComponent implements OnInit {
   @ViewChild('produtoAuto') produtoAuto;
 
   constructor(private readonly formBuilder: FormBuilder,
+              private readonly maskService: MaskService,
               private readonly pedidoService: PedidoService,
               private readonly produtoService: ProdutoService,
               public dialog: MatDialog,
