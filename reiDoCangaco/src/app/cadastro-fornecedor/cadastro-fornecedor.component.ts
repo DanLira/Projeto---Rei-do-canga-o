@@ -16,11 +16,9 @@ export class CadastroFornecedorComponent implements OnInit {
 
   fornecedorPj: FornecedorPj [];
   fornecedorPJList: FornecedorPj [] = [];
-  pj: boolean;
 
   fornecedorPf: FornecedorPf [];
   fornecedorPfList: FornecedorPf [] = [];
-  pf: boolean;
 
   formsRegister: FormGroup;
   filterFormFornecedorPj: FormGroup;
@@ -112,7 +110,6 @@ export class CadastroFornecedorComponent implements OnInit {
 
           if (event.value === 'fornecedorPJ') {
 
-          this.pj = true;
           this.addFormValidators(['razaoSocial', 'cnpj']);
 
           this.formsRegister.get('nome').clearValidators();
@@ -122,7 +119,6 @@ export class CadastroFornecedorComponent implements OnInit {
 
          } else if (event.value === 'fornecedorPF') {
 
-          this.pf = true;
           this.addFormValidators(['nome', 'cpf']);
 
           this.formsRegister.get('razaoSocial').clearValidators();
@@ -136,7 +132,7 @@ export class CadastroFornecedorComponent implements OnInit {
 
   private salvarFornecedor(): void {
 
-    if (this.pj) {
+    if (this.formsRegister.get('tipoFornecedor').value === 'fornecedorPJ') {
 
       const fornecedorPJ: FornecedorPj = {
 
@@ -172,7 +168,7 @@ export class CadastroFornecedorComponent implements OnInit {
           });
       }
 
-    } else if (this.pf) {
+    } else if (this.formsRegister.get('tipoFornecedor').value === 'fornecedorPF') {
       const fornecedorPF: FornecedorPf = {
 
         idFornecedorPF: this.formsRegister.get('idFornecedorPF').value,

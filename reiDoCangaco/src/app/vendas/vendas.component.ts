@@ -30,7 +30,7 @@ export class VendasComponent implements OnInit {
 
 
   dataSource2 = ELEMENT_DATA;
-  columnsToDisplay: string[] = ['idPedido', 'valorTotal', 'dataPedido'];
+  columnsToDisplay: string[] = ['codigo', 'valorTotal', 'dataPedido', 'expand'];
   expandedElement: PeriodicElement;
 
   constructor(private readonly formBuilder: FormBuilder,

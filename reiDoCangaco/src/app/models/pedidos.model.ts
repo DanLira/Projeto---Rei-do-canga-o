@@ -1,5 +1,3 @@
-import { Produto } from './produto.model';
-
 export interface Pedidos {
     idPedido?: string;
     dataPedido: string;
@@ -33,7 +31,7 @@ export const ELEMENT_DATA: PeriodicElement[] = [
       idPedido: '1',
       userName: 'Daniel Lira',
       valorTotal: '1.0079',
-      dataPedido: '25/11/2020',
+      dataPedido: '22/11/2020',
       listaProdutos: [
             {
                 idProduto: '1019',
@@ -88,7 +86,7 @@ export const ELEMENT_DATA: PeriodicElement[] = [
             idPedido: '3',
             userName: 'Rafael Joaquim',
             valorTotal: '2.0079',
-            dataPedido: '25/11/2020',
+            dataPedido: '26/11/2020',
             listaProdutos: [
                     {
                         idProduto: '1012',
