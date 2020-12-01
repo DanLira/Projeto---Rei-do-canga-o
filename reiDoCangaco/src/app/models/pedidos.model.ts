@@ -109,4 +109,31 @@ export const ELEMENT_DATA: PeriodicElement[] = [
             ],
         },
 
+        {
+            idPedido: '4',
+            userName: 'TESTE',
+            valorTotal: '579',
+            dataPedido: '30/11/2020',
+            listaProdutos: [
+                    {
+                        idProduto: '1012',
+                        descProduto: 'Queijo Prato',
+                        tipoVolume: 'KG',
+                        preco: 100.34
+                    },
+                    {
+                        idProduto: '1013',
+                        descProduto: 'Queijo Manteiga',
+                        tipoVolume: 'KG',
+                        preco: 300.34
+                    },
+                    {
+                        idProduto: '1014',
+                        descProduto: 'Manteiga',
+                        tipoVolume: 'KG',
+                        preco: 500.34
+                    }
+            ],
+        },
+
   ];

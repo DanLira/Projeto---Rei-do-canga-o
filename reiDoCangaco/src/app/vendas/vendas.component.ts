@@ -46,22 +46,26 @@ export class VendasComponent implements OnInit {
     this.pedidoService.getAllPedido().subscribe((pedido: Pedidos[]) => {
       this.pedidoList = (!!pedido) ? pedido : [];
 
-      const pedidosAgrupados = this.pedidoList.reduce((acc, obj) => {
-        const id = obj.idPedido;
-        if (!acc[id]) {
-          acc[id] = [];
-        }
-        acc[id].push(obj);
-        return acc;
-      }, []);
+      // const pedidosAgrupados = this.pedidoList.reduce((acc, obj) => {
+      //   const id = obj.idPedido;
+      //   if (!acc[id]) {
+      //     acc[id] = [];
+      //   }
+      //   acc[id].push(obj);
+      //   return acc;
+      // }, []);
 
-      console.log(this.pedidoList);
-      this.pedidosReduce.push(pedidosAgrupados);
+      // console.log(this.pedidoList);
+      // this.pedidosReduce.push(pedidosAgrupados);
 
-      console.log(pedidosAgrupados);
-      console.log( this.dataSource.data);
+      // console.log(pedidosAgrupados);
+      // console.log( this.dataSource.data);
 
-      this.dataSource.data = [...this.pedidosReduce];
+      this.pedidoList.forEach(e => {
+
+      });
+
+      this.dataSource.data = [...this.pedidoList];
     });
 
     this.dataSource.paginator = this.MatPaginator;
@@ -82,24 +86,16 @@ export class VendasComponent implements OnInit {
     this.dataSource.data = filteredTable;
   }
 
-  openVendasDetalhes(p: Pedidos): void {
-    this.dialog.open(ModalDetalhesVendaComponent, {
-      data: {
-        desc: p.descProduto,
-        volume: p.tipoVolume,
-        preco: p.preco,
-        quantidade: p.quantidade
+  // openVendasDetalhes(p: Pedidos): void {
+  //   this.dialog.open(ModalDetalhesVendaComponent, {
+  //     data: {
+  //       desc: p.descProduto,
+  //       volume: p.tipoVolume,
+  //       preco: p.preco,
+  //       quantidade: p.quantidade
 
-      }
-    });
-    console.log(p);
-  }
-
-
-
-  
-
-
-  
+  //     }
+  //   });
+  // }
 
 }

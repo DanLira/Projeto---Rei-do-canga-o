@@ -5,7 +5,7 @@
     
     </div>
     <p>Tem certeza que deseja remover 
-      <span>{{ data.descProduto }} de R$ {{ data.preco }}</span>
+      <span>{{ data.descProduto }} de  {{ data.preco | currency: 'BRL' }}</span>
        da lista?</p>
     
   <hr class="mb-4" />

@@ -1,3 +1,4 @@
+import { Empregado } from './empregado.model';
 export interface Usuarios {
     idUser?: string;
     tipo: string;
@@ -5,5 +6,5 @@ export interface Usuarios {
     senha: string;
     flagAtivo?: boolean;
     status?: string;
-    idEmpregado?: string;
+    idEmpregado?: Empregado;
 }

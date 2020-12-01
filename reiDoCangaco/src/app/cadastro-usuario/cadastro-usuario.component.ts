@@ -70,6 +70,10 @@ export class CadastroUsuarioComponent implements OnInit {
 
   }
 
+  displayFn(empregado: Empregado): string {
+    return empregado ? empregado.nomeEmpregado : undefined;
+  }
+
 
   private _filterEmpregado(paramOfFilter: string): void {
     if (!!paramOfFilter) {
@@ -105,15 +109,21 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
 
-  salvarUsuario(): void {
+  private addIdEmpregado(id: any): void {
+    this.idEmpregado = id;
 
+}
+
+
+  salvarUsuario(): void {
+debugger;
     const usuario: Usuarios = {
       idUser: this.formsRegister.get('idUser').value,
       tipo: this.formsRegister.get('tipo').value,
       userName: this.formsRegister.get('userName').value,
       senha: this.formsRegister.get('senha').value,
       status: this.formsRegister.get('flagAtivo').value ? 'I' : 'A',
-      idEmpregado: this.formsRegister.get('idEmpregado').value
+      idEmpregado: this.idEmpregado
 
 
     };
@@ -159,13 +169,22 @@ export class CadastroUsuarioComponent implements OnInit {
 
 
   getRowTableUsuario(value: any): void {
-
+    let nome;
+    let id;
+    this.empregadoAutocomplete.find(x => {
+      if (x.idEmpregado === value.idEmpregado) {
+        id = x.idEmpregado;
+        nome = x.nomeEmpregado;
+      }
+     });
+    this.idEmpregado = id;
     this.formsRegister.get('idUser').setValue(value.idUser);
     this.formsRegister.get('tipo').setValue(value.tipo);
     this.formsRegister.get('userName').setValue(value.userName);
     this.formsRegister.get('senha').setValue(value.senha);
     this.formsRegister.get('flagAtivo').setValue(value.status === 'A' ? false : true );
-    this.formsRegister.get('idEmpregado').setValue(value.idEmpregado);
+    this.formsRegister.get('idEmpregado').setValue(nome);
+
   }
 
 

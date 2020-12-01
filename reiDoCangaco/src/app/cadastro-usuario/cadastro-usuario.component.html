@@ -12,11 +12,12 @@
                 
                   <mat-form-field class="col-sm-4 col-xs-12">
                     <mat-label>Empregado</mat-label>
-                    <input matInput #empregadoAuto placeholder="empregado" aria-label="Empregado"
-                      [matAutocomplete]="empregadoAuto" formControlName="idEmpregado" (blur)="resetFiltered();"
-                      value={{formsRegister.value.idEmpregado}}>
-                    <mat-autocomplete #empregadoAuto="matAutocomplete">
-                      <mat-option *ngFor="let empregado of empregadoList" [value]="empregado.idEmpregado">
+                    <input matInput #empregadoAuto placeholder="empregado" aria-label="Empregado" 
+                      [matAutocomplete]="empregadoAuto" formControlName="idEmpregado" (blur)="resetFiltered();" 
+                      >
+                    <mat-autocomplete #empregadoAuto="matAutocomplete" [displayWith]="displayFn">
+                      <mat-option *ngFor="let empregado of empregadoList" [value]="empregado" 
+                      (click)="addIdEmpregado(empregado.idEmpregado);">
                         <span>{{ empregado.nomeEmpregado }}</span>
                       </mat-option>
                     </mat-autocomplete>
@@ -44,8 +45,8 @@
                     </button>
                   </mat-form-field>
 
-                  <div class="col-xs-12 col-sm-6">
-                    <mat-slide-toggle formControlName="flagAtivo" class="col-xs-12 col-md-6">Inativo
+                  <div class="col-xs-12 col-sm-2">
+                    <mat-slide-toggle formControlName="flagAtivo" class="col-xs-12 col-md-2">Inativo
                     </mat-slide-toggle>
                   </div>
 
