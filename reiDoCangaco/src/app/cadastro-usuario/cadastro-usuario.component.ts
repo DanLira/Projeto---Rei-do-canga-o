@@ -116,7 +116,6 @@ export class CadastroUsuarioComponent implements OnInit {
 
 
   salvarUsuario(): void {
-debugger;
     const usuario: Usuarios = {
       idUser: this.formsRegister.get('idUser').value,
       tipo: this.formsRegister.get('tipo').value,

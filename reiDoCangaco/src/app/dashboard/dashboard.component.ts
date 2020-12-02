@@ -1,3 +1,5 @@
+import { PedidoService } from './../cadastro-pedidos/pedidoService.service';
+import { Pedidos } from './../models/pedidos.model';
 import { Chart } from 'chart.js';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -8,16 +10,23 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+ pedidosList: Pedidos [] = [];
+ finalizados: number;
  @ViewChild('canvas, canvas2', {static: true}) element: ElementRef;
  @ViewChild('canvas2', {static: true}) element2: ElementRef;
  @ViewChild('canvas3', {static: true}) element3: ElementRef;
- //@ViewChild('canvas4', {static: true}) element4: ElementRef;
 
-  constructor() {}
+  constructor(private readonly pedidoService: PedidoService) {}
 
   ngOnInit() {
 
-    //Total de vendas por mês
+    this.pedidoService.getAllPedido().subscribe((pedido: Pedidos[]) => {
+      this.pedidosList = (!!pedido) ? pedido : [];
+    });
+    this.totalPedidoStatus();
+
+    // Total de vendas por mês
     // tslint:disable-next-line: no-unused-expression
     new Chart(this.element.nativeElement, {
       type: 'bar',
@@ -61,7 +70,7 @@ export class DashboardComponent implements OnInit {
      });
 
 
-     //Total de pedidos (Abertos, Cancelados e Finalizados)
+     // Total de pedidos (Abertos, Cancelados e Finalizados)
      // tslint:disable-next-line: no-unused-expression
     new Chart(this.element2.nativeElement, {
       type: 'pie',
@@ -70,16 +79,16 @@ export class DashboardComponent implements OnInit {
         datasets: [
           {
             label: 'Total de pedidos (Abertos, Cancelados e Finalizados)',
-            data: [73, 127, 200],
+            data: [73, 127, this.finalizados],
             options: {
               tooltips: {
                 mode: 'point'
             },
               animation: {
-                  duration: 0 // general animation time
+                  duration: 2 // general animation time
               },
               hover: {
-                  animationDuration: 0 // duration of animations when hovering an item
+                  animationDuration: 2 // duration of animations when hovering an item
               },
               responsiveAnimationDuration: 0 // animation duration after a resize
 
@@ -94,7 +103,7 @@ export class DashboardComponent implements OnInit {
       }
      });
 
-     //Total de pedidos em aberto no mês
+     // Total de pedidos em aberto no mês
     // tslint:disable-next-line: no-unused-expression
     new Chart(this.element3.nativeElement, {
       type: 'bar',
@@ -130,4 +139,18 @@ export class DashboardComponent implements OnInit {
       }
      });
   }
+
+
+ private totalPedidoStatus(): number {
+  
+   this.pedidosList.forEach((p: Pedidos) => {
+    if (p.statusPedito === 'Finalizado') {
+        return this.finalizados += 1;
+      }
+    });
+
+   return this.finalizados;
+
+ }
+
 }
