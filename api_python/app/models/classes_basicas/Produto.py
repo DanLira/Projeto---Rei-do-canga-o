@@ -9,6 +9,7 @@ class Produto(object):
     status = None
 
     quantidade = None
+    valor_total = None
     
 
     def __init__(self, descProduto, tipoVolume, preco, id_fornecedorPJ, id_fornecedorPF, status):
@@ -66,4 +67,10 @@ class Produto(object):
 
     def setQuantidade(self, quantidade):
         self.quantidade = quantidade
+
+    def getValorTotal(self):
+        return self.valor_total
+
+    def setValorTotal(self, valor_total):
+        self.valor_total = valor_total
 

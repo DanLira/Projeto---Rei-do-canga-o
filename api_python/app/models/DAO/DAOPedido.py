@@ -3,7 +3,10 @@ from app import app
 from config import mysql
 from flask import jsonify
 from flask import flash, request
+from decimal import Decimal as D
 from app.models.classes_basicas.Pedido import Pedido
+from app.models.classes_basicas.Produto import Produto
+import json
 
 
 def add_pedido(p):   
@@ -40,7 +43,8 @@ def add_pedido(p):
         
 
 def listarPedidos():
-    try:
+    listaPedidosRetorno = []
+    try:    
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         sql = "SELECT P.id_pedido idPedido, P.data_pedido dataPedido, P.status_pedido statusPedido,P.id_user idUser, E.nome_empregado vendedor, PP.id_produto idProduto, PR.desc_produto descProduto, PP.preco_produto preco, PP.tipo_volume tipoVolume, PP.quantidade_produto quantidade, PP.valor_total_produto valorTotalProduto FROM PEDIDOS P INNER JOIN PEDIDO_PRODUTOS PP ON P.id_pedido = PP.id_pedido INNER JOIN PRODUTOS PR ON PP.id_produto = PR.id_produto INNER JOIN USUARIOS U ON P.id_user = U.id_user INNER JOIN EMPREGADOS E ON U.id_empregado = E.id_empregado"

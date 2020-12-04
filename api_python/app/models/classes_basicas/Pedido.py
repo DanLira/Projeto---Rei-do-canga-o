@@ -3,8 +3,9 @@ class Pedido(object):
     id_pedido = None
     dataPedido = None
     statusPedido = None
-
     id_user = None
+    vendedor = None
+
     listaProdutos = []
 
     def __init__(self, id_user):
@@ -37,3 +38,9 @@ class Pedido(object):
 
     def setIdUser(self, id_user):
         self.id_user = id_user  
+
+    def getVendedor(self):
+        return self.vendedor
+
+    def setVendedor(self, vendedor):
+        self.vendedor = vendedor

@@ -36,7 +36,8 @@ def add_pedido(_pedido):
 
 def listarPedidos():
     try:
-        return DAOPedido.listarPedidos()
+        listaPedidos = DAOPedido.listarPedidos() 
+        return listaPedidos
     except Exception as ex:
         print(ex)
     
