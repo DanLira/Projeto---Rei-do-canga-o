@@ -83,7 +83,7 @@
         <td mat-cell *matCellDef="let element" > {{element.dataPedido }} </td>
       </ng-container>
       <ng-container matColumnDef="expand">
-        <th mat-header-cell *matHeaderCellDef id="expand"> Expandir </th>
+        <th mat-header-cell *matHeaderCellDef id="expand"> Detalhes </th>
         <td mat-cell *matCellDef="let element">
           <mat-icon class="icon expandIcon"
             (click)="expandedElement = expandedElement === element ? null : element">

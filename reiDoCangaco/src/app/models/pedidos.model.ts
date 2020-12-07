@@ -1,13 +1,12 @@
 export interface Pedidos {
     idPedido?: string;
-    dataPedido: string;
+    dataPedido?: string;
     quantidade?: string;
     descProduto?: string;
-    statusPedito: string;
+    statusPedido?: string;
     preco?: string;
     tipoVolume?: string;
-    idUser: string;
-    lista?: any [];
+    idUser?: string;
 }
 
 
@@ -16,7 +15,7 @@ export interface PeriodicElement {
     dataPedido?: string;
     quantidade?: string;
     descProduto?: string;
-    statusPedito?: string;
+    statusPedido?: string;
     preco?: string;
     valorTotal: string;
     tipoVolume?: string;

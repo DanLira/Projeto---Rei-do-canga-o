@@ -12,7 +12,8 @@ import { OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
  pedidosList: Pedidos [] = [];
- finalizados: number;
+ pedidosTeste: Pedidos [];
+ private finalizados: number;
  @ViewChild('canvas, canvas2', {static: true}) element: ElementRef;
  @ViewChild('canvas2', {static: true}) element2: ElementRef;
  @ViewChild('canvas3', {static: true}) element3: ElementRef;
@@ -21,11 +22,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.pedidoService.getAllPedido().subscribe((pedido: Pedidos[]) => {
+    this.graficos();
+    this.pedidoService.getAllPedido().subscribe((pedido: any) => {
       this.pedidosList = (!!pedido) ? pedido : [];
     });
     this.totalPedidoStatus();
 
+
+    // console.log(this.finalizados);
+  }
+
+  private graficos(): void {
     // Total de vendas por mês
     // tslint:disable-next-line: no-unused-expression
     new Chart(this.element.nativeElement, {
@@ -141,15 +148,20 @@ export class DashboardComponent implements OnInit {
   }
 
 
- private totalPedidoStatus(): number {
-  
-   this.pedidosList.forEach((p: Pedidos) => {
-    if (p.statusPedito === 'Finalizado') {
-        return this.finalizados += 1;
+ private totalPedidoStatus(): void {
+
+  const pedidosFinalizados = this.pedidosList.map(pf => {
+    return pf.statusPedido;
+  });
+
+
+  pedidosFinalizados.forEach(p => {
+    if (p !== null && p === 'Finalizado') {
+         this.finalizados ++;
       }
     });
 
-   return this.finalizados;
+ // return this.finalizados;
 
  }
 

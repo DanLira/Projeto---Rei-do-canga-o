@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-  fazerLogin() {
+ private fazerLogin() {
   if (this.loginForm.invalid) {
     this.toastr.warning('Favor preencher Login e Senha!', '');
     return;
