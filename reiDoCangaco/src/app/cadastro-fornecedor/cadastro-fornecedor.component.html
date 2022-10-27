@@ -54,7 +54,7 @@
 
                 <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
                   <mat-label>CPF</mat-label>
-                    <input matInput placeholder="CPF" 
+                    <input matInput placeholder="CPF" mask="000.000.000-00" 
                     formControlName="cpf" value={{formsRegister.value.cpf}}>         
                 </mat-form-field>
 
@@ -125,7 +125,7 @@
 
               <mat-form-field class="col-2">
                 <mat-label>Cep</mat-label>
-                <input matInput placeholder="Cep"
+                <input matInput placeholder="Cep" mask="00000-000" 
                 formControlName="cep" value={{formsRegister.value.cep}} >
               </mat-form-field>
 
